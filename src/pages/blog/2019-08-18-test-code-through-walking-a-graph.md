@@ -154,7 +154,7 @@ Below is an example code sandbox to see what I have written in action.
 
 One of the things I realised while working this way is that we are in fact creating a pseudo-state chart in the transitions look up. In fact although XState powers the component, a component does not require it to be powered by a state chart for it to be tested this way. The combination of a component and test both sharing the same underlying logic is very powerful. This does open the door to allowing existing code and components to be tested this way. By modelling the desired behaviour and then basing the tests on that. 
 
-These test feel a lot like the behaviour style tests from Cucumber. Where rather than mapping "natural" language to ways of interacting and validating a system under test; The statechart and visualisation is used to map the interactions to the behaviour.
+These test feel a lot like the behaviour style tests from Cucumber and "Given When Then". Where rather than mapping "natural" language to ways of interacting and validating a system under test; The statechart and visualisation is used to map the interactions to the behaviour.
 
 Graph walking is at the heart of automated model-based testing. By using graph walking algorithms you can generate tests automatically based on the results. 
 

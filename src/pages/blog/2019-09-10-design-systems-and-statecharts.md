@@ -14,5 +14,7 @@ You have your design system. It describes how to layout your application; it giv
 
 You disseminate your design system for people to create wonderful things. At first wonderful things are created but as the list of creations grows there is something uneasy about what is being created. Things are now almost wonderful, everything looks correct but somehow doesn't quite mesh together in a consistent way.
 
-### What went wrong? 
+### Did something go wrong?
+
+
 

@@ -5,6 +5,12 @@ backend:
 media_folder: static/img
 public_folder: /img
 
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: lazydayed
+    api_key: 347158582331541
+
 publish_mode: editorial_workflow
 
 collections:

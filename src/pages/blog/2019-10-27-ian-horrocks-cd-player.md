@@ -8,6 +8,6 @@ tags:
 ---
 
 
-![]()
+
 
 [asdf](https://books.google.no/books/about/Constructing_the_User_Interface_with_Sta.html?id=-9VQAAAAMAAJ&redir_esc=y&hl=en)

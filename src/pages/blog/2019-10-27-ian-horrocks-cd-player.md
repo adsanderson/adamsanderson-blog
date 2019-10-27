@@ -8,6 +8,6 @@ tags:
 ---
 
 
-
+![Statechart for a CD Player from Constructing the User Interface with Statecharts -  Ian Horrocks](https://res.cloudinary.com/lazydayed/image/upload/v1572205856/IMG_20190913_183604_aah1gq.jpg)
 
 [asdf](https://books.google.no/books/about/Constructing_the_User_Interface_with_Sta.html?id=-9VQAAAAMAAJ&redir_esc=y&hl=en)

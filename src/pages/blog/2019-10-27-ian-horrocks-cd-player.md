@@ -16,6 +16,8 @@ prep:
 - intro the book
 - intro the statechart
 - show xstate reprsentation
-- notes on ids
+- notes on  interesting patterns
+    - ids
+    - transition state for cd loaded
 - image of the cd player
 - link to codepen

@@ -29,14 +29,21 @@ const Footer = class extends React.Component {
           className="nav__link"
           title="Github"
         >
-          Github
+          github
         </a>
         <a
           href="https://twitter.com/lazydayed"
           className="nav__link"
           title="Twitter"
         >
-          Twitter
+          twitter
+        </a>
+        <a
+          href="mailto:adam+site@adamsanderson.co.uk"
+          className="nav__link"
+          rel="me"
+        >
+          email
         </a>
       </nav>
     );

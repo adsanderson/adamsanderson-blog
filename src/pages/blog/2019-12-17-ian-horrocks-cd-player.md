@@ -6,9 +6,9 @@ description: 'or: How'
 tags:
   - statecharts
 ---
-In 1999 Ian Horroks released [Constructing the User Interface with Statecharts](https://books.google.no/books/about/Constructing_the_User_Interface_with_Sta.html?id=-9VQAAAAMAAJ&redir_esc=y&hl=en) a book incredibly forward looking.
+In 1999 Ian Horroks released [Constructing the User Interface with Statecharts](https://books.google.no/books/about/Constructing_the_User_Interface_with_Sta.html?id=-9VQAAAAMAAJ&redir_esc=y&hl=en) a book incredibly forward looking. Discussing ideas that would later be known as agile development and user experience. 
 
-Agile manifesto 2001
+
 
 
 

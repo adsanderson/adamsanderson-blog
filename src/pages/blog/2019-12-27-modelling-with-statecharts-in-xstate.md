@@ -72,16 +72,6 @@ In this post we will be looking at a process for modelling behaviour in a statec
 
 We will start with a simple application, that is reasonably complex, realistic, self contained and has options to grow. We'll identify some requirements and then start the process of modelling the application.
 
-## The problem
-
-We will build an RSS feed reader. The requirements for this feed reader are:
-
-1. View a feed
-2. Add a feed
-3. Remove a feed
-4. Mark an item as read
-5. Mark an item as unread
-
 This list won't match exactly the states of the final statecharts, but it gives us a starting point for grouping and to start an initial configuration. Now we have a starting point we can start refining it by looking at the events to transition between the states. A slightly more structured list of states:
 
 - Initialising feed reader
@@ -94,12 +84,25 @@ This list won't match exactly the states of the final statecharts, but it gives 
 - Feed item marked as read
 - Feed item un-read
 
+## How to transition between our states
+
 With an idea of states then we should move onto events, to decide what we need to transition between the states.
 
-From "initialising" we will need to get the users saved configuration, so the first event would be to LOAD_CONFIGURATION. With the configuration loaded we will know if there are any saved feeds that need loading. If "no feeds exist" all we could do from there is to ADD_A_FEED, this event would also be needed when we are "viewing a feed". Next once the configuration has loaded and there are existing feeds we should load the first feed.
+From "initialising" we will need to get the users saved configuration, so the first event would be to `CONFIGURATION_LOADED`. With the configuration loaded we will know if there are any saved feeds that need loading. If "no feeds exist" all we could do from there is to `ADD_A_FEED`, this event would also be needed when we are "viewing a feed". Next once the configuration has loaded and there are existing feeds we should load the first feed, with the next event being `FETCH_FEED`. If we have called `FETCH_FEED` it would make sense to then go to the "fetching a feed" state, and from there we will either get a `SUCCESSFULLY_FETCHED_FEED` or `FAILED_TO_FETCH_FEED`. When viewing a feed we would probably want to change the feed and fetch a different feed, that event would most likely be covered by calling `FETCH_FEED` with the new feed to fetch. So we won't use a specific event for this transition. We will need an event to remove a feed `REMOVE_FEED`, this event we will come back to as we have options on how to define the event. Finally from the feed items we will need an ability to `TOGGLE_READ`.
 
-- LOAD_CONFIGURATION
+We now have a list of events and an idea of how each should be used to transition between the states.
+
+- CONFIGURATION_LOADED
 - ADD_A_FEED
+- FETCH_FEED
+- SUCCESSFULLY_FETCHED_FEED
+- FAILED_TO_FETCH_FEED
+- REMOVE_FEED
+- TOGGLE_READ
+
+With our list of states and events we can start thinking about how to group and structure them into a statechart.
+
+## Turning lists into statecharts
 
 # Notes
 

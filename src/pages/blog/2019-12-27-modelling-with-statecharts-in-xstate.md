@@ -23,10 +23,25 @@ We will build an RSS feed reader. The requirements for this feed reader are:
 
 ## The first wave of states
 
-As you can see from the requirements above a lot has been left for us to interpret. So our goal first of all is just to think of the states we require, but no group them yet.
+As you can see from the requirements above a lot has been left for us to interpret. So our goal first of all is just to think of the states we require, but not group them yet.
 
+Here is the first wave of states that I could think of, with some details against each:
 
+- View a feed
+  - When someone pictures the app in their mind this is what they should see. The feed with the items displayed.
+- Fetching a feed
+  - This is a transition state while a feed is being fetched, this tends to be the home of spinners
+- Error fetching feed
+  - If we can't load the feed the user selected then we should let them know. An error state is not always need but sometimes having something explicit is needed.
+- Feed item read
+  - 
+- Feed item un-read
+- Adding a feed
+- Removing a feed
+- No feed exists
+- Initialising feed
 
+This list won't be every state, but it gives us a starting point for grouping and to start an initial configuration.
 
 1. Intro about modelling
 2. Define the problem

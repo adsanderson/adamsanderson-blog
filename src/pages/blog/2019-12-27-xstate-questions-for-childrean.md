@@ -22,13 +22,16 @@ There are a number of ways we can deal with sub-states in XState. We will start 
 
 ### Invoked Machine service
 
-- on done
+- on done final state
 - mocking in testing
+- Belongs to a state
 
 ### Actor machine
 
-- sync context
+- update state through message events
 - dynamic
+- manual stop
+- Belong to the service
 
 ## The Questions
 

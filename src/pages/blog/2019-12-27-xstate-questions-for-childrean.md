@@ -35,3 +35,6 @@ There are a number of ways we can deal with sub-states in XState. We will start 
 
 ## The Questions
 
+Do my sub-states need to keep up to date with the parent context.
+Are the sub-states always the same.
+Do I need to mock out the sub-states.

@@ -30,16 +30,21 @@ Here is the first wave of states that I could think of, with some details agains
 - View a feed
   - When someone pictures the app in their mind this is what they should see. The feed with the items displayed.
 - Fetching a feed
-  - This is a transition state while a feed is being fetched, this tends to be the home of spinners
+  - This is a transition state while a feed is being fetched, this tends to be the home of spinners.
 - Error fetching feed
   - If we can't load the feed the user selected then we should let them know. An error state is not always need but sometimes having something explicit is needed.
-- Feed item read
-  - 
+- Feed item marked as read
+  - an item is marked as read, this should give a visual clue to the user that when they return this should not be visible.
 - Feed item un-read
+  - This is the feed item equivalent of what the user pictures for the feed itself but for the item.
 - Adding a feed
+  - Some visual feedback that a feed is being fetched and added
 - Removing a feed
+  - Some visual feedback that a feed is being removed
 - No feed exists
-- Initialising feed
+  - Most likely the initial state of the application, or when all the feeds have been removed.
+- Initialising feed reader
+  - The app needs to do something to start and usually it's best to give the user feedback when that happens.
 
 This list won't be every state, but it gives us a starting point for grouping and to start an initial configuration.
 

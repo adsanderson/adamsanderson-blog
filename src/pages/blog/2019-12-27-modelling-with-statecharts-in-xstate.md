@@ -1,15 +1,18 @@
 ---
 templateKey: blog-post
-title: 'Modelling with Statecharts in XState '
+title: "Modelling with Statecharts in XState "
 date: 2019-12-21T14:47:10.233Z
-description: 'or: How I learned to '
+description: "or: How I learned to "
 tags:
   - Statecharts
   - XState
 ---
+
 In this post we will be looking at a process for modelling behaviour in a statechart. The goal of this post is to give you an approach to help ask the questions you need when creating an application and thinking in states, events and transitions.
 
 We will start with a simple application, that is reasonably complex, realistic, self contained and has options to grow. We'll identify some requirements and then start the process of modelling the application.
+
+As a developer there are a lot of assumptions that are made, consciously and unconsciously.
 
 ## The problem
 
@@ -27,33 +30,41 @@ As you can see from the requirements above a lot has been left for us to interpr
 
 Here is the first wave of states that I could think of, with some details against each:
 
-* View a feed
+- View a feed
 
-  * When someone pictures the app in their mind this is what they should see. The feed with the items displayed.
-* Fetching a feed
+  - When someone pictures the app in their mind this is what they should see. The feed with the items displayed.
 
-  * This is a transition state while a feed is being fetched, this tends to be the home of spinners.
-* Error fetching feed
+- Fetching a feed
 
-  * If we can't load the feed the user selected then we should let them know. An error state is not always need but sometimes having something explicit is needed.
-* Feed item marked as read
+  - This is a transition state while a feed is being fetched, this tends to be the home of spinners.
 
-  * an item is marked as read, this should give a visual clue to the user that when they return this should not be visible.
-* Feed item un-read
+- Error fetching feed
 
-  * This is the feed item equivalent of what the user pictures for the feed itself but for the item.
-* Adding a feed
+  - If we can't load the feed the user selected then we should let them know. An error state is not always need but sometimes having something explicit is needed.
 
-  * Some visual feedback that a feed is being fetched and added
-* Removing a feed
+- Feed item marked as read
 
-  * Some visual feedback that a feed is being removed
-* No feed exists
+  - an item is marked as read, this should give a visual clue to the user that when they return this should not be visible.
 
-  * Most likely the initial state of the application, or when all the feeds have been removed.
-* Initialising feed reader
+- Feed item un-read
 
-  * The app needs to do something to start and usually it's best to give the user feedback when that happens.
+  - This is the feed item equivalent of what the user pictures for the feed itself but for the item.
+
+- Adding a feed
+
+  - Some visual feedback that a feed is being fetched and added
+
+- Removing a feed
+
+  - Some visual feedback that a feed is being removed
+
+- No feed exists
+
+  - Most likely the initial state of the application, or when all the feeds have been removed.
+
+- Initialising feed reader
+
+  - The app needs to do something to start and usually it's best to give the user feedback when that happens.
 
 This list won't be every state, but it gives us a starting point for grouping and to start an initial configuration.
 
@@ -71,53 +82,24 @@ We will build an RSS feed reader. The requirements for this feed reader are:
 4. Mark an item as read
 5. Mark an item as unread
 
-## The first wave of states
+This list won't match exactly the states of the final statecharts, but it gives us a starting point for grouping and to start an initial configuration. Now we have a starting point we can start refining it by looking at the events to transition between the states. A slightly more structured list of states:
 
-As you can see from the requirements above a lot has been left for us to interpret. So our goal first of all is just to think of the states we require, but not group them yet.
+- Initialising feed reader
+- No feeds exists
+- Fetching a feed
+- View a feed
+- Error fetching feed
+- Adding a feed
+- Removing a feed
+- Feed item marked as read
+- Feed item un-read
 
-Here is the first wave of states that I could think of, with some details against each:
+With an idea of states then we should move onto events, to decide what we need to transition between the states.
 
-* View a feed
+From "initialising" we will need to get the users saved configuration, so the first event would be to LOAD_CONFIGURATION. With the configuration loaded we will know if there are any saved feeds that need loading. If "no feeds exist" all we could do from there is to ADD_A_FEED, this event would also be needed when we are "viewing a feed". Next once the configuration has loaded and there are existing feeds we should load the first feed.
 
-  * When someone pictures the app in their mind this is what they should see. The feed with the items displayed.
-* Fetching a feed
-
-  * This is a transition state while a feed is being fetched, this tends to be the home of spinners.
-* Error fetching feed
-
-  * If we can't load the feed the user selected then we should let them know. An error state is not always need but sometimes having something explicit is needed.
-* Feed item marked as read
-
-  * an item is marked as read, this should give a visual clue to the user that when they return this should not be visible.
-* Feed item un-read
-
-  * This is the feed item equivalent of what the user pictures for the feed itself but for the item.
-* Adding a feed
-
-  * Some visual feedback that a feed is being fetched and added
-* Removing a feed
-
-  * Some visual feedback that a feed is being removed
-* No feed exists
-
-  * Most likely the initial state of the application, or when all the feeds have been removed.
-* Initialising feed reader
-
-  * The app needs to do something to start and usually it's best to give the user feedback when that happens.
-
-This list won't match exactly the states of the final statecharts, but it gives us a starting point for grouping and to start an initial configuration. Now we have a starting point we can start refining it by looking at the events to transition between the states.
-
-* View a feed
-* Fetching a feed
-* Error fetching feed
-* Feed item marked as read
-* Feed item un-read
-* Adding a feed
-* Removing a feed
-* No feed exists
-* Initialising feed reader
-
-
+- LOAD_CONFIGURATION
+- ADD_A_FEED
 
 # Notes
 

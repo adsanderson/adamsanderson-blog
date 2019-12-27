@@ -105,7 +105,7 @@ Here is the first wave of states that I could think of, with some details agains
 
   * The app needs to do something to start and usually it's best to give the user feedback when that happens.
 
-This list won't be every state, but it gives us a starting point for grouping and to start an initial configuration.
+This list won't match exactly the states of the final statecharts, but it gives us a starting point for grouping and to start an initial configuration. Now we have a starting point we can start refining it by looking at the events to transition between the states.
 
 * View a feed
 * Fetching a feed
@@ -116,6 +116,8 @@ This list won't be every state, but it gives us a starting point for grouping an
 * Removing a feed
 * No feed exists
 * Initialising feed reader
+
+
 
 # Notes
 

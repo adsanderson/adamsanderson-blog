@@ -8,6 +8,9 @@ tags:
   - RxJS
   - React
 ---
+A look at how I'd go about creating an application right now (2020).
+
+
 XState,
 RxJS
 React, useMachine, 

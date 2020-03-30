@@ -1,0 +1,9 @@
+{
+  "title": "Eleventy Netlify Boilerplate",
+  "url": "https://eleventy-netlify-boilerplate.netlify.com",
+  "author": {
+    "name": "Adam Sanderson",
+    "email": "adam@adamsanderson.co.uk",
+    "github": "https://github.com/adsanderson"
+  }
+}

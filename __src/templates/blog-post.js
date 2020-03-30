@@ -12,7 +12,7 @@ export const BlogPostTemplate = ({
   description,
   tags,
   title,
-  helmet
+  helmet,
 }) => {
   const PostContent = contentComponent || Content;
 
@@ -26,7 +26,7 @@ export const BlogPostTemplate = ({
         <div style={{ marginTop: `4rem` }}>
           <h4>Tags</h4>
           <ul className="tag-list">
-            {tags.map(tag => (
+            {tags.map((tag) => (
               <li key={tag + `tag`}>
                 <span role="img" aria-label="tag">
                   🏷️&nbsp;
@@ -51,7 +51,7 @@ BlogPostTemplate.propTypes = {
   contentComponent: PropTypes.func,
   description: PropTypes.string,
   title: PropTypes.string,
-  helmet: PropTypes.object
+  helmet: PropTypes.object,
 };
 
 const BlogPost = ({ data }) => {
@@ -81,8 +81,8 @@ const BlogPost = ({ data }) => {
 
 BlogPost.propTypes = {
   data: PropTypes.shape({
-    markdownRemark: PropTypes.object
-  })
+    markdownRemark: PropTypes.object,
+  }),
 };
 
 export default BlogPost;

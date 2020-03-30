@@ -8,6 +8,7 @@ eleventyNavigation:
   key: Contact
   order: 3
 ---
+
 The contact form on this page uses
 [Netlify Forms](https://www.netlify.com/docs/form-handling/) to process
 submissions, and saves them in the connected Netlify account where

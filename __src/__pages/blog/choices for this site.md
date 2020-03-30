@@ -3,8 +3,8 @@ templateKey: blog-post
 title: The design choices for this site
 date: 2015-08-01 19:25:00
 tags:
-- Web Development
-- JavaScript
+  - Web Development
+  - JavaScript
 ---
 
 ### Because anything fun starts with a disclaimer.
@@ -37,7 +37,7 @@ There are very good reasons to break that default responsiveness; For layout rea
 
 To have a layout that doesn't break a pages responsiveness the simplest way is to stick to the document model, a single column that flows top to bottom.
 
-To fix the full scrren text in a post ie6 world. Your content can sit in it's traditional fixed width container but instead of a ```width``` being set, ```max-width``` is used. The result is very simple, large wide screens you get the traditional column of text, then shrink down below your max-width threshold and your back in the default document behavior.
+To fix the full scrren text in a post ie6 world. Your content can sit in it's traditional fixed width container but instead of a `width` being set, `max-width` is used. The result is very simple, large wide screens you get the traditional column of text, then shrink down below your max-width threshold and your back in the default document behavior.
 
-[1]:http://motherfuckingwebsite.com/
-[2]:https://www.npmjs.com/package/hexo-gzip
+[1]: http://motherfuckingwebsite.com/
+[2]: https://www.npmjs.com/package/hexo-gzip

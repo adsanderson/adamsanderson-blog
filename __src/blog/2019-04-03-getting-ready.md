@@ -2,11 +2,12 @@
 templateKey: blog-post
 title: First steps in Model-based testing
 date: 2019-04-03T10:29:44.879Z
-description: 'or: How I learned to generate tests'
+description: "or: How I learned to generate tests"
 tags:
   - model-based testing
   - testing
 ---
+
 Model-based testing is the process of creating a model (an abstract version) of the behaviour of a system. Then executing the model so it is run over an implementation. Then validating that the system under tests behaves the same way as the model.
 
 Before we start there are multiple types of model-based test. The one we will explore is state chart powered model-based testing. This is an early exploration of the ideas around model-based testing and as such will develop over time.
@@ -15,7 +16,7 @@ I will start by introducing the pieces of a model-based test and how they fit to
 
 ### What do we need for a model-based test
 
-To write a model based test for a component, you need a state chart. This state chart will define the states of your component, and the events that transfer between the states.  
+To write a model based test for a component, you need a state chart. This state chart will define the states of your component, and the events that transfer between the states.
 
 This state chart was created using [XState](https://xstate.js.org/), and it's visualiser:
 
@@ -39,26 +40,26 @@ G5[green] -->|STOP|R5[red]
 
 ```
 
-Once we have the paths, we need a way of interacting with the component to trigger the events that are on each step of the path. This is where something like [DOM-testing-library](https://testing-library.com/) is very useful. We can say given the state is `Green` and when the event is `Switch` then find the Switch button on the page a press it. 
+Once we have the paths, we need a way of interacting with the component to trigger the events that are on each step of the path. This is where something like [DOM-testing-library](https://testing-library.com/) is very useful. We can say given the state is `Green` and when the event is `Switch` then find the Switch button on the page a press it.
 
 A lookup can work here:
 
 ```js
 const triggerEvents = {
   green: {
-    SWITCH: container => 
-      fireEvent.click(getByText(container, "Switch"))
-  }
-};
+    SWITCH: (container) => fireEvent.click(getByText(container, "Switch")),
+  },
+};
 ```
 
 This leaves us with the job of validating that we are in the correct state after each event. This is where we use the testing library to confirm that we are in the state we expect.
 
 ```js
 const compare = {
-  green: container => 
+  green: container =>
     expect(getByTestId(container, "state-value").innerText).toBe("green");
-};
+};
+
 ```
 
 Run your tests iterating through each path and you will cover the routes through your application.
@@ -83,10 +84,8 @@ Here is an early example using XState and react-testing-library to model, implem
 
 ### Conclusion
 
-Model-based testing is a fascinating tool, generating the paths through an application or component and then confirming the implementation traverses the paths correctly is a powerful way to test a code-base.  
+Model-based testing is a fascinating tool, generating the paths through an application or component and then confirming the implementation traverses the paths correctly is a powerful way to test a code-base.
 
 ### Thoughts from me
 
-This is a topic I am still in the early stages of exploring and leaning heavily on XState and [GraphWalker](http://graphwalker.github.io) for my understanding. I need to cover more complex charts, fit in context, understand how to use example and property based testing for more complex interactions, e.g. things like forms; and how to treat multiple transition event triggers for the same path, e.g. testing mouse and keyboard interactions.  
- 
-
+This is a topic I am still in the early stages of exploring and leaning heavily on XState and [GraphWalker](http://graphwalker.github.io) for my understanding. I need to cover more complex charts, fit in context, understand how to use example and property based testing for more complex interactions, e.g. things like forms; and how to treat multiple transition event triggers for the same path, e.g. testing mouse and keyboard interactions.

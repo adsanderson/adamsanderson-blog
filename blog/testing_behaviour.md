@@ -2,7 +2,7 @@
 templateKey: blog-post
 title: A quick look at testing behaviour
 date: 2015-08-12T00:00:00.000Z
-description: 'or: how to test what it does, not how it does it'
+description: "or: how to test what it does, not how it does it"
 tags:
   - Development
   - TDD
@@ -53,7 +53,7 @@ expect(value).to.not.be.equal(differentValue);
 
 So we have three tests Tests A, B and C. At the moment all of the tests are currently passing. But as the application develops we realise that are simple joined up checksum just isn't cutting it.
 
-We need to use a hashing algorithm. So we updated are ```createChecksum``` function with the new hashing algorithm and run our tests again.
+We need to use a hashing algorithm. So we updated are `createChecksum` function with the new hashing algorithm and run our tests again.
 
 Test A now fails: expect (...hashed gibberish...) to equal "1|2|3". However Tests B and C are still passing.
 

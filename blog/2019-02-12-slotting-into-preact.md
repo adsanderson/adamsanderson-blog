@@ -2,12 +2,13 @@
 templateKey: blog-post
 title: Slotting into Preact
 date: 2019-02-12T11:43:03.517Z
-description: 'or: How I learned the root of all things'
+description: "or: How I learned the root of all things"
 tags:
   - development
   - web components
   - preact
 ---
+
 Preact is an excellent UI library and web components make a fantastic building block. But, I have found one stumbling block that relates to the `<slot>` element in browsers without the shadow DOM and using the a polyfill.
 
 ### The issue
@@ -26,7 +27,7 @@ When you use a web component using shadow DOM and has a slot you would write som
 </custom-element>
 ```
 
-The next step is for the web components polyfill to initialise the custom element and add in the additional DOM. 
+The next step is for the web components polyfill to initialise the custom element and add in the additional DOM.
 
 ```html
 <custom-element>
@@ -43,7 +44,7 @@ The polyfill then moves the child elements fro the custom element node and place
 <custom-element>
   <div class="custom-element__wrapper">
     <h2>Some heading</h2>
-  </div>  
+  </div>
 </custom-element>
 ```
 
@@ -53,7 +54,7 @@ When an update occurs in Preact this is where the issue occurs. Preact will diff
 <custom-element>
   <div class="custom-element__wrapper">
     <h2>Some heading</h2>
-  </div> 
+  </div>
   <h2>Some heading</h2>
 </custom-element>
 ```

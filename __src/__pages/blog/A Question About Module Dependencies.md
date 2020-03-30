@@ -3,9 +3,10 @@ templateKey: blog-post
 title: A Question About Module Dependencies
 date: 2014-08-30 19:25:00
 tags:
-- Web Development
-- JavaScipt
+  - Web Development
+  - JavaScipt
 ---
+
 After writing some custom Grunt tasks, and getting my feet wet with node, then following this up with some work using [browserify][1]. I had a feeling there would be a trend in front-end development for micro libraries (in the style of node) on the horizon.
 
 I have yet to figure out if this will be a good thing for the front-end.
@@ -41,7 +42,6 @@ As with many things in the development world its striking that balance between t
 So long term another technique could be used for smart reusable clean modules.
 
 To use this node style technique in front-end development, while trying to minimise the costs of duplication, will require restraint from developers. Restraint from front-end devs to decide on a case by case basis of the costs of adding a new module.
-
 
 [1]: http://browserify.org/
 [2]: https://www.npmjs.org/

@@ -2,11 +2,12 @@
 templateKey: blog-post
 title: A UI testing approach
 date: 2018-12-31T13:41:45.250Z
-description: 'or: How I wrote the same 3 tests over and over again'
+description: "or: How I wrote the same 3 tests over and over again"
 tags:
   - development
   - testing
 ---
+
 We are going to look at one way of structuring an app to help make your testing life easier.
 
 ### The architectural building block
@@ -14,19 +15,16 @@ We are going to look at one way of structuring an app to help make your testing 
 At a high level this is the fundamental rule that we are trying to following the architecture of our application:
 
 ```js
-const updatePipeline = evt => updateUi(updateState(evt.detail.action))
-$el.addEventListener('a-custom-event', updatePipeline);
+const updatePipeline = (evt) => updateUi(updateState(evt.detail.action));
+$el.addEventListener("a-custom-event", updatePipeline);
 ```
 
 or in a proposed pipeline style:
 
 ```js
-const updatePipeline = evt =>
-  evt.detail.action
-  |> updateState
-  |> updateUi
+const updatePipeline = (evt) => evt.detail.action |> updateState |> updateUi;
 
-$el.addEventListener('a-custom-event', updatePipeline);
+$el.addEventListener("a-custom-event", updatePipeline);
 ```
 
 Lets break down what is happening above: we start with an event, that calls the `updatePipeline` function. The `updatePipeline` function starts by taking some data from the event and updating the state.
@@ -64,7 +62,6 @@ C --> A
 ### What you need to test
 
 For tests like this to work you require some way of rendering DOM elements. My general go to is Jest with JSDOM, but tools for doing this are numerous.
-
 
 ### Testing the UI
 
@@ -118,7 +115,7 @@ Log[Log state passed to UI function]
 We then expect:
 
 ```js
-const firstCallToUi = mockUI.mock.called[0][0]
+const firstCallToUi = mockUI.mock.called[0][0];
 expect(firstCallToUi.value).toBe(expectedValue);
 ```
 

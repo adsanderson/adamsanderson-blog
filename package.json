@@ -1,39 +1,62 @@
 {
-  "name": "eleventy-netlify-boilerplate",
-  "version": "1.0.3",
-  "description": "A boilerplate for building a fast static website with the Eleventy static site generator, for deployment to Netlify.",
+  "name": "adamsanderson-blog",
+  "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "start": "npx @11ty/eleventy --serve",
-    "build": "npx @11ty/eleventy",
-    "watch": "npx @11ty/eleventy --watch",
-    "debug": "DEBUG=* npx eleventy"
+    "dev": "nuxt",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "export": "nuxt-ts export",
+    "serve": "nuxt-ts serve",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
+    "lint": "npm run lint:js && npm run lint:style",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "cross-env TEST=unit ava ./test/specs/**/*",
+    "test:e2e": "cross-env TEST=e2e ava ./test/e2e/**/*"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/danurbanowicz/eleventy-netlify-boilerplate"
+  "lint-staged": {
+    "*.{js,vue}": "eslint",
+    "*.{css,vue}": "stylelint"
   },
-  "author": {
-    "name": "Dan Urbanowicz",
-    "email": "dan.urbanowicz@gmail.com",
-    "url": "https://www.danurbanowicz.com/"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/danurbanowicz/eleventy-netlify-boilerplate/issues"
-  },
-  "homepage": "https://github.com/danurbanowicz/eleventy-netlify-boilerplate",
-  "devDependencies": {
-    "@11ty/eleventy": "^0.11.0-beta.1",
-    "lit-html": "^1.2.1",
-    "luxon": "^1.21.3",
-    "markdown-it": "^10.0.0",
-    "markdown-it-anchor": "^5.2.5",
-    "prettier": "^2.0.2"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
-    "@11ty/eleventy-navigation": "^0.1.5",
-    "clean-css": "^4.2.1",
-    "html-minifier": "^4.0.0",
-    "uglify-es": "^3.3.9"
+    "@nuxt/content": "^1.3.2",
+    "@nuxt/typescript-runtime": "^0.4.10",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "nuxt": "^2.13.0"
+  },
+  "devDependencies": {
+    "@ava/babel": "^1.0.1",
+    "@nuxt/typescript-build": "^1.0.3",
+    "@nuxtjs/eslint-config": "^3.0.0",
+    "@nuxtjs/eslint-config-typescript": "^2.0.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/stylelint-module": "^4.0.0",
+    "@nuxtjs/tailwindcss": "^2.0.0",
+    "@vue/test-utils": "^1.0.3",
+    "ava": "^3.9.0",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "jsdom": "^16.2.2",
+    "jsdom-global": "^3.0.2",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "require-extension-hooks": "^0.3.3",
+    "require-extension-hooks-babel": "^1.0.0",
+    "require-extension-hooks-vue": "^3.0.0",
+    "stylelint": "^13.6.1",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-standard": "^20.0.0"
   }
 }

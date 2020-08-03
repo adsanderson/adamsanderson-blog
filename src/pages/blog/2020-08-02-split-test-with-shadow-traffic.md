@@ -16,11 +16,11 @@ A video from thoughtworks built on that final use case and introduced the concep
 
 ### One way experience
 
-The traditional model is for a user to make a request through an interface, some logic to be run through and then a response to return. While at the same time this interaction is being monitored by some tooling to make sure there are no issues, or potential issues.
+The traditional model is for a user to make a request through an interface, some logic to be run through and then a response to be returned to that user. While at the same time this interaction is being monitored by some tooling to make sure there are no issues, or potential issues.
 
 ![User making a request to a server and getting a response while the server is monitored](https://res.cloudinary.com/lazydayed/image/upload/v1596374270/blog/shadow-traffic.png)
 
-When the application requires an update to the logic, under this 
+An update to the logic here would have the logic service replaced with the new version, and all users going to this server would reach the new logic.
 
 ### A/B or Split testing
 

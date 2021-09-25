@@ -8,8 +8,6 @@ tags:
 
 ### It always comes down to coffee and development
 
-<!-- {% img /images/origin_294145821.jpg starbucks coffee %} -->
-
 I recently thought of a tenuous link between Chrome DevTools and Starbucks. Starbucks set itself an early goal to become the '[third space][1]', the space a person would spend time between work and home.
 
 ### and now for the tenuous link
@@ -17,8 +15,6 @@ I recently thought of a tenuous link between Chrome DevTools and Starbucks. Star
 In my development Devtools has become my third space. Between the source and the output. You'd write some code, check the output and based of the result, you'd go back and update your code. Back and forth a binary existence of either coding or assessing results.
 
 With Devtools I now have a third space, and for me my most important space as this is where I do my thinking. As it gives me hooks into the three **areas** that make up a website the DOM
-
-<!-- {% img /images/javascript-debugging.png Chrome Devtools %} -->
 
 ### theoretical next step
 

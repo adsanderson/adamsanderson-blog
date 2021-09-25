@@ -19,5 +19,3 @@ Something I noticed while digging around in bootstrap was how they added a point
 You don't have to have an equilateral triangle, by changing the widths of the 2 adjacent sides you can create a variety of triangular shapes. The demos all have a ```border-top-width``` of 20px.
 
 
-
- {% jsfiddle 6gy3F result,html,css %}

@@ -5,3 +5,12 @@
 export interface Locals {
 	userid: string;
 }
+
+export type Markdown = {
+	metadata: {
+		title: string;
+		date: string;
+		excerpt: string;
+	}
+	content: string;
+}

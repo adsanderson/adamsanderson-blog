@@ -7,5 +7,48 @@
 </main>
 
 <footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+	<nav>
+		<div class="bio">
+			<img
+				src="https://www.gravatar.com/avatar/7b1630c267230ec687dd7133d3a2e2b3?s=80"
+				class="gravatar"
+				alt="Adam Sanderson"
+			/>
+			A front-end developer based out of Hastings, UK
+		</div>
+		<a href="/"> Home </a>
+		<a href="https://github.com/adsanderson" title="Github"> github </a>
+		<a href="https://twitter.com/lazydayed" title="Twitter"> twitter </a>
+		<a href="mailto:adam+site@adamsanderson.co.uk" rel="me"> email </a>
+	</nav>
 </footer>
+
+<style>
+	footer nav {
+		margin: 8rem 0 0;
+		display: flex;
+		flex-direction: column;
+		border-bottom: 2px solid var(--accent);
+		max-width: 740.592px;
+		padding-bottom: 1rem;
+	}
+	footer a {
+		font-size: 1.2rem;
+		font-weight: 500;
+		text-decoration: none;
+		color: var(--link);
+		margin-top: 0.4rem;
+	}
+	footer .bio {
+		display: flex;
+		align-items: center;
+	}
+	footer .gravatar {
+		box-shadow: 0 0 10px rgb(0 0 0 / 10%), 3px 4px 8px rgb(0 0 0 / 40%);
+		border-radius: 50%;
+		overflow: hidden;
+		width: 5rem;
+		height: 5rem;
+		margin-right: 1.48em;
+	}
+</style>

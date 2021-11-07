@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: Devtings getting started
-date: 2014-07-29 00:00:00
+publishDate: 2014-07-29 00:00:00
 tags:
 - devtings
 ---

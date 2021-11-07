@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: A Question About Module Dependencies
-date: 2014-08-30 19:25:00
+publishDate: 2014-08-30 19:25:00
 tags:
 - Web Development
 - JavaScipt

@@ -2,13 +2,15 @@
 	export let post;
 </script>
 
-<a href="/blog/{post.title.replaceAll(' ', '_').toLowerCase()}">
+<a href="/blog/{post.slug.replaceAll(' ', '_').toLowerCase()}">
 	{post.title}
 </a>
 
-<span>
-	{post.description}
-</span>
+{#if post.description}
+	<span>
+		{post.description}
+	</span>
+{/if}
 
 <style>
 	a {

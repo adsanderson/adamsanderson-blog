@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: The design choices for this site
-date: 2015-08-01 19:25:00
+publishDate: 2015-08-01 19:25:00
 tags:
 - Web Development
 - JavaScript

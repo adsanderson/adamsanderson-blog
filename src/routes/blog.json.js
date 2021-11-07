@@ -1,4 +1,5 @@
 import fs from 'fs'
+import path from 'path'
 import matter from 'gray-matter'
 
 /**
@@ -14,12 +15,16 @@ export async function get() {
 
       const { data } = matter(doc)
 
+      data.slug = path.basename(fileName, '.md');
+
       return data
     })
   )
 
-  blogs.sort((a, b) => b.created - a.created)
-  // console.log({ blogs })
+
+
+  blogs.sort((a, b) => b.publishDate - a.publishDate)
+  console.log('b', blogs, "logs")
 
   return {
     body: JSON.stringify(blogs)

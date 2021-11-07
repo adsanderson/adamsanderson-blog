@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: A critical fix
-date: 2016-06-08T00:00:00
+publishDate: 2016-06-08T00:00:00
 tags:
 - Web development
 - SVG

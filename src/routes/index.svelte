@@ -3,10 +3,10 @@
 	export async function load({ fetch }) {
 		const url = `/blog.json`;
 		const res = await fetch(url);
-		console.log('res', res);
+
 		if (res.ok) {
 			const posts = await res.json();
-			console.log('posts', { posts });
+			// console.log('posts', { posts });
 			return {
 				props: { posts }
 			};
@@ -25,18 +25,6 @@
 
 	/** @type {import('../lib/types').Markdown[]} */
 	export let posts;
-	// console.log(JSON.stringify(blogs[0]))
-	const tagSet = new Set();
-	// posts.forEach((post) => {
-	// 	post.tags.forEach((tag) => tagSet.add(tag));
-	// });
-	const tags = [...tagSet].sort();
-	// export let tag;
-	// page.subscribe(({ query }) => {
-	// 	tag = query.get('tag');
-	// 	// console.log({ tag })
-	// });
-	// $: blogsFilteredByTag = tagSet.has(tag) ? posts.filter((p) => p.tags.includes(tag)) : posts;
 </script>
 
 <svelte:head>
@@ -62,6 +50,6 @@
 		padding: 0;
 	}
 	li {
-		margin: 1rem 0;
+		margin: 1em 0;
 	}
 </style>

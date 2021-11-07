@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: A quick look at testing behaviour
-date: 2015-08-12T00:00:00.000Z
+publishDate: 2015-08-12T00:00:00.000Z
 description: 'or: how to test what it does, not how it does it'
 tags:
   - Development

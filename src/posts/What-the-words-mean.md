@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: What the words do
-date: 2016-01-23 17:38:14
+publishDate: 2016-01-23 17:38:14
 description: 'or: How I learned about script behaviour'
 tags:
 - Web development

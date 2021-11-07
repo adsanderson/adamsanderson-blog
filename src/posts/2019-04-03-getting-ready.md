@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: First steps in Model-based testing
-date: 2019-04-03T10:29:44.879Z
+publishDate: 2019-04-03T10:29:44.879Z
 description: 'or: How I learned to generate tests'
 tags:
   - model-based testing
@@ -49,7 +49,8 @@ const triggerEvents = {
     SWITCH: container => 
       fireEvent.click(getByText(container, "Switch"))
   }
-};
+};
+
 ```
 
 This leaves us with the job of validating that we are in the correct state after each event. This is where we use the testing library to confirm that we are in the state we expect.
@@ -58,7 +59,8 @@ This leaves us with the job of validating that we are in the correct state after
 const compare = {
   green: container => 
     expect(getByTestId(container, "state-value").innerText).toBe("green");
-};
+};
+
 ```
 
 Run your tests iterating through each path and you will cover the routes through your application.

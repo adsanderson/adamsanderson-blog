@@ -40,7 +40,7 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Devtings</title>
 </svelte:head>
 
 <Hero />

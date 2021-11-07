@@ -14,20 +14,22 @@
 	--background-without-opacity: rgba(255, 255, 255, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
+
+	--color: #233237;
+	--link: #0F1626;
+	--accent: #FF533D;
+	--rust: #984B43;
 }
 
 body {
-	min-height: 100vh;
-	margin: 0;
-	background-color: var(--primary-color);
-	background: linear-gradient(
-		180deg,
-		var(--primary-color) 0%,
-		var(--secondary-color) 10.45%,
-		var(--tertiary-color) 41.35%
-	);
+  font-size: 18px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  margin: 0;
+  background: #F5F5F5; /*linear-gradient(#CA6A2D, #783316);*/
+  min-height: 100vh;
+  padding: 0 2rem 2rem 2rem;
 }
-
+/* 
 body::before {
 	content: '';
 	width: 80vw;
@@ -41,15 +43,12 @@ body::before {
 		var(--pure-white) 0%,
 		rgba(255, 255, 255, 0) 100%
 	);
-	opacity: 0.05;
+	opacity: 0.05; 
 }
+*/
 
-#svelte {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-}
 
+/* 
 h1,
 h2,
 p {
@@ -104,4 +103,4 @@ button:focus:not(:focus-visible) {
 	h1 {
 		font-size: 2.4rem;
 	}
-}
+} */

@@ -7,10 +7,7 @@ export interface Locals {
 }
 
 export type Markdown = {
-	metadata: {
-		title: string;
-		date: string;
-		excerpt: string;
-	}
+	metadata: { [key: string]: unknown },
 	content: string;
 }
+

@@ -4,7 +4,7 @@ import type { RequestHandler } from '@sveltejs/kit';
 export const get: RequestHandler = async (request) => {
   const { slug } = request.params;
 
-  const { metadata, content } = process(`src/posts/${slug}.md`);
+  const { metadata, content } = await process(slug);
   console.log('METADATA:', metadata)
   const body = JSON.stringify({ metadata, content });
 

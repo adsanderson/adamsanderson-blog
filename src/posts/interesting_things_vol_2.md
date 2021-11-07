@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: Interesting things Vol2
-date: 2016-03-14T00:00:00
+publishDate: 2016-03-14T00:00:00
 description: 'or: How I kept learning new stuff'
 tag:
 - links

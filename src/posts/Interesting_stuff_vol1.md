@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: Interesting stuff vol1
-date: 2016-02-24T00:00:00
+publishDate: 2016-02-24T00:00:00
 description: 'or: How I learned a bit more about the world'
 tag:
 - links

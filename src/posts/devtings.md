@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: devtings
-date: 2014-06-01 00:00:00
+publishDate: 2014-06-01 00:00:00
 tags:
 - devtings
 - Development

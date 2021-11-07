@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: How I keep up
-date: 2016-02-23T00:00:00
+publishDate: 2016-02-23T00:00:00
 description: 'or: How I use tools to try and keep up to date with as much info as possible'
 ---
 

@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: From Bootstrap - How to make a point with CSS
-date: 2014-04-01 00:00:00
+publishDate: 2014-04-01 00:00:00
 tags:
 - Web Development
 - CSS

@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: How to build in your tests
-date: 2019-05-01T19:10:05.198Z
+publishDate: 2019-05-01T19:10:05.198Z
 description: 'or: How I learned to get the most out of copying'
 tags:
   - development

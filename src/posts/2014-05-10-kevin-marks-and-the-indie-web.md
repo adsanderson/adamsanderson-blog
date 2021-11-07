@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: Kevin Marks and the Indie web
-date: 2014-05-10T22:24:50Z
+publishDate: 2014-05-10T22:24:50Z
 tags:
 - development
 ---

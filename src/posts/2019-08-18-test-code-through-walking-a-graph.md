@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: Test code through walking a graph
-date: 2019-07-26T23:00:00.000Z
+publishDate: 2019-07-26T23:00:00.000Z
 description: |
   'or: How I learned to walk a graph'
 tags:

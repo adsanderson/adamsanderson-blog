@@ -7,9 +7,8 @@ import matter from 'gray-matter'
  */
 export async function get() {
   const fileNames = await fs.promises.readdir('src/posts')
-  // const articles = fileNames.filter((fileName) => /.+\.md$/.test(fileName))
 
-  const blogs = await Promise.all(
+  let blogs = await Promise.all(
     fileNames.map(async (fileName) => {
       const doc = await fs.promises.readFile(`src/posts/${fileName}`, 'utf8')
 
@@ -21,10 +20,9 @@ export async function get() {
     })
   )
 
+  blogs = blogs.filter(post => post.publishDate);
 
-
-  blogs.sort((a, b) => b.publishDate - a.publishDate)
-  console.log('b', blogs, "logs")
+  blogs.sort((a, b) => b.publishDate - a.publishDate);
 
   return {
     body: JSON.stringify(blogs)

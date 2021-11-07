@@ -19,7 +19,7 @@
 </script>
 
 <script>
-	import Hero from '$lib/Hero.svelte';
+	import Hero from '$lib/Components/Hero.svelte';
 	import HomeLink from '$lib/Components/HomeLink.svelte';
 
 	/** @type {import('../lib/types').Markdown[]} */

@@ -12,10 +12,14 @@ const md = mi({
 // Remember old renderer, if overridden, or proxy to default renderer
 const defaultRender =
   md.renderer.rules.link_open ||
-  function (tokens, idx, options, env, self) {
+  function (tokens, idx, options, _, self) {
     return self.renderToken(tokens, idx, options)
   }
 
+/**
+ * 
+ * @type {import('markdown-it/lib/renderer').RenderRule}
+ */
 md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
   // If you are sure other plugins can't add `target` - drop check below
   // const aIndex = tokens[idx].attrIndex('target')

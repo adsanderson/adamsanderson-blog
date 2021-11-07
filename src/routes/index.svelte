@@ -1,59 +1,67 @@
-<script context="module" lang="ts">
-	export const prerender = true;
+<script context="module">
+	/** @type {import('@sveltejs/kit').Load} */
+	export async function load({ fetch }) {
+		const url = `/blog.json`;
+		const res = await fetch(url);
+		console.log('res', res);
+		if (res.ok) {
+			const posts = await res.json();
+			console.log('posts', { posts });
+			return {
+				props: { posts }
+			};
+		}
+		return {
+			status: res.status,
+			error: new Error(`Could not load ${url}`)
+		};
+	}
 </script>
 
-<script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+<script>
+	import { page } from '$app/stores';
+	import Hero from '$lib/Hero.svelte';
+	import HomeLink from '$lib/Components/HomeLink.svelte';
+
+	/** @type {import('../lib/types').Markdown[]} */
+	export let posts;
+	// console.log(JSON.stringify(blogs[0]))
+	const tagSet = new Set();
+	// posts.forEach((post) => {
+	// 	post.tags.forEach((tag) => tagSet.add(tag));
+	// });
+	const tags = [...tagSet].sort();
+	// export let tag;
+	// page.subscribe(({ query }) => {
+	// 	tag = query.get('tag');
+	// 	// console.log({ tag })
+	// });
+	// $: blogsFilteredByTag = tagSet.has(tag) ? posts.filter((p) => p.tags.includes(tag)) : posts;
 </script>
 
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
 
+<Hero />
+
 <section>
-	<h1>
-		<div class="welcome">
-			<picture>
-				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
-			</picture>
-		</div>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/index.svelte</strong>
-	</h2>
-
-	<Counter />
+	<ol>
+		{#each posts as post}
+			<li>
+				<HomeLink {post} />
+			</li>
+		{/each}
+	</ol>
 </section>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 1;
+	ol {
+		list-style: none;
+		margin: 0;
+		padding: 0;
 	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+	li {
+		margin: 1rem 0;
 	}
 </style>

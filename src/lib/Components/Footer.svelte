@@ -21,7 +21,6 @@
 		display: flex;
 		flex-direction: column;
 		border-bottom: 2px solid var(--accent);
-		max-width: 740.592px;
 		padding-bottom: 1rem;
 	}
 	footer a {

@@ -19,7 +19,6 @@
 </script>
 
 <script>
-	import { page } from '$app/stores';
 	import Hero from '$lib/Hero.svelte';
 	import HomeLink from '$lib/Components/HomeLink.svelte';
 

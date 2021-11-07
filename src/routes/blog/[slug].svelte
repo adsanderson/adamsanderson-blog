@@ -1,9 +1,12 @@
-<script context="module" lang="ts">
+<script context="module">
 	import { base } from '$app/paths';
-	import type { Markdown } from '$lib/types';
+	// import type { Markdown } from '$lib/types';
 	export const prerender = true;
 	console.log('test');
 
+	/**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
 	export async function load({ page, fetch }) {
 		const slug = page.params.slug;
 
@@ -15,8 +18,11 @@
 	}
 </script>
 
-<script lang="ts">
-	export let post: Markdown;
+<script>
+	/**
+	 * @type {import('$lib/types').Markdown}
+	 */
+	export let post;
 </script>
 
 <svelte:head>

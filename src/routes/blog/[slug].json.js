@@ -1,7 +1,9 @@
 import { process } from '$lib/markdown';
-import type { RequestHandler } from '@sveltejs/kit';
 
-export const get: RequestHandler = async (request) => {
+/**
+ * @type {import('@sveltejs/kit').RequestHandler}
+ */
+export const get = async (request) => {
   const { slug } = request.params;
 
   const { metadata, content } = await process(slug);

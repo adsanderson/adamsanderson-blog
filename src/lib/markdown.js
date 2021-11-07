@@ -2,7 +2,6 @@ import fs from 'fs'
 import mi from 'markdown-it'
 import prism from 'markdown-it-prism'
 import matter from 'gray-matter'
-import type { Markdown } from './types'
 
 const md = mi({
   html: true,
@@ -49,8 +48,12 @@ md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
 
 md.use(prism, {})
 
-
-export async function process(filename: string): Promise<Markdown> {
+/**
+ * 
+ * @param {string} filename 
+ * @returns Promise<{import('./types/d/ts).Markdown}
+ */
+export async function process(filename) {
   const doc = await fs.promises.readFile(`src/posts/${filename}.md`, 'utf8')
 
   const { data: metadata, content } = matter(doc)

@@ -13,6 +13,7 @@
 		"test:watch": "watchlist src tests -- npm test"
 	},
 	"devDependencies": {
+		"@sveltejs/adapter-netlify": "^1.0.0-next.35",
 		"@sveltejs/kit": "next",
 		"@types/cookie": "^0.4.1",
 		"@types/markdown-it": "^12.2.3",

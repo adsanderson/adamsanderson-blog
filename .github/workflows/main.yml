@@ -34,7 +34,7 @@ jobs:
           path: |
             build/
             functions/
-            .netlify/
+            # .netlify/
             netlify.toml
           retention-days: 1
 

@@ -9,7 +9,7 @@ This is how I try and keep up to speed with the ever changing landscape of moder
 
 ## Weapon of choice
 
-The main weapon I have in keeping up is [pocket](getpocket.com). What pocket enables is two(and a half)fold, first is most obvious and that is the ability to "read it later". Save links to access at a later date. The second is its ability to integrate with my browsing. The Chrome extension and Android apps sharing feature mean it is extremely low friction to get content for saving later. The half is pocket’s article view which although it doesn’t work on all sites, makes reading a very comfortable experience.
+The main weapon I have in keeping up is [pocket](https://getpocket.com). What pocket enables is two(and a half)fold, first is most obvious and that is the ability to "read it later". Save links to access at a later date. The second is its ability to integrate with my browsing. The Chrome extension and Android apps sharing feature mean it is extremely low friction to get content for saving later. The half is pocket’s article view which although it doesn’t work on all sites, makes reading a very comfortable experience.
 
 ## I'm only good at one thing at a time
 

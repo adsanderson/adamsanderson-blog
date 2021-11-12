@@ -16,13 +16,13 @@ One of the strengths of node modules is how it deals with the dependencies for e
 
 This can lead to duplication in a project. As two modules can both have a dependency to the same module but each package for those original two modules will have it's own version of the dependency included.
 
-![module example](/images/modules.png)
+![module example](https://res.cloudinary.com/lazydayed/image/upload/v1549879827/Devtings/modules.png)
 
 This can result in duplication in the final version of the product being produced.
 
 As of writing (28th August 2014) there are 91 472 packages on [npm][2]; and of the top ten most depended on packages underscore and lodash (two utility libraries that have a common API) are depended on by 11 647 packages (6937 and 4710 respectively). So just over 12% of the packages share this dependency and each package includes it's own version of underscore/lodash.
 
-![npmjs.org](/images/npm2014-08-28.png)
+![npmjs.org](https://res.cloudinary.com/lazydayed/image/upload/v1549879824/Devtings/npm2014-08-28.png)
 
 ## Version was an important word
 

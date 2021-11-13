@@ -35,7 +35,7 @@ jobs:
           path: |
             build/
             functions/
-            # .netlify/
+            .netlify/
             netlify.toml
           retention-days: 1
 
@@ -45,7 +45,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Download math result for job 1
+      - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
           name: deploy-bundle

@@ -1,30 +1,30 @@
 <script context="module">
 	/** @type {import('@sveltejs/kit').Load} */
-	export async function load({ fetch, page }) {
-		const filter = page.query.get('filter');
+	export async function load({ fetch, page }) {}
+</script>
+
+<script>
+	import { onMount } from 'svelte';
+	import Hero from '$lib/Components/Hero.svelte';
+	import HomeLink from '$lib/Components/HomeLink.svelte';
+	import { page } from '$app/stores';
+
+	/** @type {import('$lib/types').Markdown[]} */
+	export let posts;
+	let filter;
+
+	page.subscribe((p) => {
+		filter = p.query.get('filter');
+	});
+
+	onMount(async () => {
 		const url = `/blog.json?filter=${filter}`;
 		const res = await fetch(url);
 
 		if (res.ok) {
-			const posts = await res.json();
-			// console.log('posts', { posts });
-			return {
-				props: { posts }
-			};
+			posts = await res.json();
 		}
-		return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`)
-		};
-	}
-</script>
-
-<script>
-	import Hero from '$lib/Components/Hero.svelte';
-	import HomeLink from '$lib/Components/HomeLink.svelte';
-
-	/** @type {import('$lib/types').Markdown[]} */
-	export let posts;
+	});
 </script>
 
 <svelte:head>

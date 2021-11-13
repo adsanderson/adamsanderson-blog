@@ -2,7 +2,6 @@
 	import { base } from '$app/paths';
 	// import type { Markdown } from '$lib/types';
 	export const prerender = true;
-	console.log('test');
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}

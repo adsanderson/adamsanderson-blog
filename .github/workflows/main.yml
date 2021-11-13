@@ -37,6 +37,7 @@ jobs:
             functions/
             .netlify/
             netlify.toml
+            package.json
             package-lock.json
           retention-days: 1
 

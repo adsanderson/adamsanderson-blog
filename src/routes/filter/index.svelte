@@ -1,9 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 	import { browser } from '$app/env';
-	import Hero from '$lib/Components/Hero.svelte';
 	import HomeLink from '$lib/Components/HomeLink.svelte';
 	import { page } from '$app/stores';
+	import { processBlogList } from '$lib/bloglist';
 
 	/** @type {import('$lib/types').Markdown[]} */
 	export let posts = [];
@@ -13,16 +13,42 @@
 		filter = p.query.get('filter');
 	});
 
-	onMount(async () => {
+	export async function load({ fetch, page }) {
 		if (!browser) return;
 
-		const url = `/blog.json?filter=${filter}`;
+		const url = `/blog.json`;
 		const res = await fetch(url);
 
 		if (res.ok) {
-			posts = await res.json();
+			let posts = await res.json();
+
+			const filterState = page.query.get('filter');
+			posts = processBlogList(filterState, posts);
+
+			return {
+				props: { posts }
+			};
 		}
-	});
+		return {
+			status: res.status,
+			error: new Error(`Could not load ${url}`)
+		};
+	}
+
+	// onMount(async () => {
+	// 	if (!browser) return;
+
+	// 	const url = `/blog.json`;
+	// 	const res = await fetch(url);
+	//     let
+
+	//     const filterState = query.get('filter');
+	//     posts = processBlogList(filterState, blogs);
+
+	// 	if (res.ok) {
+	// 		posts =
+	// 	}
+	// });
 </script>
 
 <svelte:head>

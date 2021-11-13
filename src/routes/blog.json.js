@@ -7,13 +7,10 @@ import { log } from "$lib/logger";
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get(request) {
-  const query = request.query;
+export async function get() {
   const fileNames = await fs.promises.readdir('src/posts')
 
-  console.log(fileNames);
-
-  let blogs = await Promise.all(
+  const blogs = await Promise.all(
     fileNames.map(async (fileName) => {
       const doc = await fs.promises.readFile(`src/posts/${fileName}`, 'utf8')
 
@@ -24,9 +21,6 @@ export async function get(request) {
       return data
     })
   )
-
-  const filterState = query.get('filter');
-  blogs = processBlogList(filterState, blogs);
 
   return {
     body: JSON.stringify(blogs)

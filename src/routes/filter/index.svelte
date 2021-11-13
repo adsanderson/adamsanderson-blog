@@ -13,42 +13,24 @@
 		filter = p.query.get('filter');
 	});
 
-	export async function load({ fetch, page }) {
+	onMount(async () => {
 		if (!browser) return;
 
 		const url = `/blog.json`;
 		const res = await fetch(url);
+		let blogs = await res.json();
+		let filter = '';
+
+		page.subscribe((p) => {
+			filter = p.query.get('filter');
+		});
+
+		blogs = processBlogList(filter, blogs);
 
 		if (res.ok) {
-			let posts = await res.json();
-
-			const filterState = page.query.get('filter');
-			posts = processBlogList(filterState, posts);
-
-			return {
-				props: { posts }
-			};
+			posts = blogs;
 		}
-		return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`)
-		};
-	}
-
-	// onMount(async () => {
-	// 	if (!browser) return;
-
-	// 	const url = `/blog.json`;
-	// 	const res = await fetch(url);
-	//     let
-
-	//     const filterState = query.get('filter');
-	//     posts = processBlogList(filterState, blogs);
-
-	// 	if (res.ok) {
-	// 		posts =
-	// 	}
-	// });
+	});
 </script>
 
 <svelte:head>

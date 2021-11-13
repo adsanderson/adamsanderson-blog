@@ -6,10 +6,10 @@
 export function processBlogList(filterState, blogs) {
     blogs = blogs.filter(toFilterState(filterState));
     return blogs.sort((a, b) => {
-        if (a.publishDate > b.publishDate) {
+        if (a.publishDate < b.publishDate) {
             return 1;
         }
-        if (a.publishDate < b.publishDate) {
+        if (a.publishDate > b.publishDate) {
             return -1;
         }
         return 0;

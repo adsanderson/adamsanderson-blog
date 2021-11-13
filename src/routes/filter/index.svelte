@@ -5,6 +5,7 @@
 
 <script>
 	import { onMount } from 'svelte';
+	import { browser } from '$app/env';
 	import Hero from '$lib/Components/Hero.svelte';
 	import HomeLink from '$lib/Components/HomeLink.svelte';
 	import { page } from '$app/stores';
@@ -18,6 +19,8 @@
 	});
 
 	onMount(async () => {
+		if (!browser) return;
+
 		const url = `/blog.json?filter=${filter}`;
 		const res = await fetch(url);
 

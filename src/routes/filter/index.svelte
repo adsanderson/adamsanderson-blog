@@ -28,7 +28,7 @@
 		blogs = processBlogList(filter, blogs);
 
 		if (res.ok) {
-			posts = blogs;
+			posts = await res.json();
 		}
 	});
 </script>

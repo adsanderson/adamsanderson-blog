@@ -1,8 +1,3 @@
-<script context="module">
-	/** @type {import('@sveltejs/kit').Load} */
-	export async function load({ fetch, page }) {}
-</script>
-
 <script>
 	import { onMount } from 'svelte';
 	import { browser } from '$app/env';
@@ -11,7 +6,7 @@
 	import { page } from '$app/stores';
 
 	/** @type {import('$lib/types').Markdown[]} */
-	export let posts;
+	export let posts = [];
 	let filter;
 
 	page.subscribe((p) => {
@@ -33,8 +28,6 @@
 <svelte:head>
 	<title>Devtings</title>
 </svelte:head>
-
-<Hero />
 
 <section>
 	<ol>

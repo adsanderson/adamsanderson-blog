@@ -42,9 +42,9 @@ test('sort blog list by published', async () => {
     console.log(result)
 
     assert.equal(result.length, 3);
-    assert.equal(result[0].publishDate, expected[0].publishDate);
+    assert.equal(result[0].publishDate, expected[1].publishDate);
     assert.equal(result[1].publishDate, expected[3].publishDate);
-    assert.equal(result[2].publishDate, expected[1].publishDate);
+    assert.equal(result[2].publishDate, expected[0].publishDate);
 });
 
 test.run();

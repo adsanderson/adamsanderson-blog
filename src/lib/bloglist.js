@@ -1,31 +1,30 @@
-import { readdir, readFile } from 'fs/promises';
-import { basename } from 'path';
-import matter from 'gray-matter';
-
 /**
- * 
- * @returns Promise<{
-    [key: string]: any;
-}[]>
+ * @param {"published" | "unpublished" | "all" | string} filterState
+ * @param {{[key: string]: any}[]} blogs
+ * @returns 
  */
-export async function getBlogList() {
-    const fileNames = await readdir('src/posts')
+export function processBlogList(filterState, blogs) {
+    blogs = blogs.filter(toFilterState(filterState));
+    return blogs.sort((a, b) => {
+        if (a.publishDate > b.publishDate) {
+            return 1;
+        }
+        if (a.publishDate < b.publishDate) {
+            return -1;
+        }
+        return 0;
+    })
+}
 
-    let blogs = await Promise.all(
-        fileNames.map(async (fileName) => {
-            const doc = await readFile(`src/posts/${fileName}`, 'utf8')
-
-            const { data } = matter(doc)
-
-            data.slug = basename(fileName, '.md');
-
-            return data
-        })
-    )
-
-    blogs = blogs.filter(post => post.publishDate);
-
-    blogs.sort((a, b) => b.publishDate - a.publishDate);
-
-    return blogs;
+function toFilterState(filterState) {
+    if (filterState === "published") {
+        return post => post.publishDate;
+    }
+    if (filterState === "unpublished") {
+        return post => !post.publishDate;
+    }
+    if (filterState === "all") {
+        return () => true;
+    }
+    return post => post.publishDate;
 }

@@ -11,3 +11,8 @@ export type Markdown = {
 	content: string;
 }
 
+export type Blog = {
+	title: string;
+	slug: string;
+	publishDate?: string;
+}

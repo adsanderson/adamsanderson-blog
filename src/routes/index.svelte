@@ -1,4 +1,6 @@
 <script context="module">
+	import { processBlogList } from '$lib/bloglist';
+
 	export const prerender = true;
 
 	/** @type {import('@sveltejs/kit').Load} */
@@ -7,8 +9,10 @@
 		const res = await fetch(url);
 
 		if (res.ok) {
-			const posts = await res.json();
-			// console.log('posts', { posts });
+			let posts = await res.json();
+
+			posts = processBlogList('published', posts);
+
 			return {
 				props: { posts }
 			};

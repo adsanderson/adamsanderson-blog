@@ -1,8 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { processBlogList } from '$lib/bloglist'
-import { log } from "$lib/logger";
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}

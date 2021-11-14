@@ -1,6 +1,10 @@
 #!/bin/bash
 
-status=`curl --silent --head https://www.adamsanderson.co.uk | head -1 | cut -f 2 -d' '`
+site="https://www.adamsanderson.co.uk"
+
+echo "Checking website $site"
+
+status=`curl --silent --head $site | head -1 | cut -f 2 -d' '`
 
 if [ "$status" != "200" ]
 then

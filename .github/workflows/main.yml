@@ -52,6 +52,7 @@ jobs:
         with:
           name: deploy-bundle
       - run: npm ci --production
+      
       - name: Publish
         uses: netlify/actions/cli@master
         with:
@@ -59,3 +60,9 @@ jobs:
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: scripts/website-up.sh

@@ -25,10 +25,9 @@
 </script>
 
 <script>
-	import Hero from '$lib/Components/Hero.svelte';
 	import HomeLink from '$lib/Components/HomeLink.svelte';
 
-	/** @type {import('../../lib/types').Markdown[]} */
+	/** @type {Record<string, unknown>[]} */
 	export let posts;
 </script>
 
@@ -43,7 +42,7 @@
 		{#each posts as post}
 			<li>
 				<HomeLink {post} />
-				<pre>{post.metadata.publishDate || "unpublished"}</pre>
+				<pre>{post.publishDate || "unpublished"}</pre>
 			</li>
 		{/each}
 	</ol>

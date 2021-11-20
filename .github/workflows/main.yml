@@ -53,6 +53,13 @@ jobs:
           name: deploy-bundle
       - run: npm ci --production
       
+      - name: Pre-publish 
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       - name: Publish
         uses: netlify/actions/cli@master
         with:

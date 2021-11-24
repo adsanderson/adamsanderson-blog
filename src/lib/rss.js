@@ -18,14 +18,13 @@ ${posts.map(
     <description>A blog built with SvelteKit about tech and stuff!</description>
     <link>${website}/blog/${post.slug}/</link>
     <guid>${website}/blog/${post.slug}/</guid>
-    <pubDate>${new Date(post.publishDate)}</pubDate>
+    <pubDate>${new Date(post.publishDate).toUTCString()}</pubDate>
     <content:encoded>
         <![CDATA[
-        ${post.content}           
+        ${post.content}
         ]]>
     </content:encoded>
-    </item>
+  </item>
 `
-  ).join('')}
-</channel>
+  ).join('')}</channel>
 </rss>`

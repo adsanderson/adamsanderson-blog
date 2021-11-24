@@ -5,7 +5,14 @@ import { xml } from '../../src/lib/rss.js';
 test('filter to only published posts', async () => {
   // const blogs = base();
   const result = xml([{
-    title: 'Title'
+    title: 'Title',
+    slug: "test-post",
+    publishDate: "2002-10-02",
+    content: `<div style="margin-top: 50px; font-style: italic;">
+<strong>
+    Keep reading
+</strong>  
+</div>`
   }]);
   // assert.equal(result.length, 3);
   console.log(result);
@@ -24,14 +31,14 @@ const snapshot = `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:conten
     <description>A blog built with SvelteKit about tech and stuff!</description>
     <link>https://www.adamsanderson.co.uk/blog/test-post/</link>
     <guid>https://www.adamsanderson.co.uk/blog/test-post/</guid>
-    <pubDate>Wed, 02 Oct 2002 13:00:00 GMT</pubDate>
+    <pubDate>Wed, 02 Oct 2002 00:00:00 GMT</pubDate>
     <content:encoded>
         <![CDATA[
         <div style="margin-top: 50px; font-style: italic;">
-        <strong>            
-            Keep reading          
-        </strong>  
-        </div>
+<strong>
+    Keep reading
+</strong>  
+</div>
         ]]>
     </content:encoded>
   </item>

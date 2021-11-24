@@ -14,7 +14,14 @@ const config = {
 	preprocess: [preprocess(), mdsvex(mdsvexConfig)],
 
 	kit: {
-		adapter: netlifyAdapter(),
+		adapter: netlifyAdapter({
+			esbuild(defaultOptions) {
+				return {
+					...defaultOptions,
+					plugins: []
+				};
+			}
+		}),
 		// adapter: adapter({
 		// 	// default options are shown
 		// 	pages: 'build',

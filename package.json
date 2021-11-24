@@ -51,6 +51,7 @@
 		"gray-matter": "4.0.3",
 		"markdown-it": "12.2.0",
 		"markdown-it-prism": "2.2.1",
+		"prismjs": "^1.25.0",
 		"xstate": "4.26.0"
 	}
 }

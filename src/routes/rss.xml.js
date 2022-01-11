@@ -1,20 +1,29 @@
+// @ts-check
 
+import { xml } from "$lib/rss";
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
 export async function get() {
+    const fileNames = await fs.promises.readdir('src/posts');
+
+    const posts = await Promise.all(
+        fileNames.map(async (fileName) => {
+            const doc = await fs.promises.readFile(`src/posts/${fileName}`, 'utf8')
+
+            const { data } = matter(doc)
+
+            data.slug = path.basename(fileName, '.md');
+
+            return data
+        })
+    )
+
     const headers = {
         'Cache-Control': 'max-age=0, s-maxage=3600',
         'Content-Type': 'application/xml',
     }
-    const body = `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-      <title>Devtings</title>
-      <link>https://www.adamsanderson.co.uk</link>
-      <description>A blog built with SvelteKit about tech and stuff!</description>
-    
-    </channel>
-    </rss>`
+    const body = xml(posts);
     return {
         headers,
         body

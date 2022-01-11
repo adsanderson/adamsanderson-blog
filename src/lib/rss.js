@@ -10,7 +10,7 @@ export const xml =
   <title>Devtings</title>
   <link>${website}</link>
   <atom:link href="${website}/rss.xml" rel="self" type="application/rss+xml" />
-  <description>A blog built with SvelteKit about tech and stuff!</description>
+  <description>A blog from Adam Sanderson</description>
 ${posts.map(
     post =>
       `  <item>

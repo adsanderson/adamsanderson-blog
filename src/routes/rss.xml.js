@@ -1,5 +1,4 @@
-// @ts-check
-
+import matter from 'gray-matter'
 import { xml } from "$lib/rss";
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -18,6 +17,8 @@ export async function get() {
             return data
         })
     )
+
+    console.log('RSS posts', posts.length)
 
     const headers = {
         'Cache-Control': 'max-age=0, s-maxage=3600',

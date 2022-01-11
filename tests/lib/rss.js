@@ -25,7 +25,7 @@ const snapshot = `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:conten
   <title>Devtings</title>
   <link>https://www.adamsanderson.co.uk</link>
   <atom:link href="https://www.adamsanderson.co.uk/rss.xml" rel="self" type="application/rss+xml" />
-  <description>A blog built with SvelteKit about tech and stuff!</description>
+  <description>A blog from Adam Sanderson</description>
   <item>
     <title>Title</title>
     <description>A blog built with SvelteKit about tech and stuff!</description>

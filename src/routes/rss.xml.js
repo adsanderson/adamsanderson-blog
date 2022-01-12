@@ -1,4 +1,5 @@
-import matter from 'gray-matter'
+import fs from 'fs';
+import matter from 'gray-matter';
 import { xml } from "$lib/rss";
 /**
  * @type {import('@sveltejs/kit').RequestHandler}

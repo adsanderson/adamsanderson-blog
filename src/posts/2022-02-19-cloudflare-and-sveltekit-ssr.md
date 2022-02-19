@@ -12,12 +12,21 @@ title: Cloudflare workers
 
 I have a side-project for a content site that has more than a thousand individual pages. Most of these pages once created will hardly ever change, but at the same time these pages are complex with multiple data sources and can take some time to build.
 
-### How to build a page
+### The choices for building a site 
 
-There are three main approaches to building a site. "Server-side Rendering" (SSR), "Client-side Rendering" (CSR) and "Static Site Generation" (SSG). At its simplist the difference between each approach is where the HTML for a page is built. Comparing these there are two factors that come into play, where the page is built and how often it is built. For each approach there is a primary tool that takes information and generates the page the user sees, the server, client, and build server. 
+The three main approaches to building a site I thought about were: "Server-side Rendering" (SSR), "Client-side Rendering" (CSR) and "Static Site Generation" (SSG). 
+
+Comparing these there are two factors that come into play, where the page is built and how often it is built. 
+
+SSR means a page will be rendered on the server each time there is a request, great as pages not requested are not rendered but potentially wasteful building the same identical page over and over again.
+
+CSR means after a request is made by the user, a shell is sent down and then the client fetches the data and builds the page on the client machine.
 
 
 
+### The third factor
+
+There is a third factor
 
 
 SSR the html is built on the server when there is a request.  

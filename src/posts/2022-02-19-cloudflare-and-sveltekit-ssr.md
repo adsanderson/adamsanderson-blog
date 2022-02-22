@@ -14,7 +14,7 @@ I have a side-project for a content site that has more than a thousand individua
 
 ### The choices for building a site 
 
-The three main approaches to building a site I thought about were: "Server-side Rendering" (SSR), "Client-side Rendering" (CSR) and "Static Site Generation" (SSG). 
+The three main approaches to building a site I considered for the site were: "Server-side Rendering" (SSR), "Client-side Rendering" (CSR) and "Static Site Generation" (SSG). 
 
 Comparing these there are two factors that come into play, where the page is built and how often it is built. 
 
@@ -22,11 +22,12 @@ SSR means a page will be rendered on the server each time there is a request, gr
 
 CSR means after a request is made by the user, a shell is sent down and then the client fetches the data and builds the page on the client machine.
 
-
-
 ### The third factor
 
 There is a third factor
+
+
+
 
 
 SSR the html is built on the server when there is a request.  

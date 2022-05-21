@@ -20,30 +20,28 @@ test('filter to only published posts', async () => {
   assert.snapshot(result, snapshot)
 })
 
-const snapshot = `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
-<channel>
-  <title>Devtings</title>
-  <link>https://www.adamsanderson.co.uk</link>
-  <atom:link href="https://www.adamsanderson.co.uk/rss.xml" rel="self" type="application/rss+xml" />
-  <description>A blog from Adam Sanderson</description>
-  <item>
-    <title>Title</title>
-    <description>A blog built with SvelteKit about tech and stuff!</description>
-    <link>https://www.adamsanderson.co.uk/blog/test-post/</link>
-    <guid>https://www.adamsanderson.co.uk/blog/test-post/</guid>
-    <pubDate>Wed, 02 Oct 2002 00:00:00 GMT</pubDate>
-    <content:encoded>
-        <![CDATA[
-        <div style="margin-top: 50px; font-style: italic;">
+const snapshot = `<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>Example Feed</title>
+  <link href="https://adamsanderson.co.uk/"/>
+  <updated>2022-05-21T18:30:02Z</updated>
+  <author>
+    <name>Adam Sanderson</name>
+  </author>
+  <id>adamsanderson.co.uk</id>
+    <entry>
+      <title>Title</title>
+      <link href="https://www.adamsanderson.co.uk/blog/test-post/"/>
+      <id>https://www.adamsanderson.co.uk/blog/test-post/</id>
+      <updated>Wed, 02 Oct 2002 00:00:00 GMT</updated>
+      <content><div style="margin-top: 50px; font-style: italic;">
 <strong>
     Keep reading
 </strong>  
-</div>
-        ]]>
-    </content:encoded>
-  </item>
-</channel>
-</rss>`
+</div></content>
+    </entry>
+  </feed>`
 
 test.run();
 

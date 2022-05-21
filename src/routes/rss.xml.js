@@ -1,6 +1,7 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import { xml } from "$lib/rss";
+import path from 'path';
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */

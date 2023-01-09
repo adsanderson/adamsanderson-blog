@@ -1,27 +1,9 @@
-<script context="module">
-	import { base } from '$app/paths';
-	// import type { Markdown } from '$lib/types';
-	export const prerender = true;
-
-	/**
-	 * @type {import('@sveltejs/kit').Load}
-	 */
-	export async function load({ page, fetch }) {
-		const slug = page.params.slug;
-
-		const post = await fetch(`${base}/blog/${slug}.json`).then((r) => r.json());
-
-		return {
-			props: { post }
-		};
-	}
-</script>
-
 <script>
+	export let data;
 	/**
 	 * @type {import('$lib/types').Markdown}
 	 */
-	export let post;
+	let post = data.post;
 </script>
 
 <svelte:head>

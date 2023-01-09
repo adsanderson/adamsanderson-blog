@@ -2,9 +2,9 @@
 	"name": "adamsanderson-blog",
 	"version": "5.0.0",
 	"scripts": {
-		"dev": "svelte-kit dev",
-		"build": "svelte-kit build",
-		"preview": "svelte-kit preview",
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
@@ -18,12 +18,12 @@
 		"@sveltejs/kit": "1.0.0-next.589",
 		"@types/cookie": "0.4.1",
 		"@types/markdown-it": "12.2.3",
-		"@typescript-eslint/eslint-plugin": "4.33.0",
-		"@typescript-eslint/parser": "4.33.0",
+		"@typescript-eslint/eslint-plugin": "5.48.1",
+		"@typescript-eslint/parser": "5.48.1",
 		"dayjs": "1.10.7",
-		"eslint": "7.32.0",
-		"eslint-config-prettier": "8.3.0",
-		"eslint-plugin-svelte3": "3.2.1",
+		"eslint": "8.31.0",
+		"eslint-config-prettier": "8.6.0",
+		"eslint-plugin-svelte3": "4.0.0",
 		"js-yaml": "4.1.0",
 		"mdsvex": "0.9.8",
 		"prettier": "2.4.1",
@@ -41,6 +41,7 @@
 		"tslib": "2.3.1",
 		"typescript": "4.4.4",
 		"uvu": "0.5.2",
+		"vite": "^4.0.4",
 		"watchlist": "0.3.1"
 	},
 	"type": "module",
@@ -52,6 +53,6 @@
 		"markdown-it": "12.3.2",
 		"markdown-it-prism": "2.2.1",
 		"prismjs": "1.25.0",
-		"xstate": "^4.26.0"
+		"xstate": "^4.35.2"
 	}
 }

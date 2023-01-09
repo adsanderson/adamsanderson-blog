@@ -5,7 +5,7 @@ import matter from 'gray-matter'
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get() {
+export async function GET() {
   const fileNames = await fs.promises.readdir('src/posts')
 
   const blogs = await Promise.all(
@@ -20,8 +20,6 @@ export async function get() {
     })
   )
 
-  return {
-    body: JSON.stringify(blogs)
-  }
+  return new Response(JSON.stringify(blogs))
 }
 

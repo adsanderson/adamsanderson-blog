@@ -1,12 +1,13 @@
 <script>
 	import { onMount } from 'svelte';
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import HomeLink from '$lib/Components/HomeLink.svelte';
 	import { page } from '$app/stores';
 	import { processBlogList } from '$lib/bloglist';
 
+	export let data;
 	/** @type {import('$lib/types').Markdown[]} */
-	export let posts = [];
+	let posts = data.posts || [];
 	let filter;
 
 	page.subscribe((p) => {

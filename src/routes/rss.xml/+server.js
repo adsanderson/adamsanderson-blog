@@ -1,3 +1,4 @@
+import { json } from '@sveltejs/kit';
 import fs from 'fs';
 import matter from 'gray-matter';
 import { xml } from "$lib/rss";
@@ -5,7 +6,7 @@ import path from 'path';
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get() {
+export async function GET() {
     const fileNames = await fs.promises.readdir('src/posts');
 
     const posts = await Promise.all(
@@ -27,8 +28,10 @@ export async function get() {
         'Content-Type': 'application/xml',
     }
     const body = xml(posts);
-    return {
-        headers,
-        body
-    }
+    // Suggestion (check for correctness before using):
+    // return json(body, {
+    //     headers: headers
+    // });
+    return new Response(body, { headers })
+    
 }

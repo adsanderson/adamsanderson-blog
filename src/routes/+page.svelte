@@ -1,35 +1,9 @@
-<script context="module">
-	import { processBlogList } from '$lib/bloglist';
-
-	export const prerender = true;
-
-	/** @type {import('@sveltejs/kit').Load} */
-	export async function load({ fetch, page }) {
-		const url = `/blog.json`;
-		const res = await fetch(url);
-
-		if (res.ok) {
-			let posts = await res.json();
-
-			posts = processBlogList('published', posts);
-
-			return {
-				props: { posts }
-			};
-		}
-		return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`)
-		};
-	}
-</script>
-
 <script>
 	import Hero from '$lib/Components/Hero.svelte';
 	import HomeLink from '$lib/Components/HomeLink.svelte';
 
-	/** @type {import('../lib/types').Markdown[]} */
-	export let posts;
+	export let data;
+	let posts = data.posts;
 </script>
 
 <svelte:head>

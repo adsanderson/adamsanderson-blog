@@ -9,7 +9,5 @@ export const get = async (request) => {
     const { metadata, content } = await process(slug);
     const body = JSON.stringify({ metadata, content });
 
-    return {
-        body
-    }
+    return new Response(body)    
 }

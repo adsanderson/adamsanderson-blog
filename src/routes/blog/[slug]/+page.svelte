@@ -1,9 +1,10 @@
 <script>
 	export let data;
+	console.log(data);
 	/**
 	 * @type {import('$lib/types').Markdown}
 	 */
-	let post = data.post;
+	let post = data;
 </script>
 
 <svelte:head>

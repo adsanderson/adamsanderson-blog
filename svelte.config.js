@@ -44,6 +44,9 @@ import netlifyAdapter from '@sveltejs/adapter-netlify';
 
 	kit: {
 	  adapter: netlifyAdapter(),
-	}
+	},
+	prerender: {
+		entries: [
+		  '*',]}
  }
 export default config;

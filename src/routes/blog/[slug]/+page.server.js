@@ -18,14 +18,12 @@ export const prerender = true;
 export const load = async ({ params }) => {
 	try {	
 		const post = await import(`../../../posts/${params.slug}.md`)
-
-		console.log(post);
-
+			console.log(params.slug, post.default.render().html);
 		return {
-			postcontent: post.default.render().html,
+			content: post.default.render().html,
 			metadata: { ...post.metadata, slug: params.post } 
 		}
 	} catch(err) {
 		throw error(404, err)
 	}
-}
+} 

@@ -28,9 +28,7 @@ Reading [Remy Sharp's blog][4] source maps may not be the answer quite yet for J
 
 So I'll grab a coffee set up source maps and workspaces see how they work, try and blur the lines between spaces and report back.
 
-{% raw %}
 photo credit: <a href="http://www.flickr.com/photos/elpatojo/294145821/">el patojo</a> via <a href="http://photopin.com">photopin</a> <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/">cc</a>
-{% endraw %}
 
 [1]: http://www.starbucks.co.uk/about-us/our-heritage
 [2]: http://www.html5rocks.com/en/tutorials/developertools/revolutions2013/#toc-workspaces

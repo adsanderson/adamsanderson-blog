@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit'
 
-import { base } from '$app/paths';
-// import type { Markdown } from '$lib/types';
+
+
 export const prerender = true;
 
 // export async function load({ params }) {
@@ -19,9 +19,11 @@ export const load = async ({ params }) => {
 	try {	
 		const post = await import(`../../../posts/${params.slug}.md`)
 
+		console.log(post);
+
 		return {
-			PostContent: post.default.render().html,
-			meta: { ...post.metadata, slug: params.post } 
+			postcontent: post.default.render().html,
+			metadata: { ...post.metadata, slug: params.post } 
 		}
 	} catch(err) {
 		throw error(404, err)

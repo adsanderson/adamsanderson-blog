@@ -7,7 +7,7 @@ tags:
 ---
 First up here is Kevin Marks' talk on "the web we found"; the web 10 years ago, the web today and the future of the web at LeWeb'13.
 
-<iframe width="640" height="360" src="//www.youtube.com/embed/Ve48PjgDAn0" frameborder="0" allowfullscreen></iframe>
+<iframe title="Youtube" width="640" height="360" src="//www.youtube.com/embed/Ve48PjgDAn0" frameborder="0" allowfullscreen></iframe>
 
 The talk starts by looking at the web in 2003 and a compares it to the web in 2013. This was just the background and foundation to lay out the ideas of the indie web and the future of the web.
 
@@ -23,4 +23,4 @@ When Marks was discussing the future of the web one of the points that resonated
 
 Here is a follow-up interview with Kevin Marks where he discuss and expands on some of the ideas from his presentation and gives a bit of background on the history of video and the web.
 
-<iframe width="640" height="360" src="//www.youtube.com/embed/T1kfKV4Yjhs" frameborder="0" allowfullscreen></iframe>
+<iframe title="Youtube" width="640" height="360" src="//www.youtube.com/embed/T1kfKV4Yjhs" frameborder="0" allowfullscreen></iframe>

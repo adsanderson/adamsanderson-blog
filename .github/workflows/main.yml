@@ -20,14 +20,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v2      
+      - uses: pnpm/action-setup@v2
+        with:
+        version: 7
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - run: npm ci
-      - run: npm test
-      - run: npm run build
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - run: pnpm test
+      - run: pnpm build
       - name: Store build result
         uses: actions/upload-artifact@v2
         with:
@@ -51,7 +56,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: deploy-bundle
-      - run: npm ci --production
+      - run: pnpm i --production
       
 #       - name: Pre-publish 
 #         uses: netlify/actions/cli@master

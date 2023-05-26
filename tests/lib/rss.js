@@ -35,11 +35,11 @@ const snapshot = `<?xml version="1.0" encoding="utf-8"?>
       <link href="https://www.adamsanderson.co.uk/blog/test-post/"/>
       <id>https://www.adamsanderson.co.uk/blog/test-post/</id>
       <updated>Wed, 02 Oct 2002 00:00:00 GMT</updated>
-      <content><div style="margin-top: 50px; font-style: italic;">
+      <content><![CDATA[<div style="margin-top: 50px; font-style: italic;">
 <strong>
     Keep reading
 </strong>  
-</div></content>
+</div>]]></content>
     </entry>
   </feed>`
 

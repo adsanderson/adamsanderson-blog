@@ -12,7 +12,7 @@ export async function GET() {
 
     const x = (await Promise.all(
         fileNames.map(async (fileName) => {
-            const post = await import(`../../posts/${fileName}`)
+            const post = await import(`${process.cwd()}/src/posts/${fileName}?raw`)
 
             const data = post.metadata;
 

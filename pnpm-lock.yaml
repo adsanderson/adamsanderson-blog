@@ -20,8 +20,8 @@ dependencies:
     specifier: 2.2.1
     version: 2.2.1
   prismjs:
-    specifier: 1.25.0
-    version: 1.25.0
+    specifier: 1.27.0
+    version: 1.27.0
   xstate:
     specifier: ^4.35.2
     version: 4.35.2
@@ -1571,7 +1571,7 @@ packages:
     dependencies:
       '@types/unist': 2.0.6
       prism-svelte: 0.4.7
-      prismjs: 1.25.0
+      prismjs: 1.27.0
       svelte: 3.54.0
       vfile-message: 2.0.4
     dev: true
@@ -2014,6 +2014,11 @@ packages:
 
   /prismjs@1.25.0:
     resolution: {integrity: sha512-WCjJHl1KEWbnkQom1+SzftbtXMKQoezOCYs5rECqMN+jP+apI7ftoflyqigqzopSO3hMhTEb0mFClA8lkolgEg==}
+    dev: false
+
+  /prismjs@1.27.0:
+    resolution: {integrity: sha512-t13BGPUlFDR7wRB5kQDG4jjl7XeuH6jbJGt11JHPL96qwsEHNX2+68tFXqc1/k+/jALsbSWJKUOT/hcYAZ5LkA==}
+    engines: {node: '>=6'}
 
   /property-information@6.2.0:
     resolution: {integrity: sha512-kma4U7AFCTwpqq5twzC1YVIDXSqg6qQK6JN0smOw8fgRy1OkMi0CYSzFmsy6dnqSenamAtj0CyXMUJ1Mf6oROg==}

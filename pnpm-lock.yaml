@@ -70,8 +70,8 @@ devDependencies:
     specifier: 2.4.0
     version: 2.4.0(prettier@2.4.1)(svelte@3.54.0)
   rehype-highlight:
-    specifier: 5.0.0
-    version: 5.0.0
+    specifier: 5.0.2
+    version: 5.0.2
   rehype-stringify:
     specifier: 9.0.2
     version: 9.0.2
@@ -2040,8 +2040,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /rehype-highlight@5.0.0:
-    resolution: {integrity: sha512-LXbdRzHM0PNzVfHvbiF+r/BZzCHSdtpSTCnJej6ZuvJKDKRVfwl0Io5b81gWqUnfZmpzjhPAzm5es4iikv1jzg==}
+  /rehype-highlight@5.0.2:
+    resolution: {integrity: sha512-ZNm8V8BQUDn05cJPzAu/PjiloaFFrh+Pt3bY+NCcdCggI7Uyl5mW0FGR7RATeIz5/ECUd1D8Kvjt4HaLPmnOMw==}
     dependencies:
       '@types/hast': 2.3.4
       hast-util-to-text: 3.1.2

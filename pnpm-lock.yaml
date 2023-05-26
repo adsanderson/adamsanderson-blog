@@ -82,8 +82,8 @@ devDependencies:
     specifier: 3.0.0
     version: 3.0.0
   remark-parse:
-    specifier: 10.0.0
-    version: 10.0.0
+    specifier: 10.0.2
+    version: 10.0.2
   remark-rehype:
     specifier: 10.0.0
     version: 10.0.0
@@ -2078,8 +2078,8 @@ packages:
       - supports-color
     dev: true
 
-  /remark-parse@10.0.0:
-    resolution: {integrity: sha512-07ei47p2Xl7Bqbn9H2VYQYirnAFJPwdMuypdozWsSbnmrkgA2e2sZLZdnDNrrsxR4onmIzH/J6KXqKxCuqHtPQ==}
+  /remark-parse@10.0.2:
+    resolution: {integrity: sha512-3ydxgHa/ZQzG8LvC7jTXccARYDcRld3VfcgIIFs7bI6vbRSxJJmzgLEIIoYKyrfhaY+ujuWaf/PJiMZXoiCXgw==}
     dependencies:
       '@types/mdast': 3.0.10
       mdast-util-from-markdown: 1.2.0

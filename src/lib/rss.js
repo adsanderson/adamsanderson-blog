@@ -22,7 +22,7 @@ ${posts.map(
       <link href="${website}/blog/${post.slug}/"/>
       <id>${website}/blog/${post.slug}/</id>
       <updated>${new Date(post.publishDate).toUTCString()}</updated>
-      <content>${post.content}</content>
+      <content><![CDATA[${post.content}]]></content>
     </entry>`
   ).join('')}
   </feed>`

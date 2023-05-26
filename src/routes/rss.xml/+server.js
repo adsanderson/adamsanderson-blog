@@ -1,6 +1,4 @@
-import { json } from '@sveltejs/kit';
 import fs from 'fs';
-import matter from 'gray-matter';
 import { xml } from "$lib/rss";
 import path from 'path';
 
@@ -12,29 +10,33 @@ export const prerender = true;
 export async function GET() {
     const fileNames = await fs.promises.readdir('src/posts');
 
-    const posts = await Promise.all(
+    const x = (await Promise.all(
         fileNames.map(async (fileName) => {
-            const doc = await fs.promises.readFile(`src/posts/${fileName}`, 'utf8')
+            const post = await import(`../../posts/${fileName}`)
 
-            const { data } = matter(doc)
+            const data = post.metadata;
 
             data.slug = path.basename(fileName, '.md');
+            data.content = post.default.render().html;
+            // console.log(data);
 
             return data
         })
-    )
+    ))
 
-    console.log('RSS posts', posts.length)
+    const posts = x
+        .filter(p => p.publishDate)
+        .toSorted((a, b) => {
+            return a.publishDate > b.publishDate ? -1 : 1;
+        })
+
 
     const headers = {
         'Cache-Control': 'max-age=0, s-maxage=3600',
         'Content-Type': 'application/xml',
     }
     const body = xml(posts);
-    // Suggestion (check for correctness before using):
-    // return json(body, {
-    //     headers: headers
-    // });
+
     return new Response(body, { headers })
-    
+
 }

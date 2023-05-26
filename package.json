@@ -15,7 +15,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-netlify": "1.0.0",
 		"@sveltejs/adapter-static": "1.0.1",
-		"@sveltejs/kit": "1.0.10",
+		"@sveltejs/kit": "1.15.2",
 		"@types/cookie": "0.4.1",
 		"@types/markdown-it": "12.2.3",
 		"@types/node": "^20.2.4",

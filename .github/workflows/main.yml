@@ -56,16 +56,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: deploy-bundle
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 7
-      - name: Use Node.js 16
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
+      # - run: pnpm i --production
       
 #       - name: Pre-publish 
 #         uses: netlify/actions/cli@master

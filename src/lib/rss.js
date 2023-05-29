@@ -2,7 +2,6 @@ const website = "https://www.adamsanderson.co.uk"
 const feedTitle = 'Adam Sanderson - Blog';
 const feedDescription = 'Thoughts, learnings, and updates from Adam Sanderson.';
 const feedLink = 'https://www.adamsanderson.co.uk';
-const feedLanguage = 'en-gb';
 const feedUpdated = new Date();
 
 /**
@@ -23,7 +22,6 @@ export const xml =
     </author>
     <subtitle>${feedDescription}</subtitle>
     <generator>JavaScript</generator>
-    <language>${feedLanguage}</language>
 ${posts.map(
     post =>
       `    <entry>

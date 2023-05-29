@@ -5,25 +5,25 @@ import { error } from '@sveltejs/kit'
 export const prerender = true;
 
 // export async function load({ params }) {
-	// 	const slug = params.slug;
+// 	const slug = params.slug;
 
-	// 	const post = await fetch(`${base}/blog/${slug}.json`).then((r) => r.json());
-	
-	// 	return { post };
-	// }
-	
+// 	const post = await fetch(`${base}/blog/${slug}.json`).then((r) => r.json());
+
+// 	return { post };
+// }
+
 /**
  * @type {import('./$types').PageLoad}
  */
 export const load = async ({ params }) => {
-	try {	
+	try {
 		const post = await import(`../../../posts/${params.slug}.md`)
-			console.log(params.slug, post.default.render().html);
+
 		return {
-			content: post.default.render().html,
-			metadata: { ...post.metadata, slug: params.post } 
+			content: post.html,
+			metadata: { ...post.metadata, slug: params.post }
 		}
-	} catch(err) {
+	} catch (err) {
 		throw error(404, err)
 	}
 } 

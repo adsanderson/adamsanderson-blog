@@ -1,7 +1,8 @@
 import fs from 'fs';
 import { xml } from "$lib/rss";
 import path from 'path';
-import { mdToHtml } from "$lib/mdToHtml"
+import matter from 'gray-matter';
+import { mdToHtml } from '../../lib/mdToHtml';
 
 export const prerender = true;
 
@@ -13,20 +14,15 @@ export async function GET() {
 
     const x = (await Promise.all(
         fileNames.map(async (fileName) => {
-            const x = await fs.promises.readFile(`${process.cwd()}/src/posts/${fileName}`)
+            const doc = await fs.promises.readFile(`src/posts/${fileName}`, 'utf8')
 
-            const f = await mdToHtml(x.toString());
+            const { data, content } = matter(doc)
 
-            console.log(f.data);
-            // const post = await import(`${process.cwd()}/src/posts/${fileName}`)
+            data.slug = path.basename(fileName, '.md');
+            data.content = await mdToHtml(content.toString());
 
-            // const data = post.metadata;
+            return data
 
-            // data.slug = path.basename(fileName, '.md');
-            // data.content = post.default.render().html;
-            // console.log(data);
-
-            return f
         })
     ))
 

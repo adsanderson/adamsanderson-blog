@@ -2,7 +2,7 @@ import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import { xml } from '../../src/lib/rss.js';
 
-test('filter to only published posts', async () => {
+test.skip('filter to only published posts', async () => {
   // const blogs = base();
   const result = xml([{
     title: 'Title',

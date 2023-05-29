@@ -53,6 +53,9 @@
 		"markdown-it": "13.0.1",
 		"markdown-it-prism": "2.3.0",
 		"prismjs": "1.29.0",
+		"unified": "^10.1.2",
+		"unified-stream": "^2.0.0",
+		"vfile-matter": "^4.0.1",
 		"xstate": "^4.37.2"
 	}
 }

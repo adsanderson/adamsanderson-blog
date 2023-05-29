@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { xml } from "$lib/rss";
 import path from 'path';
+import { mdToHtml } from "$lib/mdToHtml"
 
 export const prerender = true;
 
@@ -12,15 +13,20 @@ export async function GET() {
 
     const x = (await Promise.all(
         fileNames.map(async (fileName) => {
-            const post = await import(`${process.cwd()}/src/posts/${fileName}?raw`)
+            const x = await fs.promises.readFile(`${process.cwd()}/src/posts/${fileName}`)
 
-            const data = post.metadata;
+            const f = await mdToHtml(x.toString());
 
-            data.slug = path.basename(fileName, '.md');
-            data.content = post.default.render().html;
+            console.log(f.data);
+            // const post = await import(`${process.cwd()}/src/posts/${fileName}`)
+
+            // const data = post.metadata;
+
+            // data.slug = path.basename(fileName, '.md');
+            // data.content = post.default.render().html;
             // console.log(data);
 
-            return data
+            return f
         })
     ))
 

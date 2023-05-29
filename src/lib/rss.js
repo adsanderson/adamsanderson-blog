@@ -13,9 +13,9 @@ export const xml =
   posts => `<?xml version="1.0" encoding="utf-8"?>
   <feed xmlns="http://www.w3.org/2005/Atom">
     <title>${feedTitle}</title>
-    <link href="${feedLink}" rel="self"/>
+    <link href="${feedLink}/rss.xml" rel="self"/>
     <link href="${feedLink}"/>
-    <id>${feedLink}</id>
+    <id>${feedLink}/</id>
     <updated>${feedUpdated.toISOString()}</updated>
     <author>
       <name>Adam Sanderson</name>

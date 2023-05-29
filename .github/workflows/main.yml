@@ -34,7 +34,7 @@ jobs:
       - run: pnpm test
       - run: pnpm build
       - name: Store build result
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: deploy-bundle
           path: |

@@ -34,9 +34,3 @@ ${posts.map(
       </entry>`
   ).join('\n')}
   </feed>`
-
-
-
-
-
-

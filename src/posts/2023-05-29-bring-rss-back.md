@@ -1,8 +1,10 @@
 ---
 templateKey: blog-post
 title: Adding an RSS feed to a Sveltekit Blog
-description: 'or: How I Learned to Keep the Feed Alive'
+description: |
+    'or: How I Learned to Keep the Feed Alive'
 date: 2023-05-29T20:39:39.168Z
+publishDate: 2023-06-08T12:00:00.000Z
 ---
 
 I still feel that RSS is still important. It's efficient, reliable, and above all, open. [Google Reader](https://en.wikipedia.org/wiki/Google_Reader) was my introduction to RSS and there are days I still want to open it. There are alternatives many of which I have use or have tried, but nothing quite captured the feeling I had while using Reader.

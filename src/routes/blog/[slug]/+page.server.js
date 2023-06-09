@@ -20,7 +20,7 @@ export const load = async ({ params }) => {
 		const post = await import(`../../../posts/${params.slug}.md`)
 
 		return {
-			content: post.html,
+			content: post.default.render().html,
 			metadata: { ...post.metadata, slug: params.post }
 		}
 	} catch (err) {

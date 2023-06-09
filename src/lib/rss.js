@@ -30,7 +30,7 @@ ${posts.map(
         <id>${website}/blog/${post.slug}/</id>
         <updated>${new Date(post.publishDate).toISOString()}</updated>
         <published>${new Date(post.publishDate).toISOString()}</published>
-        <content type="html"><![CDATA[${post.content}]]></content>
+        <content type="html">${post.content}></content>
       </entry>`
   ).join('\n')}
   </feed>`

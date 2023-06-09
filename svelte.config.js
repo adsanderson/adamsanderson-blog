@@ -38,15 +38,14 @@ import netlifyAdapter from '@sveltejs/adapter-netlify';
 // 	}
 // };
 /** @type {import('@sveltejs/kit').Config} */
- const config = {
+const config = {
 	extensions: ['.svelte', '.md'],
 	preprocess: [preprocess(), mdsvex(mdsvexConfig)],
-
 	kit: {
-	  adapter: netlifyAdapter(),
+		adapter: netlifyAdapter(),
 	},
 	prerender: {
-		entries: [
-		  '*',]}
- }
+		entries: ['*']
+	}
+}
 export default config;

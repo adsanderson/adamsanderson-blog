@@ -1,4 +1,5 @@
 import fs from 'fs';
+import he from 'he';
 import { xml } from "$lib/rss";
 import path from 'path';
 import matter from 'gray-matter';
@@ -19,10 +20,10 @@ export async function GET() {
             const { data, content } = matter(doc)
 
             data.slug = path.basename(fileName, '.md');
-            data.content = await mdToHtml(content.toString());
 
-            return data
+            data.content = he.encode((await mdToHtml(content.toString())).value);
 
+            return data;
         })
     ))
 

@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@fontsource/fira-mono':
     specifier: 5.0.1
@@ -58,8 +62,8 @@ devDependencies:
     specifier: ^20.2.4
     version: 20.2.4
   dayjs:
-    specifier: 1.11.7
-    version: 1.11.7
+    specifier: 1.11.10
+    version: 1.11.10
   eslint:
     specifier: 8.41.0
     version: 8.41.0
@@ -758,8 +762,8 @@ packages:
       which: 2.0.2
     dev: true
 
-  /dayjs@1.11.7:
-    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+  /dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
     dev: true
 
   /debug@4.3.4:

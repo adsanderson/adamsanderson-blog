@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@fontsource/fira-mono':
     specifier: 5.0.1
@@ -43,8 +47,8 @@ devDependencies:
     specifier: 2.0.7
     version: 2.0.7(@sveltejs/kit@1.19.0)
   '@sveltejs/adapter-static':
-    specifier: 2.0.2
-    version: 2.0.2(@sveltejs/kit@1.19.0)
+    specifier: 2.0.3
+    version: 2.0.3(@sveltejs/kit@1.19.0)
   '@sveltejs/kit':
     specifier: 1.19.0
     version: 1.19.0(svelte@3.59.1)(vite@4.3.9)
@@ -466,8 +470,8 @@ packages:
       set-cookie-parser: 2.6.0
     dev: true
 
-  /@sveltejs/adapter-static@2.0.2(@sveltejs/kit@1.19.0):
-    resolution: {integrity: sha512-9wYtf6s6ew7DHUHMrt55YpD1FgV7oWql2IGsW5BXquLxqcY9vjrqCFo0TzzDpo+ZPZkW/v77k0eOP6tsAb8HmQ==}
+  /@sveltejs/adapter-static@2.0.3(@sveltejs/kit@1.19.0):
+    resolution: {integrity: sha512-VUqTfXsxYGugCpMqQv1U0LIdbR3S5nBkMMDmpjGVJyM6Q2jHVMFtdWJCkeHMySc6mZxJ+0eZK3T7IgmUCDrcUQ==}
     peerDependencies:
       '@sveltejs/kit': ^1.5.0
     dependencies:

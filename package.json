@@ -47,7 +47,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/fira-mono": "5.0.1",
+		"@fontsource/fira-mono": "5.0.12",
 		"@lukeed/uuid": "2.0.1",
 		"cookie": "0.5.0",
 		"gray-matter": "4.0.3",

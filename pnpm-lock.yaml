@@ -1,9 +1,13 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@fontsource/fira-mono':
-    specifier: 5.0.1
-    version: 5.0.1
+    specifier: 5.0.12
+    version: 5.0.12
   '@lukeed/uuid':
     specifier: 2.0.1
     version: 2.0.1
@@ -370,8 +374,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fontsource/fira-mono@5.0.1:
-    resolution: {integrity: sha512-SXd96npOQV9g7pYjUzLcvRIvlK8p6Oo6bsMZS+3uGqH8y8GFXa+EpjVLBA7ee9s2xdM13Ln2mZb2Qi4UcuBXhA==}
+  /@fontsource/fira-mono@5.0.12:
+    resolution: {integrity: sha512-1uFRjqCcxVv4F31PjyLm8o4oNlT5ywwh6OwcDGkZbafOeFZHXekvholS9IlfZkRsZvVhSbFRHT/5iDib4KTtpg==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.8:

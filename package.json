@@ -58,6 +58,6 @@
 		"unified": "^10.1.2",
 		"unified-stream": "^2.0.0",
 		"vfile-matter": "^4.0.1",
-		"xstate": "^4.37.2"
+		"xstate": "^5.18.2"
 	}
 }

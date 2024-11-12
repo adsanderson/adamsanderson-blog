@@ -4,3 +4,7 @@ node_modules
 /build
 /.svelte-kit
 /package
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

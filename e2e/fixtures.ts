@@ -1,16 +1,17 @@
-import { test as base } from '@playwright/test'
-import { AdamSandersonCoUk } from './adamsanderson.dsl'
-import { AdamSandersonCoUkWeb } from './adamsanderson.drivers'
+import { test as base } from '@playwright/test';
+import { AdamSandersonBlog } from './adamsanderson.dsl';
+import { AdamSandersonCoUkWeb } from './adamsanderson.drivers';
 
 type FixtureTestArgs = {
-    adamSandersonCoUk: AdamSandersonCoUk
-}
+	adamSandersonCoUk: AdamSandersonBlog;
+};
 
 export const test = base.extend<FixtureTestArgs>({
-    adamSandersonCoUk: async ({ page }, use) => {
-        const adamSandersonCoUk = new AdamSandersonCoUkWeb(page);
-        await use(adamSandersonCoUk);
-    }
-})
+	adamSandersonCoUk: async ({ page }, use) => {
+		const adamSandersonCoUk = new AdamSandersonCoUkWeb(page);
+		await use(adamSandersonCoUk);
+	}
+});
 
-export { expect } from '@playwright/test' 
+export { expect } from '@playwright/test';
+

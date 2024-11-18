@@ -4,4 +4,3 @@ export interface AdamSandersonBlog {
 	viewPost: (postTitle: string) => Promise<void>;
 	expectToSeePost: (postTitle: string) => Promise<void>;
 }
-

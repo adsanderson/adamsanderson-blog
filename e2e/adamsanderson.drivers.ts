@@ -1,6 +1,5 @@
-import { type Page } from 'playwright';
 import { type AdamSandersonBlog } from './adamsanderson.dsl';
-import { expect } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 export class AdamSandersonCoUkWeb implements AdamSandersonBlog {
 	private page: Page;

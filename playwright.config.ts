@@ -41,6 +41,11 @@ export default defineConfig({
 
 		{
 			name: 'RSS'
+		},
+
+		{
+			name: 'chromium - keyboard',
+			use: { ...devices['Desktop Chrome'] }
 		}
 		// {
 		//   name: 'firefox',

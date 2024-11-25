@@ -11,6 +11,7 @@ export class AdamSandersonCoUkWeb implements AdamSandersonBlog {
 	accessPost: AdamSandersonBlog['accessPost'] = async (selector) => {
 		if (selector.type === 'title') {
 			await this.page.getByText(selector.title).click();
+			return;
 		}
 		throw new Error('Selector not implemented');
 	};
@@ -22,9 +23,15 @@ export class AdamSandersonCoUkWeb implements AdamSandersonBlog {
 			this.page.getByRole('link', { name: 'From Bootstrap - How to make a point with CSS' })
 		).toBeVisible();
 	};
-	expectPostExists: AdamSandersonBlog['expectPostExists'] = async (selector) => {};
-	expectPostContent: AdamSandersonBlog['expectPostContent'] = async (selector) => {};
-	expectPostsInOrder: AdamSandersonBlog['expectPostsInOrder'] = async (posts) => {};
+	expectPostExists: AdamSandersonBlog['expectPostExists'] = async (selector) => {
+		await expect(this.page.getByRole('heading', { name: selector.title })).toBeVisible();
+	};
+	expectPostContent: AdamSandersonBlog['expectPostContent'] = async (selector) => {
+		throw new Error('Not implemented' + selector);
+	};
+	expectPostsInOrder: AdamSandersonBlog['expectPostsInOrder'] = async (posts) => {
+		throw new Error('Not implemented' + posts);
+	};
 
 	async goto() {}
 	async expectToSeePosts() {
@@ -42,13 +49,18 @@ export class AdamSandersonCoUkWeb implements AdamSandersonBlog {
 export class AdamSandersonBlogRSS implements AdamSandersonBlog {
 	private rssParser: RssParser;
 	private feed: unknown;
+	private activeFeedItem: unknown;
 
 	constructor() {
 		this.rssParser = new RssParser();
 	}
 
 	accessPost: AdamSandersonBlog['accessPost'] = async (selector) => {
-		throw new Error('Not implemented' + selector);
+		if (selector.type === 'title') {
+			this.activeFeedItem = this.feed.items.find((item) => item.title === selector.title);
+			return;
+		}
+		throw new Error('Selector not implemented');
 	};
 	listPosts: AdamSandersonBlog['listPosts'] = async () => {
 		this.feed = await this.rssParser.parseURL('https://adamsanderson.co.uk/rss.xml');
@@ -57,10 +69,10 @@ export class AdamSandersonBlogRSS implements AdamSandersonBlog {
 		await expect(this.feed).toBeDefined();
 	};
 	expectPostExists: AdamSandersonBlog['expectPostExists'] = async (selector) => {
-		throw new Error('Not implemented' + selector);
+		expect(this.activeFeedItem).toBeDefined();
 	};
 	expectPostContent: AdamSandersonBlog['expectPostContent'] = async (selector) => {
-		throw new Error('Not implemented' + selector);
+		expect(this.activeFeedItem.content).toBeDefined();
 	};
 	expectPostsInOrder: AdamSandersonBlog['expectPostsInOrder'] = async (posts) => {
 		throw new Error('Not implemented' + posts);

@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices, PlaywrightTestConfig } from '@playwright/test';
 
 /**
  * Read environment variables from file.
@@ -7,6 +7,18 @@ import { defineConfig, devices } from '@playwright/test';
 // import dotenv from 'dotenv';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+const baseURL = process.env.TEST_ENV === 'local' ? 'http://localhost:5173' : 'https://adamsanderson.co.uk';
+
+const localTestConfigh: PlaywrightTestConfig = {
+	webServer: {
+		command: 'npm run dev',
+		url: baseURL,
+		reuseExistingServer: !process.env.CI
+	}
+}
+
+const extendedConfig = process.env.TEST_ENV === 'local' ? localTestConfigh : {};
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -36,16 +48,17 @@ export default defineConfig({
 	projects: [
 		{
 			name: 'chromium',
-			use: { ...devices['Desktop Chrome'] }
+			use: { ...devices['Desktop Chrome'], baseURL }
 		},
 
 		{
-			name: 'RSS'
+			name: 'RSS',
+			use: { baseURL }
 		},
 
 		{
 			name: 'chromium - keyboard',
-			use: { ...devices['Desktop Chrome'] }
+			use: { ...devices['Desktop Chrome'], baseURL }
 		}
 		// {
 		//   name: 'firefox',
@@ -76,12 +89,7 @@ export default defineConfig({
 		//   name: 'Google Chrome',
 		//   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
 		// },
-	]
+	],
 
-	/* Run your local dev server before starting the tests */
-	// webServer: {
-	//   command: 'npm run start',
-	//   url: 'http://127.0.0.1:3000',
-	//   reuseExistingServer: !process.env.CI,
-	// },
+	...extendedConfig
 });

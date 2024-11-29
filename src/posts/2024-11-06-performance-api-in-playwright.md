@@ -13,11 +13,11 @@ One of those tools that I don't here to much about is the [Performance API](http
 ### What does it look like
 
 ```js
-performance.mark('long-running-task-start')
+performance.mark('long-running-task-start');
 
-longRunningTask()
+longRunningTask();
 
-performance.mark('long-running-task-end')
+performance.mark('long-running-task-end');
 
-performance.measure('long-running-task-start', 'long-running-task-end')
+performance.measure('long-running-task-start', 'long-running-task-end');
 ```

@@ -20,4 +20,5 @@ export interface AdamSandersonBlog {
 	expectPostExists: (selector: PostSelector) => Promise<void>;
 	expectPostContent: (selector: PostSelector, expectedContent: string) => Promise<void>;
 	expectPostsInOrder: (posts: BlogPost[]) => Promise<void>;
+	expectAuthorToBe: (name: string) => Promise<void>;
 }

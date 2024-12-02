@@ -33,4 +33,7 @@ export class AdamSandersonCoUkWeb implements AdamSandersonBlog {
 	expectPostsInOrder: AdamSandersonBlog['expectPostsInOrder'] = async (posts) => {
 		throw new Error('Not implemented' + posts);
 	};
+	expectAuthorToBe: AdamSandersonBlog['expectAuthorToBe'] = async (name) => {
+		await expect(this.page.getByText('Adam Sanderson')).toBeVisible();
+	};
 }

@@ -1,5 +1,6 @@
 import { type AdamSandersonBlog } from './adamsanderson.dsl';
 import { expect } from '@playwright/test';
+import { warn } from 'console';
 import RssParser from 'rss-parser';
 
 type RssFeedItem = {
@@ -22,7 +23,11 @@ export class AdamSandersonBlogRSS implements AdamSandersonBlog {
 	private activeFeedItem: RssFeedItem | undefined;
 
 	constructor() {
-		this.rssParser = new RssParser();
+		this.rssParser = new RssParser({
+			customFields: {
+				feed: ['author']
+			}
+		});
 	}
 
 	accessPost: AdamSandersonBlog['accessPost'] = async (selector) => {
@@ -46,5 +51,8 @@ export class AdamSandersonBlogRSS implements AdamSandersonBlog {
 	};
 	expectPostsInOrder: AdamSandersonBlog['expectPostsInOrder'] = async (posts) => {
 		throw new Error('Not implemented' + posts);
+	};
+	expectAuthorToBe: AdamSandersonBlog['expectAuthorToBe'] = async (name) => {
+		expect(this.feed.author.name[0]).toBe(name);
 	};
 }

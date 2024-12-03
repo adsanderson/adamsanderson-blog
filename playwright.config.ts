@@ -8,7 +8,8 @@ import { defineConfig, devices, PlaywrightTestConfig } from '@playwright/test';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-const baseURL = process.env.TEST_ENV === 'local' ? 'http://localhost:5173' : 'https://adamsanderson.co.uk';
+const baseURL =
+	process.env.TEST_ENV === 'local' ? 'http://localhost:5173' : 'https://adamsanderson.co.uk';
 
 const localTestConfigh: PlaywrightTestConfig = {
 	webServer: {
@@ -16,7 +17,7 @@ const localTestConfigh: PlaywrightTestConfig = {
 		url: baseURL,
 		reuseExistingServer: !process.env.CI
 	}
-}
+};
 
 const extendedConfig = process.env.TEST_ENV === 'local' ? localTestConfigh : {};
 
@@ -53,6 +54,7 @@ export default defineConfig({
 
 		{
 			name: 'RSS',
+			testMatch: 'e2e/acceptance-tests/**/*.spec.ts',
 			use: { baseURL }
 		},
 

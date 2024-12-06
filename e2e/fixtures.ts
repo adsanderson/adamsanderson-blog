@@ -8,19 +8,23 @@ type FixtureTestArgs = {
 	adamSandersonCoUk: AdamSandersonBlog;
 };
 
-function getAdamSandersonBlog(projectName: string, page: Page) {
+function getAdamSandersonBlog(projectName: string, page: Page, baseURL: string) {
 	if (projectName === 'RSS') {
-		return new AdamSandersonBlogRSS();
+		return new AdamSandersonBlogRSS(baseURL);
 	}
 	if (projectName === 'chromium - keyboard') {
-		return new AdamSandersonCoUkWebKeyboard(page);
+		return new AdamSandersonCoUkWebKeyboard(page, baseURL);
 	}
-	return new AdamSandersonCoUkWeb(page);
+	return new AdamSandersonCoUkWeb(page, baseURL);
 }
 
 export const test = base.extend<FixtureTestArgs>({
-	adamSandersonCoUk: async ({ page }, use) => {
-		const adamSandersonCoUk = getAdamSandersonBlog(test.info().project.name, page);
+	adamSandersonCoUk: async ({ page, baseURL }, use) => {
+		const adamSandersonCoUk = getAdamSandersonBlog(
+			test.info().project.name,
+			page,
+			baseURL || 'https://www.adamsanderson.co.uk'
+		);
 		await use(adamSandersonCoUk);
 	}
 });

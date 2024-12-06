@@ -3,8 +3,8 @@ import { type Locator, type Page } from '@playwright/test';
 import { AdamSandersonCoUkWeb } from './adamsanderson.driver.web';
 
 export class AdamSandersonCoUkWebKeyboard extends AdamSandersonCoUkWeb {
-	constructor(page: Page) {
-		super(page);
+	constructor(page: Page, baseURL: string) {
+		super(page, baseURL);
 	}
 
 	private async keyboardSelect(locator: Locator, maxIterations = 50): Promise<void> {

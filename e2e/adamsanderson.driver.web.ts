@@ -2,10 +2,12 @@ import { type AdamSandersonBlog } from './adamsanderson.dsl';
 import { expect, type Page } from '@playwright/test';
 
 export class AdamSandersonCoUkWeb implements AdamSandersonBlog {
+	private baseURL: string;
 	protected page: Page;
 
-	constructor(page: Page) {
+	constructor(page: Page, baseURL: string) {
 		this.page = page;
+		this.baseURL = baseURL;
 	}
 	accessPost: AdamSandersonBlog['accessPost'] = async (selector) => {
 		if (selector.type === 'title') {

@@ -18,16 +18,18 @@ type RssFeed = {
 };
 
 export class AdamSandersonBlogRSS implements AdamSandersonBlog {
+	private baseURL: string;
 	private rssParser: RssParser<RssFeed, RssFeedItem>;
 	private feed: RssFeed;
 	private activeFeedItem: RssFeedItem | undefined;
 
-	constructor() {
+	constructor(baseURL: string) {
 		this.rssParser = new RssParser({
 			customFields: {
 				feed: ['author']
 			}
 		});
+		this.baseURL = baseURL;
 	}
 
 	accessPost: AdamSandersonBlog['accessPost'] = async (selector) => {
@@ -38,7 +40,7 @@ export class AdamSandersonBlogRSS implements AdamSandersonBlog {
 		throw new Error('Selector not implemented');
 	};
 	listPosts: AdamSandersonBlog['listPosts'] = async () => {
-		this.feed = await this.rssParser.parseURL('https://adamsanderson.co.uk/rss.xml');
+		this.feed = await this.rssParser.parseURL(`${this.baseURL}/rss.xml`);
 	};
 	expectPostsToExist: AdamSandersonBlog['expectPostsToExist'] = async () => {
 		expect(this.feed).toBeDefined();

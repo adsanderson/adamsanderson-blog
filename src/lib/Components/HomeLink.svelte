@@ -1,5 +1,5 @@
-<script>
-	export let post;
+<script lang="ts">
+	let { post } = $props();
 </script>
 
 <a href="/blog/{post.slug.replaceAll(' ', '_').toLowerCase()}">

@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	import Hero from '$lib/Components/Hero.svelte';
 	import HomeLink from '$lib/Components/HomeLink.svelte';
 
-	export let data;
+	let { data } = $props();
 	let posts = data.posts;
 </script>
 

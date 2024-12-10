@@ -1,7 +1,7 @@
 <script>
 	import HomeLink from '$lib/Components/HomeLink.svelte';
 
-	export let data;
+	let { data } = $props();
 	/** @type {Record<string, unknown>[]} */
 	let posts = data.posts;
 </script>

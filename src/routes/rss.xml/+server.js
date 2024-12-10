@@ -1,7 +1,7 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import he from 'he';
 import { xml } from '$lib/rss';
-import path from 'path';
+import path from 'node:path';
 import matter from 'gray-matter';
 import { mdToHtml } from '../../lib/mdToHtml';
 

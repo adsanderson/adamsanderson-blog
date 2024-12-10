@@ -15,11 +15,12 @@
 		"test:e2e": "playwright test"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.45.3",
+		"@playwright/test": "^1.49.1",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@types/eslint": "^9.6.0",
+		"@types/node": "^22.10.1",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.7.0",
 		"eslint-config-prettier": "^9.1.0",
@@ -29,6 +30,7 @@
 		"prettier": "^3.3.2",
 		"prettier-plugin-svelte": "^3.2.6",
 		"prettier-plugin-tailwindcss": "^0.6.5",
+		"rss-parser": "^3.13.0",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"tailwindcss": "^3.4.9",
@@ -38,8 +40,15 @@
 		"vitest": "^2.0.4"
 	},
 	"dependencies": {
+		"@fontsource/fira-mono": "^5.1.0",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/container-queries": "^0.1.1",
-		"@tailwindcss/typography": "^0.5.15"
+		"@tailwindcss/typography": "^0.5.15",
+		"gray-matter": "^4.0.3",
+		"he": "^1.2.0",
+		"rehype-stringify": "^10.0.1",
+		"remark-parse": "^11.0.0",
+		"remark-rehype": "^11.1.1",
+		"unified": "^11.0.5"
 	}
 }

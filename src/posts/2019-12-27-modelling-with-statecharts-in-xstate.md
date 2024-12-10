@@ -1,8 +1,8 @@
 ---
 templateKey: blog-post
-title: "Modelling with Statecharts in XState "
+title: 'Modelling with Statecharts in XState '
 date: 2019-12-21T14:47:10.233Z
-description: "or: How I learned to "
+description: 'or: How I learned to '
 tags:
   - Statecharts
   - XState

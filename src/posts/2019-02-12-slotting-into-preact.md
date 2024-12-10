@@ -8,6 +8,7 @@ tags:
   - web components
   - preact
 ---
+
 Preact is an excellent UI library and web components make a fantastic building block. But, I have found one stumbling block that relates to the `<slot>` element in browsers without the shadow DOM and using the a polyfill.
 
 ### The issue
@@ -22,11 +23,11 @@ When you use a web component using shadow DOM and has a slot you would write som
 
 ```html
 <custom-element>
-  <h2>Some heading</h2>
+	<h2>Some heading</h2>
 </custom-element>
 ```
 
-The next step is for the web components polyfill to initialise the custom element and add in the additional DOM. 
+The next step is for the web components polyfill to initialise the custom element and add in the additional DOM.
 
 ```html
 <custom-element>
@@ -41,9 +42,9 @@ The polyfill then moves the child elements fro the custom element node and place
 
 ```html
 <custom-element>
-  <div class="custom-element__wrapper">
-    <h2>Some heading</h2>
-  </div>  
+	<div class="custom-element__wrapper">
+		<h2>Some heading</h2>
+	</div>
 </custom-element>
 ```
 
@@ -51,10 +52,10 @@ When an update occurs in Preact this is where the issue occurs. Preact will diff
 
 ```html
 <custom-element>
-  <div class="custom-element__wrapper">
-    <h2>Some heading</h2>
-  </div> 
-  <h2>Some heading</h2>
+	<div class="custom-element__wrapper">
+		<h2>Some heading</h2>
+	</div>
+	<h2>Some heading</h2>
 </custom-element>
 ```
 
@@ -83,6 +84,6 @@ If an update does need to occur then it is best to rerender the entire component
 The easiest way to do this to define the element within the render method, or if you are using an external Preact component to bind the component within the render method.
 
 ```js
-import { ExistingComponent } from "./excistingComponent";
+import { ExistingComponent } from './excistingComponent';
 const RerenderComponent = ExistingComponent.bind(null);
 ```

@@ -3,8 +3,9 @@ templateKey: blog-post
 title: Devtings getting started
 publishDate: 2014-07-29 00:00:00
 tags:
-- devtings
+  - devtings
 ---
+
 [devtings.net][1] now forwards you to the Devtings [meetup][2] page. There right now is a the first scheduled event for a pre-meetup meetup. It's in need of a date and location, but to know when and where to schedule it, some members are needed so we can figure it all out.
 
 ### quick hello

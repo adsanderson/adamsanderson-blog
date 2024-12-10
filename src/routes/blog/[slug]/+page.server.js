@@ -1,6 +1,4 @@
-import { error } from '@sveltejs/kit'
-
-
+import { error } from '@sveltejs/kit';
 
 export const prerender = true;
 
@@ -17,13 +15,13 @@ export const prerender = true;
  */
 export const load = async ({ params }) => {
 	try {
-		const post = await import(`../../../posts/${params.slug}.md`)
+		const post = await import(`../../../posts/${params.slug}.md`);
 
 		return {
 			content: post.default.render().html,
 			metadata: { ...post.metadata, slug: params.post }
-		}
+		};
 	} catch (err) {
-		throw error(404, err)
+		throw error(404, err);
 	}
-} 
+};

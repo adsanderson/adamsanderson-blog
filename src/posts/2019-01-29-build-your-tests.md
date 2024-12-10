@@ -7,6 +7,7 @@ tags:
   - development
   - testing
 ---
+
 When writing automated tests you end up with a lot of similar code. Objects repeat with slight variations each time. Using the data builder pattern can help reduce boilerplate and let those variations leap out.
 
 It was this series of [blog posts](http://blog.ploeh.dk/2017/08/15/test-data-builders-in-c/) by Mark Seemann that introduced me to the idea of test data builders.
@@ -17,10 +18,10 @@ A data builder is a "copy with" tool. The data builder "copies" an object and th
 
 ```js
 const baseObj = {
-  count: 0,
-  property: "Hi"
-}
-const newObj = {...baseObj, count: 1}
+	count: 0,
+	property: 'Hi'
+};
+const newObj = { ...baseObj, count: 1 };
 ```
 
 We end up with two separate objects both that are structurally the same but with a single variation between them.
@@ -30,33 +31,33 @@ We end up with two separate objects both that are structurally the same but with
 Lets start with a `foo` function `bigObject -> result` we want to test. We pass our bigObject into the function and get a result at the end. To test this we would have something like this:
 
 ```js
-const bigObject = {   
-  first: "here is the first param",
-  last: "here is the last param",
-  howManyParams: 5,
-  subtle: "not so different",
-  isBig: true  
-}
+const bigObject = {
+	first: 'here is the first param',
+	last: 'here is the last param',
+	howManyParams: 5,
+	subtle: 'not so different',
+	isBig: true
+};
 expect(foo(bigObject)).toBe(expectedResult);
 ```
 
-When we get to our second test we start by creating another `bigObject` this time with one parameter different. Now we are in spot the difference territory, the two tests look almost identical but with one small difference in the `secondbigObject`.   
+When we get to our second test we start by creating another `bigObject` this time with one parameter different. Now we are in spot the difference territory, the two tests look almost identical but with one small difference in the `secondbigObject`.
 
 ```js
-const bigObject = { 
-  first: "here is the first param",
-  last: "here is the last param",
-  howManyParams: 5,
-  subtle: "not so different",
-  isBig: true 
-}
-const secondBigObject = { 
-  first: "here is the first param",
-  last: "here is the last param",
-  howManyParams: 5,
-  subtle: "difference",
-  isBig: true 
-}
+const bigObject = {
+	first: 'here is the first param',
+	last: 'here is the last param',
+	howManyParams: 5,
+	subtle: 'not so different',
+	isBig: true
+};
+const secondBigObject = {
+	first: 'here is the first param',
+	last: 'here is the last param',
+	howManyParams: 5,
+	subtle: 'difference',
+	isBig: true
+};
 
 expect(foo(bigObject)).toBe(expectedResult);
 expect(foo(secondBigObject)).toBe(secondExpectedResult);
@@ -65,17 +66,17 @@ expect(foo(secondBigObject)).toBe(secondExpectedResult);
 The difference between the two objects is subtle and not easy to spot. Lets see how this looks when we use our simple copy with technique:
 
 ```js
-const baseObject = { 
-  first: "here is the first param",
-  last: "here is the last param",
-  howManyParams: 5,
-  subtle: "not so different",
-  isBig: true 
-}
-const secondBigObject = { 
-  ...baseObject,
-  subtle: "difference"
-}
+const baseObject = {
+	first: 'here is the first param',
+	last: 'here is the last param',
+	howManyParams: 5,
+	subtle: 'not so different',
+	isBig: true
+};
+const secondBigObject = {
+	...baseObject,
+	subtle: 'difference'
+};
 
 expect(foo(baseObject)).toBe(expectedResult);
 expect(foo(secondBigObject)).toBe(secondExpectedResult);
@@ -85,7 +86,7 @@ The change is so much clearer to see now. The second test is against the baseObj
 
 ### Change happens
 
-Another advantage of using the "copy with" technique is when it comes time to extend or refactor. Lets say we realise our `isBig` property is not actually boolean, but rather an enumeration. We need to change `isBig: boolean` to `sizeState: "Big" | "Small" | "Relative"`. 
+Another advantage of using the "copy with" technique is when it comes time to extend or refactor. Lets say we realise our `isBig` property is not actually boolean, but rather an enumeration. We need to change `isBig: boolean` to `sizeState: "Big" | "Small" | "Relative"`.
 
 In the full objects everywhere world the refactoring would involve changing every object, and making sure that each "true" became "Big" and each "false" became "Small". Having to make a change to every test that uses this object can be a source of risk. While at the same time changing tests that may not even be testing the refactored property.
 
@@ -103,16 +104,16 @@ A TypeScript implementation below:
 type PartialObj<Obj extends { [key: string]: any }> = { [Prop in keyof Obj]?: Obj[Prop] };
 
 function dataBuilderFactory<Obj extends { [key: string]: any }>(obj: Obj) {
-  return {
-    with: (partial: PartialObj<Obj>) => {
-      const updateObj = {
-        ...(obj as { [key: string]: any }),
-        ...(partial as { [key: string]: any })
-            } as Obj;
-      return dataBuilderFactory(updateObj);
-    },
-    build: () => ({ ...(obj as { [key: string]: any }) } as Obj)
-  };
+	return {
+		with: (partial: PartialObj<Obj>) => {
+			const updateObj = {
+				...(obj as { [key: string]: any }),
+				...(partial as { [key: string]: any })
+			} as Obj;
+			return dataBuilderFactory(updateObj);
+		},
+		build: () => ({ ...(obj as { [key: string]: any }) }) as Obj
+	};
 }
 ```
 
@@ -120,42 +121,42 @@ and then some examples of how to use it:
 
 ```typescript
 interface Person {
-  name: string;
-  dob: Date;
-  tel: string;
+	name: string;
+	dob: Date;
+	tel: string;
 }
 
-const personBuilder = () => dataBuilderFactory<Person>({
-  name: "test name",
-  dob: new Date(2019, 3, 30),
-  tel: "555-12345"
-});
+const personBuilder = () =>
+	dataBuilderFactory<Person>({
+		name: 'test name',
+		dob: new Date(2019, 3, 30),
+		tel: '555-12345'
+	});
 
 const adam = personBuilder()
-  .with({
-    name: "Adam"
-  })
-  .build();
+	.with({
+		name: 'Adam'
+	})
+	.build();
 
-const partialDoc = personBuilder()
-  .with({
-    name: "Doc Brown"
-  });
+const partialDoc = personBuilder().with({
+	name: 'Doc Brown'
+});
 
-const docBorn1985= partialDoc 
-  .with({
-    dob: new Date(1985, 3, 30)
-  })
-  .build()
+const docBorn1985 = partialDoc
+	.with({
+		dob: new Date(1985, 3, 30)
+	})
+	.build();
 
-const docBorn1885 = partialDoc 
-  .with({
-    dob: new Date(1885, 3, 30)
-  })
-  .build()
+const docBorn1885 = partialDoc
+	.with({
+		dob: new Date(1885, 3, 30)
+	})
+	.build();
 ```
 
-This is useful with simple objects, when you want to go one level deep. With more complex objects and structures tools for immutability become much more useful.  
+This is useful with simple objects, when you want to go one level deep. With more complex objects and structures tools for immutability become much more useful.
 
 ### The power of test data builders
 

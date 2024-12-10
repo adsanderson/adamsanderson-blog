@@ -7,12 +7,12 @@ export interface Locals {
 }
 
 export type Markdown = {
-	metadata: { [key: string]: unknown },
+	metadata: { [key: string]: unknown };
 	content: string;
-}
+};
 
 export type Blog = {
 	title: string;
 	slug: string;
 	publishDate?: string;
-}
+};

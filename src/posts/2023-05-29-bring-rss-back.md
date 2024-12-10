@@ -5,7 +5,7 @@ publishDate: 2023-06-08T12:00:00.000Z
 description: |
   'or: How I Learned to Keep the Feed Alive'
 tags:
-  - RSS  
+  - RSS
 ---
 
 I still feel that RSS is still important. It's efficient, reliable, and above all, open. [Google Reader](https://en.wikipedia.org/wiki/Google_Reader) was my introduction to RSS and there are days I still want to open it. There are alternatives many of which I have use or have tried, but nothing quite captured the feeling I had while using Reader.
@@ -21,7 +21,7 @@ Firstly, I needed a suitable feed template. After some chatting with ChatGPT, I 
 The template looks like this:
 
 ```js
-const website = "https://www.adamsanderson.co.uk"
+const website = 'https://www.adamsanderson.co.uk';
 const feedTitle = 'Adam Sanderson - Blog';
 const feedDescription = 'Thoughts, learnings, and updates from Adam Sanderson.';
 const feedLink = 'https://www.adamsanderson.co.uk';
@@ -29,13 +29,12 @@ const feedLink = 'https://www.adamsanderson.co.uk';
 const feedUpdated = new Date();
 
 /**
- *
- * @param {feedEntries[]} posts
- * @returns string
- */
+ *
+ * @param {feedEntries[]} posts
+ * @returns string
+ */
 
-export const xml =
-  posts => `<?xml version="1.0" encoding="utf-8"?>
+export const xml = (posts) => `<?xml version="1.0" encoding="utf-8"?>
   <feed xmlns="http://www.w3.org/2005/Atom">
     <title>${feedTitle}</title>
     <link href="${feedLink}/rss.xml" rel="self"/>
@@ -47,9 +46,9 @@ export const xml =
     </author>
     <subtitle>${feedDescription}</subtitle>
     <generator>JavaScript</generator>
-${posts.map(
-    post =>
-      `    <entry>
+${posts
+	.map(
+		(post) => `    <entry>
         <title>${post.title}</title>
         <link href="${website}/blog/${post.slug}/"/>
         <id>${website}/blog/${post.slug}/</id>
@@ -57,11 +56,12 @@ ${posts.map(
         <published>${new Date(post.publishDate).toISOString()}</published>
         <content type="html"><![CDATA[${post.content}]]></content>
       </entry>`
-  ).join('\n')}
-  </feed>`
+	)
+	.join('\n')}
+  </feed>`;
 ```
 
-Using a similar mechanism to the blog post page, to convert my markdown blogposts to html. I tested this and it all worked. Confidently I pushed this to production expecting a working feed. 
+Using a similar mechanism to the blog post page, to convert my markdown blogposts to html. I tested this and it all worked. Confidently I pushed this to production expecting a working feed.
 
 ### First issue: When to build a feed
 
@@ -79,7 +79,7 @@ To do this in the `+server.js` file, I added the following line of code:
 export const prerender = true;
 ```
 
-This enables prerendering, ensuring that the RSS feed was fully populated with blog posts when it hit the production server. 
+This enables prerendering, ensuring that the RSS feed was fully populated with blog posts when it hit the production server.
 
 I tested again locally and with everything working deployed again, confident of the result.
 
@@ -89,7 +89,7 @@ While using [mdsvex](https://mdsvex.pngwn.io/) worked perfectly for rendering th
 
 ```js
 import fs from 'fs';
-import { xml } from "$lib/rss";
+import { xml } from '$lib/rss';
 import path from 'path';
 import matter from 'gray-matter';
 import { mdToHtml } from '../../lib/mdToHtml';
@@ -97,35 +97,37 @@ import { mdToHtml } from '../../lib/mdToHtml';
 export const prerender = true;
 
 /**
- * @type {import('@sveltejs/kit').RequestHandler}
- */
+ * @type {import('@sveltejs/kit').RequestHandler}
+ */
 export async function GET() {
-    const fileNames = await fs.promises.readdir('src/posts');
-  
-    const posts = (await Promise.all(
-        fileNames.map(async (fileName) => {
-            const doc = await fs.promises.readFile(`src/posts/${fileName}`, 'utf8')
-  
-            const { data, content } = matter(doc)
+	const fileNames = await fs.promises.readdir('src/posts');
 
-            data.slug = path.basename(fileName, '.md');
-            data.content = await mdToHtml(content.toString());
-            return data
-        })
-    ))
-	.filter(p => p.publishDate)
-	.toSorted((a, b) => {
-		return a.publishDate > b.publishDate ? -1 : 1;
-	})
+	const posts = (
+		await Promise.all(
+			fileNames.map(async (fileName) => {
+				const doc = await fs.promises.readFile(`src/posts/${fileName}`, 'utf8');
 
-    const headers = {
-        'Cache-Control': 'max-age=0, s-maxage=3600',
-        'Content-Type': 'application/xml',
-    }
+				const { data, content } = matter(doc);
+
+				data.slug = path.basename(fileName, '.md');
+				data.content = await mdToHtml(content.toString());
+				return data;
+			})
+		)
+	)
+		.filter((p) => p.publishDate)
+		.toSorted((a, b) => {
+			return a.publishDate > b.publishDate ? -1 : 1;
+		});
+
+	const headers = {
+		'Cache-Control': 'max-age=0, s-maxage=3600',
+		'Content-Type': 'application/xml'
+	};
 
 	const body = xml(posts);
 
-    return new Response(body, { headers })
+	return new Response(body, { headers });
 }
 ```
 

@@ -17,7 +17,7 @@
 		{#each posts as post}
 			<li>
 				<HomeLink {post} />
-				<pre>{post.publishDate || "unpublished"}</pre>
+				<pre>{post.publishDate || 'unpublished'}</pre>
 			</li>
 		{/each}
 	</ol>

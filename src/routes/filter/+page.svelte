@@ -5,9 +5,9 @@
 	import { page } from '$app/stores';
 	import { processBlogList } from '$lib/bloglist';
 
-	export let data;
+	let { data } = $props();
 	/** @type {import('$lib/types').Markdown[]} */
-	let posts = data.posts || [];
+	let posts = $state(data.posts || []);
 	let filter;
 
 	page.subscribe((p) => {

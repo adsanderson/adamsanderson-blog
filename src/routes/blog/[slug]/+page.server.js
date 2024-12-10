@@ -19,7 +19,9 @@ export const load = async ({ params }) => {
 		logger.info(params, 'params~~~~~~');
 		const post = await import(`../../../posts/${params.slug}.md`);
 
-		logger.info(post, 'post~~~~~~');
+		const x = await post.default.render();
+
+		logger.info(typeof post.default.render, 'post~~~~~~');
 		return {
 			content: post.default.render().html,
 			metadata: { ...post.metadata, slug: params.post }

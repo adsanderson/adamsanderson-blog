@@ -1,3 +1,4 @@
+import { logger } from '$lib/logger';
 import { error } from '@sveltejs/kit';
 
 export const prerender = true;
@@ -15,8 +16,10 @@ export const prerender = true;
  */
 export const load = async ({ params }) => {
 	try {
+		logger.info(params, 'params~~~~~~');
 		const post = await import(`../../../posts/${params.slug}.md`);
 
+		logger.info(post, 'post~~~~~~');
 		return {
 			content: post.default.render().html,
 			metadata: { ...post.metadata, slug: params.post }

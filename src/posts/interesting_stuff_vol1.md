@@ -4,10 +4,9 @@ title: Interesting stuff vol1
 publishDate: 2016-02-24T00:00:00
 description: 'or: How I learned a bit more about the world'
 tag:
-- links
-- CSS
-- UX
-
+  - links
+  - CSS
+  - UX
 ---
 
 Here is the first set of interesting links, no real theme or trends this time. But after reading this selection, I have found new and better questions in my head when developing.
@@ -16,7 +15,7 @@ Here is the first set of interesting links, no real theme or trends this time. B
 
 There was a [prequel](http://dangrover.com/blog/2014/12/01/chinese-mobile-app-ui-trends.html) to this article bout a year ago, that I found a fascinating. This article gives an equally great insight, from UI choices to user behaviour. A quick example is the t-shirt icon to represent themes (something I will be championing from this point on).
 
-> At the end of 2014, I wrote about the trends I noticed in UI design in apps in China. It was a surprising hit, receiving hundreds of thousands unique views the following week, and multiple translations into Chinese as well as Russian and Korean.  I’m not sure why it struck a nerve...
+> At the end of 2014, I wrote about the trends I noticed in UI design in apps in China. It was a surprising hit, receiving hundreds of thousands unique views the following week, and multiple translations into Chinese as well as Russian and Korean. I’m not sure why it struck a nerve...
 
 > ![More Chinese Mobile UI Trends](https://res.cloudinary.com/lazydayed/image/upload/v1549879881/Devtings/Interesting_stuff_vol1/Banner.jpg)
 
@@ -26,7 +25,7 @@ There was a [prequel](http://dangrover.com/blog/2014/12/01/chinese-mobile-app-ui
 
 ### [The Anatomy of a Frame](https://aerotwist.com/blog/the-anatomy-of-a-frame/)
 
->Caveat: this is a Blink / Chrome view of the world. Most of the main thread tasks are “shared” in some form by all vendors, like layout or style calcs, but this overall architecture may not be.  That’s a lot of content in a small space, so let’s define things a little more.
+> Caveat: this is a Blink / Chrome view of the world. Most of the main thread tasks are “shared” in some form by all vendors, like layout or style calcs, but this overall architecture may not be. That’s a lot of content in a small space, so let’s define things a little more.
 
 > ![The Anatomy of a Frame](https://res.cloudinary.com/lazydayed/image/upload/v1549879880/Devtings/Interesting_stuff_vol1/anatomy-of-a-frame.svg)
 
@@ -34,7 +33,7 @@ There was a [prequel](http://dangrover.com/blog/2014/12/01/chinese-mobile-app-ui
 
 A lot of the best practices of the web are about to change because of HTTP/2, and here is a guide to what is going to change.
 
->The Hypertext Transfer Protocol (HTTP) is the protocol that governs the connection between your server and the browsers of your website’s visitors. For the first time since 1999, we have a new version of this protocol, and it promises far faster websites for everyone.
+> The Hypertext Transfer Protocol (HTTP) is the protocol that governs the connection between your server and the browsers of your website’s visitors. For the first time since 1999, we have a new version of this protocol, and it promises far faster websites for everyone.
 
 > ![Getting Ready For HTTP/2: A Guide For Web Designers And Developers](https://res.cloudinary.com/lazydayed/image/upload/v1549879880/Devtings/Interesting_stuff_vol1/01-caniuse-spdy-opt.png)
 
@@ -42,7 +41,7 @@ A lot of the best practices of the web are about to change because of HTTP/2, an
 
 This one is a clear demonstration of what not to do with responsive images. Look and then enjoy/shake your head depending on your political leanings.
 
->It’s political season here in the United States, and it is great to see politicians taking technology issues seriously.  Take Jeb Bush for example. His campaign has gone out of its way to highlight the importance of planning the focal point of your responsive images carefully.
+> It’s political season here in the United States, and it is great to see politicians taking technology issues seriously. Take Jeb Bush for example. His campaign has gone out of its way to highlight the importance of planning the focal point of your responsive images carefully.
 
 > ![Jeb Bush’s Responsive Images Problem Cloud Four Blog](https://res.cloudinary.com/lazydayed/image/upload/v1549879881/Devtings/Interesting_stuff_vol1/Jeb-Bush-iPhone-4s.jpg)
 
@@ -65,4 +64,3 @@ It is always insightful when you see a common problem looked at from a different
 > New research suggests that software piracy has a detrimental effect on the adoption of Linux desktop operating systems. Piracy is one of the reasons why Windows has been able to maintain its dominant market position, making open source alternatives "forgotten victims" of copyright infringement.
 
 > ![Software Piracy Hurts Linux Adoption, Research Finds](https://res.cloudinary.com/lazydayed/image/upload/v1549879880/Devtings/Interesting_stuff_vol1/microsoft-pirate.png)
-

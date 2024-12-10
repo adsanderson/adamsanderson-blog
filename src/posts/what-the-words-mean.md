@@ -4,8 +4,8 @@ title: What the words do
 publishDate: 2016-01-23 17:38:14
 description: 'or: How I learned about script behaviour'
 tags:
-- Web development
-- JavaScript
+  - Web development
+  - JavaScript
 ---
 
 I really like when things can be clearly visualized and this is the perfect example.

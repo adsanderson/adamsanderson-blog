@@ -25,7 +25,7 @@ That is my process of filtering down this mass of content that is being produced
 
 ## My secret
 
-I don’t want to know everything. It would be nice but I know if I try and keep up with and understand everything I will burn myself out. So there is an ebb and flow, I focus on different sources at different times. I’ll fall behind here and catch up there. I miss stuff, all the time and thats ok. If something slips through the curation phase, thats fine. If I never get around to reading the full article, its not a problem. High quality content will bubble up repeatedly.  If I know I’ve saved a few articles on a particular subject I can always go back.
+I don’t want to know everything. It would be nice but I know if I try and keep up with and understand everything I will burn myself out. So there is an ebb and flow, I focus on different sources at different times. I’ll fall behind here and catch up there. I miss stuff, all the time and thats ok. If something slips through the curation phase, thats fine. If I never get around to reading the full article, its not a problem. High quality content will bubble up repeatedly. If I know I’ve saved a few articles on a particular subject I can always go back.
 
 ## Keep things shallow until you need deep
 
@@ -37,7 +37,7 @@ When a problem occurs that I think based on my shallow knowledge of serviceworke
 
 ## Another one of those articles
 
-My intention of this post was to write about ‘how I keep up’. I think a more accurate title would be ‘how I keep up and not burn out’.  It hit me while writing that this at its heart is another fatigue article (and I know there are a lot of those).
+My intention of this post was to write about ‘how I keep up’. I think a more accurate title would be ‘how I keep up and not burn out’. It hit me while writing that this at its heart is another fatigue article (and I know there are a lot of those).
 
 But I guess this is why many of those fatigue articles don’t speak to me is because I am conscious of burn out and try and run at my own pace.
 

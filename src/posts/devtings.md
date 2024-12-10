@@ -3,8 +3,8 @@ templateKey: blog-post
 title: devtings
 publishDate: 2014-06-01 00:00:00
 tags:
-- devtings
-- Development
+  - devtings
+  - Development
 ---
 
 ### who wants to talk about development stuff?
@@ -39,10 +39,10 @@ So far we have a domain ([devtings.net][5]) and thanks to [Alex Hitchins][6] an 
 
 So far I've floated the idea to a few developers I know and work with and have got a positive response. So the next step, it's to get a few more devs and go to the pub. Start fleshing out some ideas, see what others can contribute and lets take a bunch of devs living in Hastings and start building a community of developers.
 
-  [1]: http://www.meet-up.com/
-  [2]: http://webchat.freenode.net/?channels=devtings
-  [3]: http://www.meet-up.com/Functional-Brighton/
-  [4]: http://www.dotnetrocks.com/
-  [5]: http://www.devtings.net/
-  [6]: http://www.alexhitchins.co.uk/
-  [7]: http://webchat.freenode.net/?channels=devtings
+[1]: http://www.meet-up.com/
+[2]: http://webchat.freenode.net/?channels=devtings
+[3]: http://www.meet-up.com/Functional-Brighton/
+[4]: http://www.dotnetrocks.com/
+[5]: http://www.devtings.net/
+[6]: http://www.alexhitchins.co.uk/
+[7]: http://webchat.freenode.net/?channels=devtings

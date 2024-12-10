@@ -3,8 +3,8 @@ templateKey: blog-post
 title: A critical fix
 publishDate: 2016-06-08T00:00:00
 tags:
-- Web development
-- SVG
+  - Web development
+  - SVG
 description: 'or: How I used critcal path CSS to help speed up loading'
 ---
 

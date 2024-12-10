@@ -3,22 +3,24 @@ import * as assert from 'uvu/assert';
 import { xml } from '../../src/lib/rss.js';
 
 test.skip('filter to only published posts', async () => {
-  // const blogs = base();
-  const result = xml([{
-    title: 'Title',
-    slug: "test-post",
-    publishDate: "2002-10-02",
-    content: `<div style="margin-top: 50px; font-style: italic;">
+	// const blogs = base();
+	const result = xml([
+		{
+			title: 'Title',
+			slug: 'test-post',
+			publishDate: '2002-10-02',
+			content: `<div style="margin-top: 50px; font-style: italic;">
 <strong>
     Keep reading
 </strong>  
 </div>`
-  }]);
-  // assert.equal(result.length, 3);
-  console.log(result);
-  console.log(snapshot);
-  assert.snapshot(result, snapshot)
-})
+		}
+	]);
+	// assert.equal(result.length, 3);
+	console.log(result);
+	console.log(snapshot);
+	assert.snapshot(result, snapshot);
+});
 
 const snapshot = `<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
@@ -41,7 +43,7 @@ const snapshot = `<?xml version="1.0" encoding="utf-8"?>
 </strong>  
 </div>]]></content>
     </entry>
-  </feed>`
+  </feed>`;
 
 test.run();
 

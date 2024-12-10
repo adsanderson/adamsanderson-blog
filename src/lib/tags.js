@@ -1,3 +1,1 @@
-export function getTags() {
-
-}
+export function getTags() {}

@@ -1,12 +1,10 @@
 <script>
-	import { logger } from '$lib/logger';
 	let { data } = $props();
 
 	/**
 	 * @type {import('$lib/types').Markdown}
 	 */
 	let post = data;
-	logger.info(post, 'POST in component');
 </script>
 
 <svelte:head>

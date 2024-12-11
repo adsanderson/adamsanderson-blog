@@ -26,7 +26,7 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.45.1",
 		"globals": "^15.0.0",
-		"mdsvex": "^0.11.2",
+		"mdsvex": "^0.10.6",
 		"pino-pretty": "^13.0.0",
 		"prettier": "^3.3.2",
 		"prettier-plugin-svelte": "^3.2.6",

@@ -17,7 +17,7 @@ export class AdamSandersonCoUkWeb implements AdamSandersonBlog {
 		throw new Error('Selector not implemented');
 	};
 	listPosts: AdamSandersonBlog['listPosts'] = async () => {
-		await this.page.goto('https://adamsanderson.co.uk');
+		await this.page.goto(this.baseURL);
 	};
 	expectPostsToExist: AdamSandersonBlog['expectPostsToExist'] = async () => {
 		await expect(

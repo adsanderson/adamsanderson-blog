@@ -2,11 +2,12 @@
 templateKey: blog-post
 title: Sending messages to a machine in XState
 date: 2020-04-20T12:31:45.363Z
-description: "or: "
+description: 'or: '
 tags:
   - XState
   - statecharts
 ---
+
 There are a number of ways
 
 `send` service

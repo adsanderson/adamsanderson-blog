@@ -14,9 +14,9 @@ export function enhance(form, { pending, error, result }) {
 	let current_token;
 
 	/**
-	 * 
-	 * @param {Event} e 
-	 * @returns 
+	 *
+	 * @param {Event} e
+	 * @returns
 	 */
 	async function handle_submit(e) {
 		const token = (current_token = {});

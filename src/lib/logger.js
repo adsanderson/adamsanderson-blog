@@ -1,7 +1,22 @@
+import pino from 'pino';
+
 /**
- * 
- * @param {unknown} message 
+ *
+ * @param {unknown} message
  */
 export function log(message) {
-    console.log(message);
+	console.log(message);
 }
+
+const loggerConfig =
+	process.env.NODE_ENV === 'development'
+		? {
+				transport: {
+					target: 'pino-pretty'
+				}
+			}
+		: {};
+
+export const logger = pino({
+	...loggerConfig
+});

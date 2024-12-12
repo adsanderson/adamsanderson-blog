@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	import Hero from '$lib/Components/Hero.svelte';
 	import HomeLink from '$lib/Components/HomeLink.svelte';
 
-	export let data;
+	let { data } = $props();
 	let posts = data.posts;
 </script>
 
@@ -12,23 +12,20 @@
 
 <Hero />
 
-<section>
-	<ol>
-		{#each posts as post}
-			<li>
+<main>
+	<article aria-label="Blog Posts">
+		<ol>
+			{#each posts as post}
 				<HomeLink {post} />
-			</li>
-		{/each}
-	</ol>
-</section>
+			{/each}
+		</ol>
+	</article>
+</main>
 
 <style>
 	ol {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-	}
-	li {
-		margin: 1em 0;
 	}
 </style>

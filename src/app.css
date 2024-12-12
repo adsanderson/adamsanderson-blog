@@ -1,8 +1,19 @@
 @import '@fontsource/fira-mono';
+@import './lib/prism-themes/nord.css';
 
 :root {
-	font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-family:
+		Arial,
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		Oxygen,
+		Ubuntu,
+		Cantarell,
+		'Open Sans',
+		'Helvetica Neue',
+		sans-serif;
 	--font-mono: 'Fira Mono', monospace;
 	--pure-white: #ffffff;
 	--primary-color: #b9c6d2;
@@ -16,18 +27,19 @@
 	--column-margin-top: 4rem;
 
 	--color: #233237;
-	--link: #0F1626;
-	--accent: #FF533D;
-	--rust: #984B43;
+	--link: #0f1626;
+	--accent: #ff533d;
+	--rust: #984b43;
 }
 
 body {
-  font-size: 18px;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  margin: 0;
-  background: #F5F5F5; /*linear-gradient(#CA6A2D, #783316);*/
-  min-height: 100vh;
-  padding: 0 2rem 2rem 2rem;
+	font-size: 18px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+		'Helvetica Neue', sans-serif;
+	margin: 0;
+	background: #f5f5f5; /*linear-gradient(#CA6A2D, #783316);*/
+	min-height: 100vh;
+	padding: 0 2rem 2rem 2rem;
 }
 /* 
 body::before {
@@ -46,7 +58,6 @@ body::before {
 	opacity: 0.05; 
 }
 */
-
 
 /* 
 h1,

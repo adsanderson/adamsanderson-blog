@@ -8,6 +8,7 @@ tags:
   - Devops
   - Monitoring
 ---
+
 A/B or split testing is a well thought out path at this point. Give 2 users slightly different experiences and measure how they behave. The uses of this technique can help in identifying optimal designs, measure feature impact, and to roll out new functionality to a small sample of your user base.
 
 A video from thoughtworks built on that final use case and introduced the concept of **"Shadow Traffic"**.
@@ -23,7 +24,5 @@ The traditional model is for a user to make a request through an interface, some
 An update to the logic here would have the logic service replaced with the new version, and all users going to this server would reach the new logic.
 
 ### A/B or Split testing
-
-
 
 ### Shadow traffic

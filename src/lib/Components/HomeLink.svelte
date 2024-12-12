@@ -1,16 +1,17 @@
-<script>
-	export let post;
+<script lang="ts">
+	let { post } = $props();
 </script>
 
-<a href="/blog/{post.slug.replaceAll(' ', '_').toLowerCase()}">
-	{post.title}
-</a>
-
-{#if post.description}
-	<span>
-		{post.description}
-	</span>
-{/if}
+<li>
+	<a href="/blog/{post.slug.replaceAll(' ', '_').toLowerCase()}">
+		{post.title}
+		{#if post.description}
+			<span>
+				{post.description}
+			</span>
+		{/if}
+	</a>
+</li>
 
 <style>
 	a {
@@ -23,8 +24,10 @@
 		text-decoration: underline;
 		color: var(--accent);
 	}
+	li {
+		margin: 1em 0;
+	}
 	span {
-		color: var(--link);
 		font-weight: 400;
 	}
 </style>

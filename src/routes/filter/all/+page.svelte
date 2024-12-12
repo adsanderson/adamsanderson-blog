@@ -1,7 +1,7 @@
 <script>
 	import HomeLink from '$lib/Components/HomeLink.svelte';
 
-	export let data;
+	let { data } = $props();
 	/** @type {Record<string, unknown>[]} */
 	let posts = data.posts;
 </script>
@@ -17,7 +17,7 @@
 		{#each posts as post}
 			<li>
 				<HomeLink {post} />
-				<pre>{post.publishDate || "unpublished"}</pre>
+				<pre>{post.publishDate || 'unpublished'}</pre>
 			</li>
 		{/each}
 	</ol>

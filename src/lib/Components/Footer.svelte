@@ -35,7 +35,9 @@
 		align-items: center;
 	}
 	footer .gravatar {
-		box-shadow: 0 0 10px rgb(0 0 0 / 10%), 3px 4px 8px rgb(0 0 0 / 40%);
+		box-shadow:
+			0 0 10px rgb(0 0 0 / 10%),
+			3px 4px 8px rgb(0 0 0 / 40%);
 		border-radius: 50%;
 		overflow: hidden;
 		width: 5rem;

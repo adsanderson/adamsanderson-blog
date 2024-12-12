@@ -1,5 +1,5 @@
 <script>
-	export let data;
+	let { data } = $props();
 
 	/**
 	 * @type {import('$lib/types').Markdown}
@@ -11,11 +11,13 @@
 	<title>{post.metadata.title}</title>
 </svelte:head>
 
-<article>
-	<h1 class="title">{post.metadata.title}</h1>
-	<h2 class="subtitle">{post.metadata.description}</h2>
-	{@html post.content}
-</article>
+<main>
+	<article>
+		<h1 class="title">{post.metadata.title}</h1>
+		<h2 class="subtitle">{post.metadata.description}</h2>
+		{@html post.content}
+	</article>
+</main>
 
 <style>
 	.title {

@@ -12,23 +12,20 @@
 
 <Hero />
 
-<section>
-	<ol>
-		{#each posts as post}
-			<li>
+<main>
+	<article aria-label="Blog Posts">
+		<ol>
+			{#each posts as post}
 				<HomeLink {post} />
-			</li>
-		{/each}
-	</ol>
-</section>
+			{/each}
+		</ol>
+	</article>
+</main>
 
 <style>
 	ol {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-	}
-	li {
-		margin: 1em 0;
 	}
 </style>

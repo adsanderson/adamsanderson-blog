@@ -11,7 +11,7 @@ import { defineConfig, devices, PlaywrightTestConfig } from '@playwright/test';
 const baseURL =
 	process.env.TEST_ENV !== 'live' ? 'http://localhost:5173' : 'https://www.adamsanderson.co.uk';
 
-const localTestConfigh: PlaywrightTestConfig = {
+const localTestConfig: PlaywrightTestConfig = {
 	webServer: {
 		command: 'npm run dev',
 		url: baseURL,
@@ -19,7 +19,7 @@ const localTestConfigh: PlaywrightTestConfig = {
 	}
 };
 
-const extendedConfig = process.env.TEST_ENV === 'local' ? localTestConfigh : {};
+const extendedConfig = process.env.TEST_ENV !== 'live' ? localTestConfig : {};
 
 /**
  * See https://playwright.dev/docs/test-configuration.

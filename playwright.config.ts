@@ -9,7 +9,7 @@ import { defineConfig, devices, PlaywrightTestConfig } from '@playwright/test';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const baseURL =
-	process.env.TEST_ENV === 'local' ? 'http://localhost:5173' : 'https://www.adamsanderson.co.uk';
+	process.env.TEST_ENV !== 'live' ? 'http://localhost:5173' : 'https://www.adamsanderson.co.uk';
 
 const localTestConfigh: PlaywrightTestConfig = {
 	webServer: {

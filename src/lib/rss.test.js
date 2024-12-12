@@ -1,5 +1,4 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
+import { expect, test } from 'vitest';
 import { xml } from '../../src/lib/rss.js';
 
 test.skip('filter to only published posts', async () => {
@@ -19,7 +18,7 @@ test.skip('filter to only published posts', async () => {
 	// assert.equal(result.length, 3);
 	console.log(result);
 	console.log(snapshot);
-	assert.snapshot(result, snapshot);
+	expect(result).toMatchInlineSnapshot();
 });
 
 const snapshot = `<?xml version="1.0" encoding="utf-8"?>
@@ -44,8 +43,6 @@ const snapshot = `<?xml version="1.0" encoding="utf-8"?>
 </div>]]></content>
     </entry>
   </feed>`;
-
-test.run();
 
 /*
 

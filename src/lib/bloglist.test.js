@@ -1,35 +1,34 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
-import { processBlogList } from '../../src/lib/bloglist.js';
+import { test, expect } from 'vitest';
+import { processBlogList } from './bloglist.js';
 
 test('filter to only published posts', async () => {
 	const blogs = base();
 	const result = processBlogList('', blogs);
-	assert.equal(result.length, 3);
+	expect(result.length).toBe(3);
 });
 
 test('filter to only published posts', async () => {
 	const blogs = base();
 	const result = processBlogList('published', blogs);
-	assert.equal(result.length, 3);
+	expect(result.length).toBe(3);
 });
 
 test('filter to only published posts', async () => {
 	const blogs = base();
 	const result = processBlogList('all', blogs);
-	assert.equal(result.length, 4);
+	expect(result.length).toBe(4);
 });
 
 test('filter to only published posts', async () => {
 	const blogs = base();
 	const result = processBlogList('unpublished', blogs);
-	assert.equal(result.length, 1);
+	expect(result.length).toBe(1);
 });
 
 test('filter to only published posts', async () => {
 	const blogs = base();
 	const result = processBlogList('junk', blogs);
-	assert.equal(result.length, 3, 'should use default as ');
+	expect(result.length).toBe(3);
 });
 
 test('sort blog list by published', async () => {
@@ -40,13 +39,11 @@ test('sort blog list by published', async () => {
 
 	console.log(result);
 
-	assert.equal(result.length, 3);
-	assert.equal(result[0].publishDate, expected[1].publishDate);
-	assert.equal(result[1].publishDate, expected[3].publishDate);
-	assert.equal(result[2].publishDate, expected[0].publishDate);
+	expect(result.length).toBe(3);
+	expect(result[0].publishDate).toBe(expected[1].publishDate);
+	expect(result[1].publishDate).toBe(expected[3].publishDate);
+	expect(result[2].publishDate).toBe(expected[0].publishDate);
 });
-
-test.run();
 
 const base = () => [
 	{

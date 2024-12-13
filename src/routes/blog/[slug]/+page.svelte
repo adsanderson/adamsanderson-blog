@@ -38,9 +38,9 @@
 		line-height: 1.48em;
 	}
 	article :global(a) {
-		color: var(--rust);
+		color: light-dark(var(--rust), var(--accent));
 	}
 	article :global(a:hover) {
-		color: var(--accent);
+		color: light-dark(var(--accent), var(--rust));
 	}
 </style>

@@ -27,7 +27,7 @@
 		font-size: 1.2rem;
 		font-weight: 500;
 		text-decoration: none;
-		color: var(--link);
+		color: light-dark(var(--link), var(--color-dark));
 		margin-top: 0.4rem;
 	}
 	footer .bio {
@@ -43,5 +43,6 @@
 		width: 5rem;
 		height: 5rem;
 		margin-right: 1.48em;
+		flex: 0 0 5rem;
 	}
 </style>

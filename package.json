@@ -12,7 +12,7 @@
 		"lint": "prettier --check . && eslint .",
 		"test:unit": "vitest",
 		"test": "pnpm test:unit -- --run && pnpm test:e2e",
-		"test:e2e": "playwright test"
+		"test:e2e": "playwright test --grep-invert @exporatory"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.49.1",

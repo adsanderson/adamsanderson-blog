@@ -15,9 +15,9 @@
 
 <style>
 	a {
-		color: var(--link);
+		color: light-dark(var(--link), var(--color-dark));
 		text-decoration: none;
-		font-weight: 600;
+		font-weight: 500;
 		font-size: 1.4rem;
 	}
 	a:hover {

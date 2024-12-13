@@ -3,9 +3,11 @@ import { AdamSandersonBlog } from './adamsanderson.dsl';
 import { AdamSandersonCoUkWeb } from './adamsanderson.driver.web';
 import { AdamSandersonBlogRSS } from './adamsanderson.driver.rss';
 import { AdamSandersonCoUkWebKeyboard } from './adamsanderson.driver.web.keyboard';
+import { logger } from './tools/test-logger';
 
 type FixtureTestArgs = {
 	adamSandersonCoUk: AdamSandersonBlog;
+	logger: typeof logger;
 };
 
 function getAdamSandersonBlog(projectName: string, page: Page, baseURL: string) {
@@ -26,6 +28,9 @@ export const test = base.extend<FixtureTestArgs>({
 			baseURL || 'https://www.adamsanderson.co.uk'
 		);
 		await use(adamSandersonCoUk);
+	},
+	logger: async ({}, use) => {
+		await use(logger);
 	}
 });
 

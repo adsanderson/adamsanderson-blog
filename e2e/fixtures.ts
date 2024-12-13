@@ -25,7 +25,7 @@ export const test = base.extend<FixtureTestArgs>({
 		const adamSandersonCoUk = getAdamSandersonBlog(
 			test.info().project.name,
 			page,
-			baseURL || 'https://www.adamsanderson.co.uk'
+			baseURL || 'http://localhost:5173'
 		);
 		await use(adamSandersonCoUk);
 	},

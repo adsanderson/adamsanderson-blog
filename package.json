@@ -11,8 +11,8 @@
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
 		"test:unit": "vitest",
-		"test": "pnpm test:unit -- --run && pnpm test:e2e",
-		"test:e2e": "playwright test --grep-invert @exporatory"
+		"test": "pnpm test:unit --run && pnpm test:e2e",
+		"test:e2e": "playwright test --grep-invert @exploratory"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.49.1",

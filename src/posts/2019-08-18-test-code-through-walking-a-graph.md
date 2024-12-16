@@ -18,7 +18,7 @@ We will look at how to use [XState](https://xstate.js.org/docs/) and state chart
 
 Look at the the graph for a component.
 
-How to walk the graph using (Testing Library)\[https://testing-library.com]
+How to walk the graph using [Testing Library](https://testing-library.com)
 
 Finally explore some of the ideas and potential that's been covered.
 
@@ -101,11 +101,11 @@ An example of the **empty** to **filling** transition for the Glass component co
 
 ```typescript
 const transistion = {
-	empty: {
-		FILL: (container) => {
-			fireEvent.click(getByText(container, 'Fill'));
-		}
-	}
+ empty: {
+  FILL: (container) => {
+   fireEvent.click(getByText(container, 'Fill'));
+  }
+ }
 };
 ```
 
@@ -133,10 +133,10 @@ Quite quickly paths become common. With the glass component getting to the point
 
 ```typescript
 function fillTheGlass(container) {
-	transistion.empty.FILL(container);
-	transistion.filling.FILL(container);
-	transistion.filling.FILL(container);
-	transistion.filling.FILL(container);
+ transistion.empty.FILL(container);
+ transistion.filling.FILL(container);
+ transistion.filling.FILL(container);
+ transistion.filling.FILL(container);
 }
 ```
 

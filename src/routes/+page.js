@@ -12,7 +12,7 @@ export async function load({ fetch, setHeaders }) {
 
 	if (res.ok) {
 		setHeaders({
-			's-maxage': (5 * 60).toString()
+			'Cache-Control': `s-maxage=${5 * 60}`
 		});
 		let posts = await res.json();
 

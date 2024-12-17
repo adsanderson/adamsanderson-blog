@@ -2,11 +2,11 @@ import { error } from '@sveltejs/kit';
 import { processBlogList } from '$lib/bloglist';
 import { dev } from '$app/environment';
 
-export const prerender = true;
+// export const prerender = true;
 export const csr = dev;
 
 /** @type {import('@sveltejs/kit').Load} */
-export async function load({ fetch, page, setHeaders }) {
+export async function load({ fetch, setHeaders }) {
 	const url = `/blog.json`;
 	const res = await fetch(url);
 

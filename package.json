@@ -16,6 +16,7 @@
 		"test:e2e": "playwright test --grep-invert @exploratory"
 	},
 	"devDependencies": {
+		"@flydotio/dockerfile": "^0.5.9",
 		"@playwright/test": "^1.49.1",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/adapter-node": "^5.2.10",

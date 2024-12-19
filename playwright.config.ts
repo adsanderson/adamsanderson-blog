@@ -14,6 +14,7 @@ const baseURL =
 const localTestConfig: PlaywrightTestConfig = {
 	webServer: {
 		command: 'pnpm preview',
+		stdout: 'pipe',
 		url: baseURL,
 		reuseExistingServer: !process.env.CI
 	}

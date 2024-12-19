@@ -33,6 +33,7 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install      
+      - run: pnpm build
       - run: pnpm test
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
@@ -40,7 +41,6 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 3
-      - run: pnpm build
       - name: Store build result
         uses: actions/upload-artifact@v4
         with:

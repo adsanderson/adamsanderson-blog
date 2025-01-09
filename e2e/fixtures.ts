@@ -4,10 +4,12 @@ import { AdamSandersonCoUkWeb } from './adamsanderson.driver.web';
 import { AdamSandersonBlogRSS } from './adamsanderson.driver.rss';
 import { AdamSandersonCoUkWebKeyboard } from './adamsanderson.driver.web.keyboard';
 import { logger } from './tools/test-logger';
+import { PagePerformance } from './tools/performance';
 
 type FixtureTestArgs = {
 	adamSandersonCoUk: AdamSandersonBlog;
 	logger: typeof logger;
+	performance: PagePerformance;
 };
 
 function getAdamSandersonBlog(projectName: string, page: Page, baseURL: string) {
@@ -31,6 +33,9 @@ export const test = base.extend<FixtureTestArgs>({
 	},
 	logger: async ({}, use) => {
 		await use(logger);
+	},
+	performance: async ({ page }, use) => {
+		await use(new PagePerformance(page));
 	}
 });
 

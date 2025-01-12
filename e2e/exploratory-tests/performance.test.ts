@@ -9,7 +9,7 @@ test(
 		await adamSandersonCoUk.listPosts();
 		await adamSandersonCoUk.expectPostsToExist();
 
-		const [initialNavigationEvent] = await performance.getEntriesByType('navigation');
-		expect(initialNavigationEvent.duration).toBeLessThan(1000);
+		const { duration } = (await performance.getEntriesByType('navigation'))[0];
+		expect(duration).toBeLessThan(1000);
 	}
 );

@@ -1,5 +1,13 @@
 <script lang="ts">
-	let { post } = $props();
+	interface PostProps {
+		post: {
+			title: string;
+			slug: string;
+			description: string | undefined;
+		};
+	}
+
+	let { post }: PostProps = $props();
 </script>
 
 <li>

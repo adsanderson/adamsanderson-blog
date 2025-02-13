@@ -1,3 +1,5 @@
+/// <reference types="@vitest/browser/providers/playwright" />
+
 import { sentrySvelteKit } from '@sentry/sveltekit';
 import { defineConfig } from 'vitest/config';
 import { sveltekit } from '@sveltejs/kit/vite';
@@ -14,6 +16,6 @@ export default defineConfig({
 	],
 
 	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}']
+		workspace: './vitest.workspace.ts',
 	}
 });

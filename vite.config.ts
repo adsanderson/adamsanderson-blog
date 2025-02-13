@@ -17,5 +17,9 @@ export default defineConfig({
 
 	test: {
 		workspace: './vitest.workspace.ts',
+		coverage: {
+			include: ['src/**/*.{svelte,ts,js}'],
+			exclude: ['**/.svelte-kit/**']
+		}
 	}
 });

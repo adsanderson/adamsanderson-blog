@@ -1,6 +1,7 @@
 test-results
 node_modules
 /.netlify
+/e2e/_screenshots__/
 
 # Output
 .output

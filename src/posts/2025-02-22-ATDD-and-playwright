@@ -1,1 +1,18 @@
+---
+templateKey: blog-post
+title: 'Acceptance Tests with playwight'
+description: |
+  'or: How I Learned '
+tags:
+  - Playwright
+---
 
+### Intro
+
+### The four layer Acceptance test
+
+
+
+### Playwright and fixtures
+
+### Conclusion

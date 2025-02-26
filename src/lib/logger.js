@@ -9,7 +9,7 @@ export function log(message) {
 }
 
 const loggerConfig =
-	process.env.NODE_ENV === 'development'
+	process.env.NODE_ENV === 'development' || process.env.CI === true
 		? {
 				transport: {
 					target: 'pino-pretty'

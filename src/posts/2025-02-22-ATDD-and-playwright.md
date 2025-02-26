@@ -1,7 +1,6 @@
 ---
 templateKey: blog-post
 title: Building Acceptance Tests with Playwright
-publishDate: 2024-02-22T12:00:00.000Z
 description: 'or: How I learned to layer my tests'
 tags:
   - testing

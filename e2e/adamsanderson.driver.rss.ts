@@ -33,8 +33,8 @@ export class AdamSandersonBlogRSS implements AdamSandersonBlog {
   }
 
   accessPost: AdamSandersonBlog['accessPost'] = async (selector) => {
-    if (this.feed) {
-      throw new Error('Can\'t find feed')
+    if (!this.feed) {
+      throw new Error('Can\'t find feed')      
     }
 
     if (selector.type === 'title') {

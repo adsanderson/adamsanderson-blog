@@ -2,6 +2,7 @@
 templateKey: blog-post
 title: Building Acceptance Tests with Playwright
 description: 'or: How I learned to layer my tests'
+publishDate: 2025-03-02T11:15:00
 tags:
   - testing
   - playwright
@@ -82,42 +83,42 @@ import { type AdamSandersonBlog } from './adamsanderson.dsl';
 import { expect, type Page } from '@playwright/test';
 
 export class AdamSandersonCoUkWeb implements AdamSandersonBlog {
- private baseURL: string;
- protected page: Page;
+	private baseURL: string;
+	protected page: Page;
 
- constructor(page: Page, baseURL: string) {
-  this.page = page;
-  this.baseURL = baseURL;
- }
- accessPost: AdamSandersonBlog['accessPost'] = async (selector) => {
-  if (selector.type === 'title') {
-   await this.page.getByText(selector.title).click();
-   return;
-  }
-  throw new Error('Selector not implemented');
- };
- listPosts: AdamSandersonBlog['listPosts'] = async () => {
-  await this.page.goto(this.baseURL);
- };
- expectPostsToExist: AdamSandersonBlog['expectPostsToExist'] = async () => {
-  await expect(
-   this.page.getByRole('link', { name: 'From Bootstrap - How to make a point with CSS' })
-  ).toBeVisible();
- };
- expectPostExists: AdamSandersonBlog['expectPostExists'] = async (selector) => {
-  if (selector.type === 'title') {
-   await expect(this.page.getByRole('heading', { name: selector.title })).toBeVisible();
-  }
- };
- expectPostContent: AdamSandersonBlog['expectPostContent'] = async (selector) => {
-  throw new Error('Not implemented' + selector);
- };
- expectPostsInOrder: AdamSandersonBlog['expectPostsInOrder'] = async (posts) => {
-  throw new Error('Not implemented' + posts);
- };
- expectAuthorToBe: AdamSandersonBlog['expectAuthorToBe'] = async (name) => {
-  await expect(this.page.getByText('Adam Sanderson')).toBeVisible();
- };
+	constructor(page: Page, baseURL: string) {
+		this.page = page;
+		this.baseURL = baseURL;
+	}
+	accessPost: AdamSandersonBlog['accessPost'] = async (selector) => {
+		if (selector.type === 'title') {
+			await this.page.getByText(selector.title).click();
+			return;
+		}
+		throw new Error('Selector not implemented');
+	};
+	listPosts: AdamSandersonBlog['listPosts'] = async () => {
+		await this.page.goto(this.baseURL);
+	};
+	expectPostsToExist: AdamSandersonBlog['expectPostsToExist'] = async () => {
+		await expect(
+			this.page.getByRole('link', { name: 'From Bootstrap - How to make a point with CSS' })
+		).toBeVisible();
+	};
+	expectPostExists: AdamSandersonBlog['expectPostExists'] = async (selector) => {
+		if (selector.type === 'title') {
+			await expect(this.page.getByRole('heading', { name: selector.title })).toBeVisible();
+		}
+	};
+	expectPostContent: AdamSandersonBlog['expectPostContent'] = async (selector) => {
+		throw new Error('Not implemented' + selector);
+	};
+	expectPostsInOrder: AdamSandersonBlog['expectPostsInOrder'] = async (posts) => {
+		throw new Error('Not implemented' + posts);
+	};
+	expectAuthorToBe: AdamSandersonBlog['expectAuthorToBe'] = async (name) => {
+		await expect(this.page.getByText('Adam Sanderson')).toBeVisible();
+	};
 }
 ```
 
@@ -128,41 +129,43 @@ multiple interfaces with the same test cases.
 
 #### Test Framework
 
-Playwright tests using fixtures to inject the appropriate protocol driver. This layer connects our
-DSL implementation to the test runner, allowing each test to work with any of our protocol drivers.
+With our DSL and protocol drivers in place, our acceptance tests become simple and focused on
+behavior. Then using Playwright tests with fixtures to inject the appropriate protocol driver. This
+layer connects our DSL implementation to the test runner, allowing each test to work with any of our
+protocol drivers.
 
 ```typescript
 type FixtureTestArgs = {
- adamSandersonCoUk: AdamSandersonBlog;
- logger: typeof logger;
- performance: PagePerformance;
+	adamSandersonCoUk: AdamSandersonBlog;
+	logger: typeof logger;
+	performance: PagePerformance;
 };
 
 function getAdamSandersonBlog(projectName: string, page: Page, baseURL: string) {
- if (projectName === 'RSS') {
-  return new AdamSandersonBlogRSS(baseURL);
- }
- if (projectName === 'chromium - keyboard') {
-  return new AdamSandersonCoUkWebKeyboard(page, baseURL);
- }
- return new AdamSandersonCoUkWeb(page, baseURL);
+	if (projectName === 'RSS') {
+		return new AdamSandersonBlogRSS(baseURL);
+	}
+	if (projectName === 'chromium - keyboard') {
+		return new AdamSandersonCoUkWebKeyboard(page, baseURL);
+	}
+	return new AdamSandersonCoUkWeb(page, baseURL);
 }
 
 export const test = base.extend<FixtureTestArgs>({
- adamSandersonCoUk: async ({ page, baseURL }, use) => {
-  const adamSandersonCoUk = getAdamSandersonBlog(
-   test.info().project.name,
-   page,
-   baseURL || 'http://localhost:5173'
-  );
-  await use(adamSandersonCoUk);
- },
- logger: async ({}, use) => {
-  await use(logger);
- },
- performance: async ({ page }, use) => {
-  await use(new PagePerformance(page));
- }
+	adamSandersonCoUk: async ({ page, baseURL }, use) => {
+		const adamSandersonCoUk = getAdamSandersonBlog(
+			test.info().project.name,
+			page,
+			baseURL || 'http://localhost:5173'
+		);
+		await use(adamSandersonCoUk);
+	},
+	logger: async ({}, use) => {
+		await use(logger);
+	},
+	performance: async ({ page }, use) => {
+		await use(new PagePerformance(page));
+	}
 });
 ```
 
@@ -175,25 +178,25 @@ configured project, so multiple browsers, input methods and interfaces.
 
 ```typescript
 test('Expect to get a list of posts', async ({ adamSandersonCoUk }) => {
- await adamSandersonCoUk.listPosts();
- await adamSandersonCoUk.expectPostsToExist();
+	await adamSandersonCoUk.listPosts();
+	await adamSandersonCoUk.expectPostsToExist();
 });
 
 test('Expect to get content for a selected post', async ({ adamSandersonCoUk }) => {
- await adamSandersonCoUk.listPosts();
- await adamSandersonCoUk.expectPostsToExist();
- const selectPost = {
-  type: 'title',
-  title: 'From Bootstrap - How to make a point with CSS'
- } as const;
- await adamSandersonCoUk.accessPost(selectPost);
- await adamSandersonCoUk.expectPostExists(selectPost);
+	await adamSandersonCoUk.listPosts();
+	await adamSandersonCoUk.expectPostsToExist();
+	const selectPost = {
+		type: 'title',
+		title: 'From Bootstrap - How to make a point with CSS'
+	} as const;
+	await adamSandersonCoUk.accessPost(selectPost);
+	await adamSandersonCoUk.expectPostExists(selectPost);
 });
 
 test('Expect that I am identified as the author', async ({ adamSandersonCoUk }) => {
- await adamSandersonCoUk.listPosts();
- await adamSandersonCoUk.expectPostsToExist();
- await adamSandersonCoUk.expectAuthorToBe('Adam Sanderson');
+	await adamSandersonCoUk.listPosts();
+	await adamSandersonCoUk.expectPostsToExist();
+	await adamSandersonCoUk.expectAuthorToBe('Adam Sanderson');
 });
 ```
 

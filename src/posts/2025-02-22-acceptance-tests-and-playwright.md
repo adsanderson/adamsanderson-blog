@@ -8,11 +8,12 @@ tags:
   - typescript
 ---
 
-Releasing frequently is a sign of a high performing team according to DORA metrics, but frequency
-alone isn't enough - you need confidence in what you're deploying. Nobody wants to "deploy and pray"
-multiple times a day. So you need a way of testing the system before it is deployed. While there are
-multiple layers of testing available to us, acceptance tests play a crucial role by verifying the
-system behaves correctly from the user's perspective.
+Releasing frequently is a sign of a high performing team according to
+[DORA metrics](https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance),
+but frequency alone isn't enough - you need confidence in what you're deploying. Nobody wants to
+"deploy and pray" multiple times a day. So you need a way of testing the system before it is
+deployed. While there are multiple layers of testing available to us, acceptance tests play a
+crucial role by verifying the system behaves correctly from the user's perspective.
 
 This is especially important because your system likely has multiple ways for users to interact with
 it - from different UIs, to API tools, to chat bots. You expect your system to work consistently
@@ -21,9 +22,9 @@ across all these interfaces when making a change.
 So having a way of writing down **what** the system does, independent of any specific interface, is
 incredibly liberating when creating acceptance tests.
 
-The 4-layer test model, championed by Dave Farley in Continuous Delivery, provides a clear structure
-for acceptance testing. Playwright and its test runner give us the perfect foundation for
-implementing this model.
+The 4-layer test model, championed by Dave Farley in Continuous Delivery[^1] [^2] [^3], provides a
+clear structure for acceptance testing. Playwright and its test runner give us the perfect
+foundation for implementing this model.
 
 ### Four layer separation of concerns model
 
@@ -81,42 +82,42 @@ import { type AdamSandersonBlog } from './adamsanderson.dsl';
 import { expect, type Page } from '@playwright/test';
 
 export class AdamSandersonCoUkWeb implements AdamSandersonBlog {
-	private baseURL: string;
-	protected page: Page;
+ private baseURL: string;
+ protected page: Page;
 
-	constructor(page: Page, baseURL: string) {
-		this.page = page;
-		this.baseURL = baseURL;
-	}
-	accessPost: AdamSandersonBlog['accessPost'] = async (selector) => {
-		if (selector.type === 'title') {
-			await this.page.getByText(selector.title).click();
-			return;
-		}
-		throw new Error('Selector not implemented');
-	};
-	listPosts: AdamSandersonBlog['listPosts'] = async () => {
-		await this.page.goto(this.baseURL);
-	};
-	expectPostsToExist: AdamSandersonBlog['expectPostsToExist'] = async () => {
-		await expect(
-			this.page.getByRole('link', { name: 'From Bootstrap - How to make a point with CSS' })
-		).toBeVisible();
-	};
-	expectPostExists: AdamSandersonBlog['expectPostExists'] = async (selector) => {
-		if (selector.type === 'title') {
-			await expect(this.page.getByRole('heading', { name: selector.title })).toBeVisible();
-		}
-	};
-	expectPostContent: AdamSandersonBlog['expectPostContent'] = async (selector) => {
-		throw new Error('Not implemented' + selector);
-	};
-	expectPostsInOrder: AdamSandersonBlog['expectPostsInOrder'] = async (posts) => {
-		throw new Error('Not implemented' + posts);
-	};
-	expectAuthorToBe: AdamSandersonBlog['expectAuthorToBe'] = async (name) => {
-		await expect(this.page.getByText('Adam Sanderson')).toBeVisible();
-	};
+ constructor(page: Page, baseURL: string) {
+  this.page = page;
+  this.baseURL = baseURL;
+ }
+ accessPost: AdamSandersonBlog['accessPost'] = async (selector) => {
+  if (selector.type === 'title') {
+   await this.page.getByText(selector.title).click();
+   return;
+  }
+  throw new Error('Selector not implemented');
+ };
+ listPosts: AdamSandersonBlog['listPosts'] = async () => {
+  await this.page.goto(this.baseURL);
+ };
+ expectPostsToExist: AdamSandersonBlog['expectPostsToExist'] = async () => {
+  await expect(
+   this.page.getByRole('link', { name: 'From Bootstrap - How to make a point with CSS' })
+  ).toBeVisible();
+ };
+ expectPostExists: AdamSandersonBlog['expectPostExists'] = async (selector) => {
+  if (selector.type === 'title') {
+   await expect(this.page.getByRole('heading', { name: selector.title })).toBeVisible();
+  }
+ };
+ expectPostContent: AdamSandersonBlog['expectPostContent'] = async (selector) => {
+  throw new Error('Not implemented' + selector);
+ };
+ expectPostsInOrder: AdamSandersonBlog['expectPostsInOrder'] = async (posts) => {
+  throw new Error('Not implemented' + posts);
+ };
+ expectAuthorToBe: AdamSandersonBlog['expectAuthorToBe'] = async (name) => {
+  await expect(this.page.getByText('Adam Sanderson')).toBeVisible();
+ };
 }
 ```
 
@@ -132,36 +133,36 @@ DSL implementation to the test runner, allowing each test to work with any of ou
 
 ```typescript
 type FixtureTestArgs = {
-	adamSandersonCoUk: AdamSandersonBlog;
-	logger: typeof logger;
-	performance: PagePerformance;
+ adamSandersonCoUk: AdamSandersonBlog;
+ logger: typeof logger;
+ performance: PagePerformance;
 };
 
 function getAdamSandersonBlog(projectName: string, page: Page, baseURL: string) {
-	if (projectName === 'RSS') {
-		return new AdamSandersonBlogRSS(baseURL);
-	}
-	if (projectName === 'chromium - keyboard') {
-		return new AdamSandersonCoUkWebKeyboard(page, baseURL);
-	}
-	return new AdamSandersonCoUkWeb(page, baseURL);
+ if (projectName === 'RSS') {
+  return new AdamSandersonBlogRSS(baseURL);
+ }
+ if (projectName === 'chromium - keyboard') {
+  return new AdamSandersonCoUkWebKeyboard(page, baseURL);
+ }
+ return new AdamSandersonCoUkWeb(page, baseURL);
 }
 
 export const test = base.extend<FixtureTestArgs>({
-	adamSandersonCoUk: async ({ page, baseURL }, use) => {
-		const adamSandersonCoUk = getAdamSandersonBlog(
-			test.info().project.name,
-			page,
-			baseURL || 'http://localhost:5173'
-		);
-		await use(adamSandersonCoUk);
-	},
-	logger: async ({}, use) => {
-		await use(logger);
-	},
-	performance: async ({ page }, use) => {
-		await use(new PagePerformance(page));
-	}
+ adamSandersonCoUk: async ({ page, baseURL }, use) => {
+  const adamSandersonCoUk = getAdamSandersonBlog(
+   test.info().project.name,
+   page,
+   baseURL || 'http://localhost:5173'
+  );
+  await use(adamSandersonCoUk);
+ },
+ logger: async ({}, use) => {
+  await use(logger);
+ },
+ performance: async ({ page }, use) => {
+  await use(new PagePerformance(page));
+ }
 });
 ```
 
@@ -174,25 +175,25 @@ configured project, so multiple browsers, input methods and interfaces.
 
 ```typescript
 test('Expect to get a list of posts', async ({ adamSandersonCoUk }) => {
-	await adamSandersonCoUk.listPosts();
-	await adamSandersonCoUk.expectPostsToExist();
+ await adamSandersonCoUk.listPosts();
+ await adamSandersonCoUk.expectPostsToExist();
 });
 
 test('Expect to get content for a selected post', async ({ adamSandersonCoUk }) => {
-	await adamSandersonCoUk.listPosts();
-	await adamSandersonCoUk.expectPostsToExist();
-	const selectPost = {
-		type: 'title',
-		title: 'From Bootstrap - How to make a point with CSS'
-	} as const;
-	await adamSandersonCoUk.accessPost(selectPost);
-	await adamSandersonCoUk.expectPostExists(selectPost);
+ await adamSandersonCoUk.listPosts();
+ await adamSandersonCoUk.expectPostsToExist();
+ const selectPost = {
+  type: 'title',
+  title: 'From Bootstrap - How to make a point with CSS'
+ } as const;
+ await adamSandersonCoUk.accessPost(selectPost);
+ await adamSandersonCoUk.expectPostExists(selectPost);
 });
 
 test('Expect that I am identified as the author', async ({ adamSandersonCoUk }) => {
-	await adamSandersonCoUk.listPosts();
-	await adamSandersonCoUk.expectPostsToExist();
-	await adamSandersonCoUk.expectAuthorToBe('Adam Sanderson');
+ await adamSandersonCoUk.listPosts();
+ await adamSandersonCoUk.expectPostsToExist();
+ await adamSandersonCoUk.expectAuthorToBe('Adam Sanderson');
 });
 ```
 
@@ -218,3 +219,9 @@ protocol driver such as a keyboard driven version of the UI for a11y testing, a 
 versions for a migration between platforms, prompts could be sent to an AI API and the responses
 evaluated with evals in the expectations. All while our tests remain focused on the core behaviour
 of our system.
+
+[^1]: <https://continuous-delivery.co.uk/automated-testing>
+
+[^2]: <https://www.youtube.com/watch?v=gnrBqLbj1_Q>
+
+[^3]: <https://www.youtube.com/watch?v=NsOUKfzyZiU>

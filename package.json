@@ -17,7 +17,7 @@
     "test:browser": "vitest --workspace=vitest.workspace.ts"
   },
   "devDependencies": {
-    "@flydotio/dockerfile": "^0.5.9",
+    "@flydotio/dockerfile": "^0.7.9",
     "@playwright/test": "^1.50.1",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-node": "^5.2.10",

@@ -43,4 +43,7 @@
 	article :global(a:hover) {
 		color: light-dark(var(--accent), var(--rust));
 	}
+	article :global(img) {
+		width: 100%;
+	}
 </style>

@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
-title: Building Acceptance Tests with Playwright
-description: 'or: How I learned to layer my tests'
+title: Building Acceptance Tests with Playwright using a 4 layer model
+description: 'or: How I learned to accept tests and fixture the whats'
 publishDate: 2025-03-02T11:15:00
 tags:
   - testing
@@ -9,7 +9,9 @@ tags:
   - typescript
 ---
 
-Releasing frequently is a sign of a high performing team according to
+
+Acceptance tests, the high level tests focused on what a system does are a key tool in faster and higher 
+quality releases. Releasing frequently is a sign of a high performing team according to
 [DORA metrics](https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance),
 but frequency alone isn't enough - you need confidence in what you're deploying. Nobody wants to
 "deploy and pray" multiple times a day. So you need a way of testing the system before it is

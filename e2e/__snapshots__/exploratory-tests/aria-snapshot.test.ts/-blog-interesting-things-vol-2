@@ -1,0 +1,78 @@
+- main:
+  - article:
+    - heading "Interesting things Vol2" [level=1]
+    - 'heading "or: How I kept learning new stuff" [level=2]'
+    - paragraph: Second batch of interesting links. First a a couple of articles looking at conversational UIs.
+    - list:
+      - listitem:
+        - link "What happens next with Conversational UIs — Medium"
+    - blockquote:
+      - paragraph:
+        - text: Hey, I have some thoughts about conversational interfaces. They’re kinda predictable, but it’s been a while and your next appointment isn’t until 3. Would you like to hear them? Y/N Okay so obviously Conversational UIs are hot. I’ll confess that sometimes they can be appropriate and fun.
+        - img "What happens next with Conversational UIs — Medium"
+    - heading "Futures of text" [level=3]:
+      - link "Futures of text"
+    - blockquote:
+      - paragraph:
+        - text: When the weather is bad I take a bus to work. I’m forever grateful to the person at the bus stop who informed me that you can text New York’s MTA service to find out exactly where the bus is and when it’s going to arrive.
+        - img "Futures of text"
+    - paragraph: We follow with a deep dive into slack. Personally I found the past and future portions of the article (beginning and end) most interesting. With the future leading on from the conversational UIs above.
+    - heading "What Slack is doing to our offices—and our minds" [level=3]:
+      - link "What Slack is doing to our offices—and our minds"
+    - blockquote:
+      - paragraph: Walking into the Slack offices in downtown San Francisco feels like walking into a Slack channel online. Brightly colored sofas in the shape of hashtags fill the shared spaces, surrounded by a comfortable margin of airy whitespace.
+    - blockquote:
+      - paragraph:
+        - img "What Slack is doing to our offices—and our minds"
+    - paragraph: Github has moved from font-icons to SVGs. Here is a nice mix of the whys and hows.
+    - heading "Delivering Octicons with SVG · GitHub" [level=3]:
+      - link "Delivering Octicons with SVG · GitHub"
+    - blockquote:
+      - paragraph:
+        - text: GitHub.com no longer delivers its icons via icon font. Instead, we’ve replaced all the Octicons throughout our codebase with SVG alternatives. While the changes are mostly under-the-hood, you’ll immediately feel the benefits of the SVG icons.
+        - img "Delivering Octicons with SVG · GitHub"
+        - text: /February \d+, \d+ at \d+:44PM/
+    - paragraph: A look at the (over) use of JavaScript on many pages, followed by the harm and pitfalls of recreating behaviour baked into browser through JavaScript.
+    - heading "Maybe we could tone down the JavaScript / fuzzy notepad" [level=3]:
+      - link "Maybe we could tone down the JavaScript / fuzzy notepad"
+    - blockquote:
+      - paragraph: /I’m having a really weird browser issue, where scripts on some pages just won’t run until about \d+ seconds have passed\. Whatever you’re about to suggest, yes, I’ve thought of it, and no, it’s not the problem\./
+    - blockquote:
+      - paragraph:
+        - img "Maybe we could tone down the JavaScript / fuzzy notepad"
+    - paragraph: Next two articles on React, first testing using Enzyme. Then the introduction of support for the full range of SVG elements to React.
+    - 'heading "Enzyme: JavaScript Testing utilities for React" [level=3]':
+      - 'link "Enzyme: JavaScript Testing utilities for React"'
+    - blockquote:
+      - paragraph:
+        - text: Testing code is crucial for the maintainability of a complex code base, but it is just as important that tests are easy to write, maintain, and understand. Frontend code is no exception to this rule, and behaviors that live in your UI should be tested as well.
+        - 'img "Enzyme: JavaScript Testing utilities for React"'
+    - heading "“React will soon support the full range of SVG elements and attributes. https" [level=3]:
+      - link "“React will soon support the full range of SVG elements and attributes. https"
+    - blockquote:
+      - paragraph: React will soon support the full range of SVG elements and attributes.
+    - paragraph:
+      - text: A deep dive into the loading performance of
+      - link "m.imgur.com"
+      - text: . A great insight into the tools and techniques of auditing the performance of any website.
+    - heading "perfs/audits - [m.imgur.com] page load performance" [level=3]:
+      - link "perfs/audits - [m.imgur.com] page load performance"
+    - paragraph: A look into to the effects movement, colour, spacing, positioning and more help give the user clues to what is happening and what they are doing when interacting with a page or app.
+    - heading "The Importance of Context-Shifting in UX Patterns" [level=3]:
+      - link "The Importance of Context-Shifting in UX Patterns"
+    - blockquote:
+      - paragraph: Have you ever had a day at work where you were constantly put towards a new task as you were ramping up on the current one? It feels jarring at best, and completely frustrating and time-wasting at worst.
+    - blockquote:
+      - paragraph:
+        - img "The Importance of Context-Shifting in UX Patterns"
+    - paragraph: "To finish practice your flex skills using:"
+    - heading "Flexbox Defense" [level=3]:
+      - link "Flexbox Defense"
+- contentinfo:
+  - navigation:
+    - img "Adam Sanderson"
+    - text: A front-end developer based out of Hastings, UK
+    - link "Home"
+    - link "github"
+    - link "twitter"
+    - link "email"

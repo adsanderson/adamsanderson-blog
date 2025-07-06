@@ -1,49 +1,103 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+	.filter(post => post.data.pubDate || post.data.publishDate || post.data.date)
+	.sort((a, b) => {
+		const dateA = new Date(a.data.pubDate || a.data.publishDate || a.data.date);
+		const dateB = new Date(b.data.pubDate || b.data.publishDate || b.data.date);
+		return dateB.valueOf() - dateA.valueOf();
+	});
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title="Devtings" description="A blog by Adam Sanderson" />
+		<style>
+			header {
+				padding: 8rem 0;
+			}
+			h1 {
+				font-weight: 300;
+				font-size: 5rem;
+				margin: 0;
+			}
+			h2 {
+				font-weight: 300;
+				border-bottom: 2px solid var(--accent);
+				display: inline-block;
+				padding-bottom: 1rem;
+				margin: 0;
+			}
+			main {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 0 1em;
+			}
+			ol {
+				list-style: decimal;
+				margin: 0;
+				padding: 0 0 0 2rem;
+			}
+			li {
+				margin: 1em 0;
+			}
+			a {
+				color: light-dark(var(--link), var(--color-dark));
+				text-decoration: none;
+				font-weight: 500;
+				font-size: 1.4rem;
+			}
+			a:hover {
+				text-decoration: underline;
+				color: var(--accent);
+			}
+			.description {
+				font-weight: 400;
+				display: block;
+				margin-top: 0.2rem;
+			}
+			
+			@media (max-width: 720px) {
+				header {
+					padding: 4rem 0;
+				}
+				h1 {
+					font-size: 3rem;
+				}
+				a {
+					font-size: 1.2rem;
+				}
+			}
+		</style>
 	</head>
 	<body>
-		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<header>
+				<h1>Devtings</h1>
+				<h2>A blog by Adam Sanderson</h2>
+			</header>
+			
+			<article aria-label="Blog Posts">
+				<ol>
+					{posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								{post.data.title}
+								{post.data.description && (
+									<span class="description">
+										{post.data.description}
+									</span>
+								)}
+							</a>
+						</li>
+					))}
+				</ol>
+			</article>
 		</main>
 		<Footer />
 	</body>

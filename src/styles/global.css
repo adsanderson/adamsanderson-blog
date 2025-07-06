@@ -1,5 +1,15 @@
+@import "tailwindcss";
 @import '@fontsource/fira-mono';
 @import '../lib/prism-themes/nord.css';
+
+@theme {
+  /* Tailwind CSS v4 theme configuration */
+  --content: "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}";
+}
+
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/container-queries";
+@plugin "@tailwindcss/aspect-ratio";
 
 :root {
 	font-family:

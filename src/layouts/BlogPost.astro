@@ -14,68 +14,28 @@ const postDate = pubDate || publishDate || date;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
+		<link rel="stylesheet" href="/nord.css" />
 	</head>
 
 	<body>
-		<Header />
-		<main>
+		<main class="max-w-4xl mx-auto px-4 py-8">
 			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+				<div class="hero-image mb-8">
+					{heroImage && <img width={1020} height={510} src={heroImage} alt="" class="w-full rounded-lg shadow-lg" />}
 				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							{postDate && <FormattedDate date={postDate} />}
+				<div class="prose prose-lg max-w-none">
+					<div class="mb-8">
+						<div class="mb-4">
 							{
 								updatedDate && (
-									<div class="last-updated-on">
+									<div class="italic text-sm mt-2">
 										Last updated on <FormattedDate date={updatedDate} />
 									</div>
 								)
 							}
 						</div>
-						<h1>{title}</h1>
-						<hr />
+						<h1 class="text-6xl font-light mb-4">{title}</h1>
+            <h2 class="text-3xl font-light pb-4 border-b-2 border-b-amber-600 inline-block">{description}</h2>
 					</div>
 					<slot />
 				</div>

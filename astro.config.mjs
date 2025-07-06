@@ -10,6 +10,9 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   site: "https://www.adamsanderson.co.uk",
   integrations: [mdx(), sitemap()],
+  markdown: {
+    syntaxHighlight: 'prism',
+  },
   vite: {
     plugins: [tailwindcss()],
   },

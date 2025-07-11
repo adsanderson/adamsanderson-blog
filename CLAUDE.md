@@ -80,6 +80,7 @@ This is an Astro-based blog application deployed to Cloudflare Workers with the 
 - **Image Optimization**: Astro's built-in image optimization
 - **RSS Feed**: Automated feed generation with proper caching headers
 - **Error Monitoring**: Sentry integration for error tracking and performance monitoring
+- **CI/CD Pipeline**: GitHub Actions for automated testing and deployment
 
 ## Key Files to Understand
 
@@ -95,6 +96,7 @@ This is an Astro-based blog application deployed to Cloudflare Workers with the 
 - `wrangler.json` - Cloudflare Workers deployment configuration
 - `src/sentry.client.config.ts` - Sentry client-side configuration
 - `src/sentry.server.config.ts` - Sentry server-side configuration
+- `.github/workflows/` - GitHub Actions CI/CD workflows
 
 ## Development Notes
 

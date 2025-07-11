@@ -23,6 +23,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `pnpm test:exploratory` - Run exploratory tests (visual, performance, accessibility)
 - `pnpm test:headed` - Run tests in headed mode (visible browser)
 - `pnpm test:debug` - Run tests in debug mode
+- `pnpm test:unit` - Run Vitest unit tests in watch mode
+- `pnpm test:unit:run` - Run Vitest unit tests once
+- `pnpm test:unit:ui` - Run Vitest with UI interface
+- `pnpm test:component` - Run Astro component tests in watch mode
+- `pnpm test:component:run` - Run Astro component tests once
 
 ## Architecture Overview
 
@@ -58,6 +63,9 @@ This is an Astro-based blog application deployed to Cloudflare Workers with the 
   - Performance testing
 - **Test Drivers**: Domain-specific language for blog testing
 - **Multi-browser**: Tests run across Chromium, Firefox, WebKit, and mobile
+- **Vitest**: Unit testing framework with Astro component support
+- **Component Testing**: Uses Astro's container API for testing components with `*.astro.test.ts` naming
+- **Unit Testing**: Standard Vitest for utility functions with `*.test.ts` naming
 
 ### Data Flow
 1. Markdown files in `src/content/blog/` are processed by Astro content collections
@@ -82,6 +90,7 @@ This is an Astro-based blog application deployed to Cloudflare Workers with the 
 - `astro.config.mjs` - Astro configuration with integrations
 - `tailwind.config.mjs` - Tailwind CSS configuration
 - `playwright.config.ts` - Playwright testing configuration
+- `vitest.config.ts` - Vitest unit testing configuration
 - `wrangler.json` - Cloudflare Workers deployment configuration
 
 ## Development Notes

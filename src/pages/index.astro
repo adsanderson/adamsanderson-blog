@@ -2,9 +2,9 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
+import { filterPostsWithPublishDate } from '../utils/content';
 
-const posts = (await getCollection('blog'))
-	.filter(post => post.data.pubDate || post.data.publishDate || post.data.date)
+const posts = filterPostsWithPublishDate(await getCollection('blog'))
 	.sort((a, b) => {
 		const dateA = new Date(a.data.pubDate || a.data.publishDate || a.data.date);
 		const dateB = new Date(b.data.pubDate || b.data.publishDate || b.data.date);

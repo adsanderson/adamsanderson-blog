@@ -1,4 +1,5 @@
 import { expect, test, describe } from 'vitest';
+import { filterPostsWithPublishDate } from './content';
 
 // Utility functions extracted from content processing logic
 function normalizeSlug(text: string): string {
@@ -75,6 +76,7 @@ function extractBlogPostMetadata(post: any): any {
     slug: post.id || normalizeSlug(post.data.title || ''),
   };
 }
+
 
 describe('Content Processing Utilities', () => {
   describe('normalizeSlug', () => {
@@ -231,6 +233,41 @@ describe('Content Processing Utilities', () => {
 
       const result = extractBlogPostMetadata(post);
       expect(result.slug).toBe('hello-world-test');
+    });
+  });
+
+  describe('filterPostsWithPublishDate', () => {
+    test('filters posts with valid publish dates', () => {
+      const posts = [
+        { data: { title: 'Post 1', pubDate: '2023-01-15' } },
+        { data: { title: 'Post 2', publishDate: '2023-01-20' } },
+        { data: { title: 'Post 3', date: '2023-01-25' } },
+        { data: { title: 'Post 4' } }, // No date
+        { data: { title: 'Post 5', pubDate: null } }, // Null date
+        { data: { title: 'Post 6', pubDate: 'invalid-date' } }, // Invalid date
+      ];
+
+      const result = filterPostsWithPublishDate(posts);
+      expect(result).toHaveLength(3);
+      expect(result[0].data.title).toBe('Post 1');
+      expect(result[1].data.title).toBe('Post 2');
+      expect(result[2].data.title).toBe('Post 3');
+    });
+
+    test('returns empty array when no posts have publish dates', () => {
+      const posts = [
+        { data: { title: 'Post 1' } },
+        { data: { title: 'Post 2', pubDate: null } },
+        { data: { title: 'Post 3', pubDate: 'invalid-date' } },
+      ];
+
+      const result = filterPostsWithPublishDate(posts);
+      expect(result).toHaveLength(0);
+    });
+
+    test('handles empty array', () => {
+      const result = filterPostsWithPublishDate([]);
+      expect(result).toHaveLength(0);
     });
   });
 });

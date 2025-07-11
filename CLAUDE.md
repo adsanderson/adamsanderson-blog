@@ -79,6 +79,7 @@ This is an Astro-based blog application deployed to Cloudflare Workers with the 
 - **Cloudflare Workers**: Edge deployment for global performance
 - **Image Optimization**: Astro's built-in image optimization
 - **RSS Feed**: Automated feed generation with proper caching headers
+- **Error Monitoring**: Sentry integration for error tracking and performance monitoring
 
 ## Key Files to Understand
 
@@ -92,6 +93,8 @@ This is an Astro-based blog application deployed to Cloudflare Workers with the 
 - `playwright.config.ts` - Playwright testing configuration
 - `vitest.config.ts` - Vitest unit testing configuration
 - `wrangler.json` - Cloudflare Workers deployment configuration
+- `src/sentry.client.config.ts` - Sentry client-side configuration
+- `src/sentry.server.config.ts` - Sentry server-side configuration
 
 ## Development Notes
 

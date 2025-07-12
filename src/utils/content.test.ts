@@ -27,7 +27,7 @@ function validateBlogPostData(data: any): { isValid: boolean; errors: string[] }
   }
   
   if (data.tags && Array.isArray(data.tags)) {
-    const invalidTags = data.tags.filter(tag => typeof tag !== 'string');
+    const invalidTags = data.tags.filter((tag: any) => typeof tag !== 'string');
     if (invalidTags.length > 0) {
       errors.push('All tags must be strings');
     }

@@ -9,7 +9,7 @@ import * as Sentry from "@sentry/astro";
  */
 export function captureException(error: Error, context?: Record<string, any>) {
   Sentry.captureException(error, {
-    contexts: {
+    extra: {
       ...context,
       timestamp: new Date().toISOString(),
     },
@@ -22,7 +22,7 @@ export function captureException(error: Error, context?: Record<string, any>) {
 export function captureMessage(message: string, level: 'info' | 'warning' | 'error' = 'info', context?: Record<string, any>) {
   Sentry.captureMessage(message, {
     level,
-    contexts: context,
+    extra: context,
   });
 }
 

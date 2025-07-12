@@ -59,6 +59,6 @@ export class AdamSandersonBlogRSS implements AdamSandersonBlog {
     throw new Error('Not implemented' + posts);
   };
   expectAuthorToBe: AdamSandersonBlog['expectAuthorToBe'] = async (name) => {
-    expect(this.feed.author.name[0]).toBe(name);
+    expect(this.feed?.author?.name?.[0]).toBe(name);
   };
 }

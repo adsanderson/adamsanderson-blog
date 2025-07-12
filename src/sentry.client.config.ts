@@ -21,8 +21,6 @@ Sentry.init({
     return event;
   },
   
-  // Capture unhandled promise rejections
-  captureUnhandledRejections: true,
   
   // Set user context
   initialScope: {

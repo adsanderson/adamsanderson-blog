@@ -6,7 +6,7 @@ import { captureException } from "../utils/sentry";
 export async function GET(context) {
   try {
     const posts = await getCollection("blog");
-    
+
     // Filter posts with publish dates and sort by date (newest first)
     const publishedPosts = posts
       .filter((post) => post.data.pubDate || post.data.publishDate || post.data.date)
@@ -20,14 +20,17 @@ export async function GET(context) {
       title: SITE_TITLE,
       description: SITE_DESCRIPTION,
       site: context.site,
+      author: "Adam Sanderson",
       items: publishedPosts.map((post) => ({
         title: post.data.title,
         description: post.data.description || "",
         link: `/blog/${post.id}/`,
         pubDate: new Date(post.data.pubDate || post.data.publishDate || post.data.date),
         content: post.body || "",
+        author: "Adam Sanderson"
       })),
-      customData: `<generator>Astro</generator>`,
+      customData: `<generator>Astro</generator>
+<author><name>Adam Sanderson</name></author>`,
     });
   } catch (error) {
     captureException(error, {

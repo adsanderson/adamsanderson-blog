@@ -34,7 +34,7 @@ export class AdamSandersonBlogRSS implements AdamSandersonBlog {
 
   accessPost: AdamSandersonBlog['accessPost'] = async (selector) => {
     if (!this.feed) {
-      throw new Error('Can\'t find feed')      
+      throw new Error('Can\'t find feed')
     }
 
     if (selector.type === 'title') {
@@ -59,6 +59,7 @@ export class AdamSandersonBlogRSS implements AdamSandersonBlog {
     throw new Error('Not implemented' + posts);
   };
   expectAuthorToBe: AdamSandersonBlog['expectAuthorToBe'] = async (name) => {
+    console.log('BaseUrl:', this.baseURL)
     expect(this.feed?.author?.name?.[0]).toBe(name);
   };
 }

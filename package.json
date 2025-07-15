@@ -48,7 +48,7 @@
     "dev": "astro dev",
     "preview": "astro build && wrangler dev",
     "test": "playwright test",
-    "test:e2e": "playwright test e2e/acceptance-tests/",
+    "test:acceptance": "playwright test e2e/acceptance-tests/",
     "test:exploratory": "playwright test e2e/exploratory-tests/",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",

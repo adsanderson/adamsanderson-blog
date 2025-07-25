@@ -1,0 +1,52 @@
+---
+interface Props {
+  fallback?: string;
+}
+
+const { fallback = "Something went wrong. Please try again later." } = Astro.props;
+---
+
+<script>
+  import * as Sentry from "@sentry/astro";
+  
+  // Global error handler for unhandled JavaScript errors
+  window.addEventListener('error', (event) => {
+    Sentry.captureException(event.error, {
+      contexts: {
+        errorBoundary: {
+          component: 'ErrorBoundary',
+          message: event.message,
+          filename: event.filename,
+          lineno: event.lineno,
+          colno: event.colno,
+        },
+      },
+    });
+  });
+
+  // Global handler for unhandled promise rejections
+  window.addEventListener('unhandledrejection', (event) => {
+    Sentry.captureException(event.reason, {
+      contexts: {
+        errorBoundary: {
+          component: 'ErrorBoundary',
+          type: 'unhandled-promise-rejection',
+        },
+      },
+    });
+  });
+</script>
+
+<!-- 
+  This component provides a fallback UI for JavaScript errors.
+  For server-side error handling, use try-catch blocks in your Astro components.
+-->
+<div class="error-boundary">
+  <slot />
+</div>
+
+<style>
+  .error-boundary {
+    /* Add styling for error boundary container if needed */
+  }
+</style>

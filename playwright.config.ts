@@ -1,4 +1,4 @@
-import { defineConfig, devices, PlaywrightTestConfig } from '@playwright/test';
+import { defineConfig, devices, type PlaywrightTestConfig } from '@playwright/test';
 
 /**
  * Read environment variables from file.
@@ -9,11 +9,11 @@ import { defineConfig, devices, PlaywrightTestConfig } from '@playwright/test';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const baseURL =
-	process.env.TEST_ENV !== 'live' ? 'http://localhost:4173' : 'https://www.adamsanderson.co.uk';
+	process.env.TEST_ENV !== 'live' ? 'http://localhost:4321' : 'https://www.adamsanderson.co.uk';
 
 const localTestConfig: PlaywrightTestConfig = {
 	webServer: {
-		command: 'pnpm preview --host',
+		command: 'pnpm dev --host',
 		stdout: 'pipe',
 		url: baseURL,
 		reuseExistingServer: !process.env.CI

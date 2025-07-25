@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import ErrorBoundary from '../components/ErrorBoundary.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, publishDate, date, updatedDate, heroImage } = Astro.props;
+const postDate = pubDate || publishDate || date;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<link rel="stylesheet" href="/nord.css" />
+	</head>
+
+	<body>
+		<ErrorBoundary>
+			<main class="max-w-4xl mx-auto px-4 py-8">
+				<article>
+					<div class="hero-image mb-8">
+						{heroImage && <img width={1020} height={510} src={heroImage} alt="" class="w-full rounded-lg shadow-lg" />}
+					</div>
+					<div class="prose prose-lg max-w-none">
+						<div class="mb-8">
+							<div class="mb-4">
+								{
+									updatedDate && (
+										<div class="italic text-sm mt-2">
+											Last updated on <FormattedDate date={updatedDate} />
+										</div>
+									)
+								}
+							</div>
+							<h1 class="text-6xl font-light mb-4">{title}</h1>
+							<h2 class="text-3xl font-light pb-4 border-b-2 border-b-amber-600 inline-block">{description}</h2>
+						</div>
+						<slot />
+					</div>
+				</article>
+			</main>
+			<Footer />
+		</ErrorBoundary>
+	</body>
+</html>

@@ -5,71 +5,119 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Common Development Commands
 
 ### Development Server
-- `pnpm dev` - Start development server
-- `pnpm preview` - Preview production build locally
+- `pnpm dev` - Start Astro development server on http://localhost:4321
+- `pnpm preview` - Preview production build locally using Wrangler
 
 ### Build & Deploy
-- `pnpm build` - Build production version
-- `pnpm start` - Start production server from build
+- `pnpm build` - Build production version for Cloudflare Workers
+- `pnpm deploy` - Deploy to Cloudflare Workers using Wrangler
+- `pnpm check` - Check build and TypeScript types, dry-run deploy
 
 ### Code Quality
-- `pnpm check` - Run Svelte type checking
-- `pnpm format` - Format code with Prettier
-- `pnpm lint` - Run ESLint and Prettier checks
+- `pnpm lint` - Run linting (not yet configured)
+- `pnpm format` - Format code (not yet configured)
 
 ### Testing
-- `pnpm test` - Run all tests (unit + e2e)
-- `pnpm test:unit` - Run unit tests with Vitest
-- `pnpm test:e2e` - Run Playwright end-to-end tests (excludes exploratory tests)
-- `pnpm test:browser` - Run browser-based component tests
+- `pnpm test` - Run all Playwright tests
+- `pnpm test:e2e` - Run acceptance/end-to-end tests
+- `pnpm test:exploratory` - Run exploratory tests (visual, performance, accessibility)
+- `pnpm test:headed` - Run tests in headed mode (visible browser)
+- `pnpm test:debug` - Run tests in debug mode
+- `pnpm test:unit` - Run Vitest unit tests in watch mode
+- `pnpm test:unit:run` - Run Vitest unit tests once
+- `pnpm test:unit:ui` - Run Vitest with UI interface
+- `pnpm test:component` - Run Astro component tests in watch mode
+- `pnpm test:component:run` - Run Astro component tests once
 
 ## Architecture Overview
 
-This is a SvelteKit-based blog application with the following key architectural patterns:
+This is an Astro-based blog application deployed to Cloudflare Workers with the following key architectural patterns:
 
 ### Content Management
-- **Markdown Posts**: Blog posts are stored as `.md` files in `src/posts/`
-- **MDSvex Integration**: Uses MDSvex for processing markdown with Svelte components
-- **Dynamic Routing**: Blog posts accessible via `/blog/[slug]` pattern
-- **Metadata Handling**: Posts include frontmatter for metadata (title, date, tags)
+- **Blog Posts**: Stored as `.md` files in `src/content/blog/`
+- **Content Collections**: Uses Astro's content collections for type-safe blog post handling
+- **Dynamic Routing**: Blog posts accessible via `/blog/[...slug]` pattern
+- **Frontmatter**: Posts include frontmatter for metadata (title, description, pubDate, tags)
 
-### Core Components
-- **Blog List Processing**: `src/lib/bloglist.js` handles filtering and sorting posts
+### Core Framework
+- **Astro**: Static site generator with islands architecture
+- **Cloudflare Workers**: Serverless deployment target
+- **MDX Support**: Enhanced markdown with embedded components
 - **RSS Generation**: Automatic RSS feed generation at `/rss.xml`
-- **Component Library**: Reusable components in `src/lib/Components/`
-
-### Data Flow
-1. Markdown files in `src/posts/` are processed by MDSvex
-2. `bloglist.js` filters and sorts posts based on publish state
-3. SvelteKit's file-based routing serves content via dynamic routes
-4. Components render structured content with proper metadata
 
 ### Styling & UI
-- **Tailwind CSS**: Primary styling framework
-- **Component-scoped styles**: Svelte's scoped CSS for specific components
-- **Typography**: Tailwind Typography plugin for markdown content
-- **Responsive Design**: Mobile-first approach with container queries
+- **Tailwind CSS**: Primary styling framework with plugins:
+  - `@tailwindcss/typography` - Enhanced typography for markdown content
+  - `@tailwindcss/container-queries` - Container-based responsive design
+  - `@tailwindcss/aspect-ratio` - Aspect ratio utilities
+- **Global Styles**: Custom CSS variables for light/dark mode support
+- **Fonts**: Fira Mono for code, system fonts for body text
+- **Nord Theme**: Code highlighting theme
 
 ### Testing Strategy
-- **Unit Tests**: Vitest for component and utility testing
-- **E2E Tests**: Playwright for full application testing
-- **Browser Tests**: Vitest browser mode for component integration tests
-- **Exploratory Tests**: Separate test suite for experimental features (marked with `@exploratory`)
+- **Playwright**: End-to-end testing framework
+- **Acceptance Tests**: Core user journey tests in `e2e/acceptance-tests/`
+- **Exploratory Tests**: Advanced testing including:
+  - Visual regression testing
+  - Accessibility snapshot testing
+  - Performance testing
+- **Test Drivers**: Domain-specific language for blog testing
+- **Multi-browser**: Tests run across Chromium, Firefox, WebKit, and mobile
+- **Vitest**: Unit testing framework with Astro component support
+- **Component Testing**: Uses Astro's container API for testing components with `*.astro.test.ts` naming
+- **Unit Testing**: Standard Vitest for utility functions with `*.test.ts` naming
 
-### Performance & Monitoring
-- **OpenTelemetry**: Distributed tracing for performance monitoring
-- **Sentry**: Error tracking and performance monitoring
-- **Prerendering**: Static generation for better performance
+### Data Flow
+1. Markdown files in `src/content/blog/` are processed by Astro content collections
+2. Content collections provide type-safe data access
+3. Blog posts are rendered via dynamic routing
+4. RSS feed is generated from content collections
+5. Static site generation optimizes performance
 
-### Deployment
-- **Fly.io**: Production deployment configuration in `fly.toml`
-- **Node.js Adapter**: Uses SvelteKit's Node adapter for server-side rendering
-- **Dockerized**: Includes Dockerfile for containerized deployment
+### Performance & Deployment
+- **Static Generation**: Pre-rendered pages for optimal performance
+- **Cloudflare Workers**: Edge deployment for global performance
+- **Image Optimization**: Astro's built-in image optimization
+- **RSS Feed**: Automated feed generation with proper caching headers
+- **Error Monitoring**: Sentry integration for error tracking and performance monitoring
+- **CI/CD Pipeline**: GitHub Actions for automated testing and deployment
 
 ## Key Files to Understand
 
-- `src/routes/+page.js` - Home page data loading
-- `src/routes/blog/[slug]/+page.server.ts` - Dynamic blog post loading
-- `src/lib/bloglist.js` - Core blog filtering and sorting logic
-- `mdsvex.config.js` - Markdown processing configuration
-- `playwright.config.ts` - E2E testing configuration with multiple browser projects
+- `src/content/blog/` - Blog post markdown files
+- `src/content.config.ts` - Content collection schema and configuration
+- `src/pages/blog/[...slug].astro` - Dynamic blog post page template
+- `src/pages/rss.xml.js` - RSS feed generation
+- `src/styles/global.css` - Global styles with CSS variables
+- `astro.config.mjs` - Astro configuration with integrations
+- `tailwind.config.mjs` - Tailwind CSS configuration
+- `playwright.config.ts` - Playwright testing configuration
+- `vitest.config.ts` - Vitest unit testing configuration
+- `wrangler.json` - Cloudflare Workers deployment configuration
+- `src/sentry.client.config.ts` - Sentry client-side configuration
+- `src/sentry.server.config.ts` - Sentry server-side configuration
+- `.github/workflows/` - GitHub Actions CI/CD workflows
+
+## Development Notes
+
+### Content Collection Schema
+Blog posts support the following frontmatter fields:
+- `title` (required) - Post title
+- `description` (optional) - Post description/summary
+- `pubDate` (optional) - Publication date
+- `publishDate` (optional) - Alternative publication date field
+- `tags` (optional) - Array of tag strings
+- `heroImage` (optional) - Hero image URL
+
+### Testing Patterns
+- Tests use a domain-specific language (DSL) pattern
+- Page Object Model with driver classes for different interfaces
+- Comprehensive snapshot testing for regressions
+- Performance testing with Lighthouse integration
+- Accessibility testing with aria-snapshot comparisons
+
+### Deployment
+- Production deployment to Cloudflare Workers
+- Wrangler CLI for deployment management
+- Site URL: https://www.adamsanderson.co.uk
+- RSS feed available at /rss.xml

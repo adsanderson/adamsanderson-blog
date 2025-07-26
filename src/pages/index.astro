@@ -10,12 +10,17 @@ const posts = filterPostsWithPublishDate(await getCollection('blog'))
 		const dateB = new Date(b.data.pubDate || b.data.publishDate || b.data.date);
 		return dateB.valueOf() - dateA.valueOf();
 	});
+
+const topThreePosts = posts.slice(0, 3);
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead title="Devtings" description="A blog by Adam Sanderson" />
+		{topThreePosts.map((post) => (
+			<link rel="prefetch" href={`/blog/${post.id}/`} />
+		))}
 		<style>
 			/*header {*/
 			/*	padding: 8rem 0;*/

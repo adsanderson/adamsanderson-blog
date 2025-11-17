@@ -1,0 +1,474 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+import { filterPostsByTags, getAllTags, getTagCounts } from '../utils/content';
+
+// Get query parameters
+const url = new URL(Astro.request.url);
+const includeParam = url.searchParams.get('include') || '';
+const excludeParam = url.searchParams.get('exclude') || '';
+const modeParam = url.searchParams.get('mode') || 'any';
+
+// Parse comma-separated tags
+const includeTags = includeParam ? includeParam.split(',').map(t => t.trim()).filter(Boolean) : [];
+const excludeTags = excludeParam ? excludeParam.split(',').map(t => t.trim()).filter(Boolean) : [];
+const mode = (modeParam === 'all' ? 'all' : 'any') as 'any' | 'all';
+
+// Get all posts
+const allPosts = (await getCollection('blog'))
+	.filter(post => post.data.pubDate || post.data.publishDate || post.data.date)
+	.sort((a, b) => {
+		const dateA = new Date((a.data.pubDate || a.data.publishDate || a.data.date)!);
+		const dateB = new Date((b.data.pubDate || b.data.publishDate || b.data.date)!);
+		return dateB.valueOf() - dateA.valueOf();
+	});
+
+// Apply tag filtering
+const filteredPosts = filterPostsByTags(allPosts, {
+	include: includeTags,
+	exclude: excludeTags,
+	mode
+});
+
+// Get all available tags and their counts
+const allTags = getAllTags(allPosts);
+const tagCounts = getTagCounts(allPosts);
+
+// Build URL helper functions
+function toggleIncludeTag(tag: string): string {
+	const newInclude = includeTags.includes(tag)
+		? includeTags.filter(t => t !== tag)
+		: [...includeTags, tag];
+
+	const params = new URLSearchParams();
+	if (newInclude.length > 0) params.set('include', newInclude.join(','));
+	if (excludeTags.length > 0) params.set('exclude', excludeTags.join(','));
+	if (mode !== 'any') params.set('mode', mode);
+
+	return `/tags${params.toString() ? '?' + params.toString() : ''}`;
+}
+
+function toggleExcludeTag(tag: string): string {
+	const newExclude = excludeTags.includes(tag)
+		? excludeTags.filter(t => t !== tag)
+		: [...excludeTags, tag];
+
+	const params = new URLSearchParams();
+	if (includeTags.length > 0) params.set('include', includeTags.join(','));
+	if (newExclude.length > 0) params.set('exclude', newExclude.join(','));
+	if (mode !== 'any') params.set('mode', mode);
+
+	return `/tags${params.toString() ? '?' + params.toString() : ''}`;
+}
+
+function toggleMode(): string {
+	const newMode = mode === 'any' ? 'all' : 'any';
+	const params = new URLSearchParams();
+	if (includeTags.length > 0) params.set('include', includeTags.join(','));
+	if (excludeTags.length > 0) params.set('exclude', excludeTags.join(','));
+	if (newMode !== 'any') params.set('mode', newMode);
+
+	return `/tags${params.toString() ? '?' + params.toString() : ''}`;
+}
+
+function clearFilters(): string {
+	return '/tags';
+}
+
+const pageTitle = `Filter by Tags - ${SITE_TITLE}`;
+const pageDescription = 'Browse blog posts by tags';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={pageTitle} description={pageDescription} />
+		<style>
+			main {
+				width: 960px;
+			}
+
+			.filters-section {
+				margin-bottom: 2rem;
+				padding: 1.5rem;
+				background: rgb(var(--gray-light));
+				border-radius: 8px;
+			}
+
+			.filters-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 1rem;
+			}
+
+			.filters-header h2 {
+				margin: 0;
+				font-size: 1.5rem;
+			}
+
+			.mode-toggle {
+				padding: 0.5rem 1rem;
+				background: rgb(var(--accent));
+				color: white;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 0.9rem;
+			}
+
+			.mode-toggle:hover {
+				opacity: 0.9;
+			}
+
+			.active-filters {
+				margin-bottom: 1rem;
+			}
+
+			.filter-pills {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				margin-top: 0.5rem;
+			}
+
+			.filter-pill {
+				padding: 0.4rem 0.8rem;
+				border-radius: 20px;
+				font-size: 0.9rem;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.filter-pill.include {
+				background: rgb(var(--accent));
+				color: white;
+			}
+
+			.filter-pill.exclude {
+				background: rgb(var(--gray-dark));
+				color: white;
+			}
+
+			.filter-pill button {
+				background: none;
+				border: none;
+				color: inherit;
+				cursor: pointer;
+				padding: 0;
+				font-size: 1.2rem;
+				line-height: 1;
+				opacity: 0.8;
+			}
+
+			.filter-pill button:hover {
+				opacity: 1;
+			}
+
+			.clear-filters {
+				padding: 0.4rem 1rem;
+				background: transparent;
+				color: rgb(var(--gray-dark));
+				border: 1px solid rgb(var(--gray-dark));
+				border-radius: 4px;
+				cursor: pointer;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 0.9rem;
+			}
+
+			.clear-filters:hover {
+				background: rgb(var(--gray-light));
+			}
+
+			.tag-cloud {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				margin-top: 1rem;
+			}
+
+			.tag-button {
+				padding: 0.4rem 0.8rem;
+				border-radius: 4px;
+				border: 1px solid rgb(var(--gray));
+				background: white;
+				cursor: pointer;
+				font-size: 0.9rem;
+				transition: all 0.2s ease;
+			}
+
+			.tag-button:hover {
+				border-color: rgb(var(--accent));
+				color: rgb(var(--accent));
+			}
+
+			.tag-button.included {
+				background: rgb(var(--accent));
+				color: white;
+				border-color: rgb(var(--accent));
+			}
+
+			.tag-button.excluded {
+				background: rgb(var(--gray-dark));
+				color: white;
+				border-color: rgb(var(--gray-dark));
+			}
+
+			.tag-count {
+				opacity: 0.7;
+				font-size: 0.85em;
+			}
+
+			.posts-section {
+				margin-top: 2rem;
+			}
+
+			.posts-section h2 {
+				margin-bottom: 1rem;
+			}
+
+			.results-count {
+				color: rgb(var(--gray));
+				font-size: 0.9rem;
+				margin-left: 0.5rem;
+			}
+
+			ul {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			ul li {
+				width: calc(50% - 1rem);
+			}
+
+			ul li * {
+				text-decoration: none;
+				transition: 0.2s ease;
+			}
+
+			ul li img {
+				margin-bottom: 0.5rem;
+				border-radius: 12px;
+			}
+
+			ul li a {
+				display: block;
+			}
+
+			.title {
+				margin: 0;
+				color: rgb(var(--black));
+				line-height: 1;
+			}
+
+			.date {
+				margin: 0;
+				color: rgb(var(--gray));
+			}
+
+			.post-tags {
+				margin-top: 0.5rem;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.25rem;
+			}
+
+			.post-tag {
+				font-size: 0.75rem;
+				padding: 0.2rem 0.5rem;
+				background: rgb(var(--gray-light));
+				border-radius: 3px;
+				color: rgb(var(--gray-dark));
+			}
+
+			ul li a:hover h4,
+			ul li a:hover .date {
+				color: rgb(var(--accent));
+			}
+
+			ul a:hover img {
+				box-shadow: var(--box-shadow);
+			}
+
+			.no-results {
+				padding: 2rem;
+				text-align: center;
+				color: rgb(var(--gray));
+			}
+
+			.instructions {
+				margin-top: 1rem;
+				padding: 1rem;
+				background: rgb(var(--gray-gradient));
+				border-radius: 4px;
+				font-size: 0.9rem;
+				line-height: 1.6;
+			}
+
+			.instructions p {
+				margin: 0.5rem 0;
+			}
+
+			@media (max-width: 720px) {
+				main {
+					width: 100%;
+				}
+
+				ul {
+					gap: 0.5em;
+				}
+
+				ul li {
+					width: 100%;
+					text-align: center;
+				}
+
+				.filters-header {
+					flex-direction: column;
+					gap: 1rem;
+					align-items: flex-start;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="filters-section">
+				<div class="filters-header">
+					<h2>Filter by Tags</h2>
+					{includeTags.length > 1 && (
+						<a href={toggleMode()} class="mode-toggle">
+							Mode: {mode === 'any' ? 'ANY (OR)' : 'ALL (AND)'}
+						</a>
+					)}
+				</div>
+
+				{(includeTags.length > 0 || excludeTags.length > 0) && (
+					<div class="active-filters">
+						<div class="filter-pills">
+							{includeTags.map(tag => (
+								<span class="filter-pill include">
+									Include: {tag}
+									<a href={toggleIncludeTag(tag)}>
+										<button title="Remove filter">×</button>
+									</a>
+								</span>
+							))}
+							{excludeTags.map(tag => (
+								<span class="filter-pill exclude">
+									Exclude: {tag}
+									<a href={toggleExcludeTag(tag)}>
+										<button title="Remove filter">×</button>
+									</a>
+								</span>
+							))}
+							<a href={clearFilters()} class="clear-filters">Clear All</a>
+						</div>
+					</div>
+				)}
+
+				<div class="tag-cloud">
+					{allTags.map(tag => {
+						const isIncluded = includeTags.includes(tag);
+						const isExcluded = excludeTags.includes(tag);
+						const count = tagCounts.get(tag) || 0;
+
+						return (
+							<div style="position: relative;">
+								<a href={toggleIncludeTag(tag)}>
+									<button
+										class={`tag-button ${isIncluded ? 'included' : isExcluded ? 'excluded' : ''}`}
+										title={`Click to ${isIncluded ? 'remove' : 'include'} ${tag}. Right-click to ${isExcluded ? 'remove' : 'exclude'}.`}
+									>
+										{tag} <span class="tag-count">({count})</span>
+									</button>
+								</a>
+								<a
+									href={toggleExcludeTag(tag)}
+									style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0;"
+									data-exclude-link
+								>
+								</a>
+							</div>
+						);
+					})}
+				</div>
+
+				<div class="instructions">
+					<p><strong>How to use:</strong></p>
+					<p>• <strong>Left-click</strong> a tag to include it (show posts with this tag)</p>
+					<p>• <strong>Right-click</strong> a tag to exclude it (hide posts with this tag)</p>
+					<p>• Click an active tag again to remove the filter</p>
+					<p>• When multiple include tags are selected, toggle between ANY (OR) and ALL (AND) mode</p>
+				</div>
+			</section>
+
+			<section class="posts-section">
+				<h2>
+					Posts
+					<span class="results-count">
+						({filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'})
+					</span>
+				</h2>
+
+				{filteredPosts.length === 0 ? (
+					<div class="no-results">
+						<p>No posts match the selected filters.</p>
+						<p><a href={clearFilters()}>Clear filters</a> to see all posts.</p>
+					</div>
+				) : (
+					<ul>
+						{filteredPosts.map((post) => (
+							<li>
+								<a href={`/blog/${post.id}/`}>
+									{post.data.heroImage && (
+										<img width={720} height={360} src={post.data.heroImage} alt="" />
+									)}
+									<h4 class="title">{post.data.title}</h4>
+									<p class="date">
+										<FormattedDate date={post.data.pubDate || post.data.publishDate || post.data.date} />
+									</p>
+									{post.data.tags && post.data.tags.length > 0 && (
+										<div class="post-tags">
+											{post.data.tags.map((tag: string) => (
+												<span class="post-tag">{tag}</span>
+											))}
+										</div>
+									)}
+								</a>
+							</li>
+						))}
+					</ul>
+				)}
+			</section>
+		</main>
+		<Footer />
+
+		<script>
+			// Handle right-click on tag buttons for exclude functionality
+			document.querySelectorAll('.tag-button').forEach(button => {
+				button.addEventListener('contextmenu', (e) => {
+					e.preventDefault();
+					const link = button.parentElement?.nextElementSibling as HTMLAnchorElement;
+					if (link) {
+						window.location.href = link.href;
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

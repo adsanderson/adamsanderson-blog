@@ -14,7 +14,7 @@ const postDate = pubDate || publishDate || date;
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description || title} />
 		<link rel="stylesheet" href="/nord.css" />
 	</head>
 

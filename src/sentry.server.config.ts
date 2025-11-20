@@ -1,7 +1,6 @@
-import { init } from "@sentry/cloudflare";
-import type { Event, EventHint } from "@sentry/types";
+import * as Sentry from "@sentry/astro";
 
-init({
+Sentry.init({
   dsn: process.env.SENTRY_DSN,
   environment: process.env.NODE_ENV || 'development',
   
@@ -9,7 +8,7 @@ init({
   tracesSampleRate: 1.0,
   
   // Server-side configuration
-  beforeSend(event: Event, hint: EventHint) {
+  beforeSend(event, hint) {
     // Filter out development errors or add custom logic
     if (process.env.NODE_ENV === 'development') {
       console.log('Sentry event:', event);
